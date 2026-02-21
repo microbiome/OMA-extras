@@ -279,8 +279,7 @@ machine learning model utilizing multi-assay data.
 
 **Exercise 1: IntegratedLearner**
 
-1. Load any of the example datasets in `MultiAssayExperiment` format
-mentioned in [@sec-example-data].
+1. Load any of the example datasets in `MultiAssayExperiment` format.
 
 2. Observe `colData` and check that the metadata includes outcome variables that
 you want to predict.
