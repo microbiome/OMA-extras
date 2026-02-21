@@ -1,11 +1,11 @@
 website:
   back-to-top-navigation: true
-  search: 
+  search:
     location: sidebar
   page-footer:
     background: light
     left: |
-      <a href="./">Orchestrating Microbiome Analysis with Bioconductor</a>
+      <a href="./">Orchestrating Microbiome Analysis with Bioconductor — extras</a>
     right: |
       This book was built with <a href="https://github.com/js2264/BiocBook/">BiocBook</a> with :heart:
   repo-branch: devel

@@ -6,7 +6,7 @@
 
 **README from [microbiome/OMA-extras](https://github.com/microbiome/OMA-extras)**
 
-# Orchestrating Microbiome Analysis Book <img src="inst/assets/mia_logo.png" align="right" width="120" />
+# Orchestrating Microbiome Analysis Book — extras <img src="inst/assets/mia_logo.png" align="right" width="120" />
 
 ## Overview
 
