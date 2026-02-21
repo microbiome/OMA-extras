@@ -10,8 +10,7 @@ chapterPreamble()
 ```
 
 This chapter illustrates how we can create a classification model that utilizes
-multiomics data. In contrast, [@sec-machine_learning] shows classification 
-models that utilizes single omic data.
+multiomics data.
 
 In multiview data analysis, there are two main types of approaches: early 
 fusion and late fusion. \underline{Early fusion} combines all datasets into a

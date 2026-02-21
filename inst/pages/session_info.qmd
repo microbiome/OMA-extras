@@ -4,7 +4,7 @@
 
 A `Docker` image built from this repository is available here:
 
-👉 [ghcr.io/microbiome/oma](https://ghcr.io/microbiome/oma) 🐳
+👉 [ghcr.io/microbiome/oma-extras](https://ghcr.io/microbiome/oma-extras) 🐳
 
 ::: {.callout-tip icon='true'}
 ## Get started now 🎉
@@ -16,7 +16,7 @@ using this command in a terminal:
 #| label: docker
 #| eval: false
 
-docker run -it ghcr.io/microbiome/oma:devel R
+docker run -it ghcr.io/microbiome/oma-extras:devel R
 ```
 
 :::
@@ -33,7 +33,7 @@ docker run \
     --volume <local_folder>:<destination_folder> \
     -e PASSWORD=OMA \
     -p 8787:8787 \
-    ghcr.io/microbiome/oma:devel
+    ghcr.io/microbiome/oma-extras:devel
 ```
 
 The initiated RStudio Server instance will be available at

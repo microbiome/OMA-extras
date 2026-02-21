@@ -1,7 +1,7 @@
 language:
   search-box-placeholder: Search
 book:
-  title: "Orchestrating Microbiome Analysis"
+  title: "Orchestrating Microbiome Analysis — extras"
   search:
     location: sidebar
     type: textbox
@@ -13,71 +13,21 @@ book:
       - icon: github
         menu:
           - text: Source Code
-            url:  https://github.com/microbiome/OMA/
+            url:  https://github.com/microbiome/OMA-extras/
           - text: Browse version `devel`
-            url:  https://microbiome.github.io/OMA/docs/devel/
+            url:  https://microbiome.github.io/OMA-extras/docs/devel/
       - icon: twitter
         href: https://twitter.com
-    title: "Orchestrating Microbiome Analysis"
+    title: "Orchestrating Microbiome Analysis — extras"
   chapters:
     - index.qmd
-    - part: "Introduction"
-      chapters:
-        - pages/intro.qmd
-        - pages/miaverse.qmd
-    - part: "Data containers & importing"
-      chapters:
-        - pages/containers.qmd
-        - pages/import.qmd
-        - pages/convert.qmd
-    - part: "Data wrangling"
-      chapters:
-        - pages/taxonomy.qmd
-        - pages/wrangling.qmd
-    - part: pages/preprocess.qmd
-      chapters:
-        - pages/quality_control.qmd
-        - pages/subsetting.qmd
-        - pages/agglomeration.qmd
-        - pages/transformation.qmd
-    - part: "Diversity & similarity"
-      chapters:
-        - pages/composition.qmd
-        - pages/alpha_diversity.qmd
-        - pages/community_similarity.qmd
-        - pages/clustering.qmd
-    - part: "Association"
-      chapters:
-        - pages/differential_abundance.qmd
-        - pages/correlation.qmd
-        - pages/mediation.qmd
-    - part: "Networks"
-      chapters:
-        - pages/network_learning.qmd
-        - pages/network_comparison.qmd
-    - part: pages/multiomics.qmd
-      chapters:
-        - pages/cross_correlation.qmd
-        - pages/multiassay_ordination.qmd
-        - pages/integrated_learner.qmd
-    - part: "Machine learning & statistical modeling"
-      chapters:
-        - pages/machine_learning.qmd
-    - part: "Training"
-      chapters:
-        - pages/training.qmd
-        - pages/exercises.qmd
-    - part: "Support & resources"
-      chapters:
-        - pages/support.qmd
-        - pages/resources.qmd
-        - pages/contributions.qmd
-  appendices:
+    - pages/network_learning.qmd
+    - pages/network_comparison.qmd
+    - pages/integrated_learner.qmd
     - pages/msea.qmd
     - pages/mmuphin_meta_analysis.qmd
     - pages/extra_daa.qmd
-    - pages/phyloseq_cheatsheet.qmd
-    - pages/example_solutions.qmd
+  appendices:
     - pages/session_info.qmd
   favicon: assets/favicon.png
   sidebar:
