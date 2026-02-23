@@ -16,7 +16,7 @@ using this command in a terminal:
 #| label: docker
 #| eval: false
 
-docker run -it ghcr.io/microbiome/oma-extras:devel R
+docker run -it ghcr.io/microbiome/omaextras:devel R
 ```
 
 :::
@@ -33,7 +33,7 @@ docker run \
     --volume <local_folder>:<destination_folder> \
     -e PASSWORD=OMA \
     -p 8787:8787 \
-    ghcr.io/microbiome/oma-extras:devel
+    ghcr.io/microbiome/omaextras:devel
 ```
 
 The initiated RStudio Server instance will be available at
