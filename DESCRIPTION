@@ -1,6 +1,6 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.56
+Version: 0.98.57
 Date: 2026-02-21
 Authors@R:
     c(
@@ -20,7 +20,7 @@ LazyData: true
 biocViews:
     Book
 Depends:
-    R (>= 4.0.0)
+    R (>= 4.6.0)
 Imports:
 Suggests:
     BiocBook,
