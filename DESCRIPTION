@@ -1,6 +1,6 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.57
+Version: 0.98.58
 Date: 2026-02-21
 Authors@R:
     c(
@@ -65,7 +65,8 @@ Remotes:
     github::stefpeschel/NetCoMi,
     github::zdk123/SpiecEasi,
     github::GraceYoon/SPRING,
-    github::himelmallick/IntegratedLearner
+    github::himelmallick/IntegratedLearner,
+    github::duncantl/CodeDepends
 VignetteBuilder: knitr
 RoxygenNote: 7.3.3
 BiocType: Book
