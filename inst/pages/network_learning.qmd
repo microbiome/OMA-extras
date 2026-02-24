@@ -176,27 +176,6 @@ Three packages used in this chapter are available on GitHub only:
 `r BiocStyle::Githubpkg("stefpeschel/NetCoMi")`. We recommend that you install
 these packages before proceeding.
 
-```{r}
-#| label: install_packages
-#| message: false
-#| warning: false
-
-if (!require(SpiecEasi)) {
-    devtools::install_github("zdk123/SpiecEasi")
-}
-
-if (!require(SPRING)) {
-    devtools::install_github("GraceYoon/SPRING")
-}
-
-if (!require(NetCoMi)) {
-    devtools::install_github(
-        "stefpeschel/NetCoMi",
-        repos = c("https://cloud.r-project.org/", BiocManager::repositories())
-    )
-}
-```
-
 ### Data preparation
 
 Before applying the network learning methods, we perform some data preparation
