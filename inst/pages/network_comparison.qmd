@@ -18,7 +18,7 @@ chapterPreamble()
 # here to reduce the time needed to knit the book.
 networks_diet_file <- system.file(
     "extdata", "networks_diet.RData",
-    package = "OMA"
+    package = "OMAextras"
 )
 load(networks_diet_file)
 ```
