@@ -9,7 +9,7 @@ title-block-banner: true
 intro <- tryCatch(
     {
         library(htmltools)
-        description <- packageDescription("OMA")
+        description <- packageDescription("OMAextras")
         pkg <- description$Package
         version <- description$Version
         authors <- eval(parse(text = description$Authors))
