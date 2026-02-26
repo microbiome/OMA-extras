@@ -132,11 +132,16 @@ available from GitHub. You can install it by running the following chunk.
 
 ```{r}
 #| label: install_IL
-#| eval: false
+#| message: false
+#| warning: false
 
-library(remotes)
+if (!require(bayesplot)) {
+    install.packages("bayesplot")
+}
 
-install_github("himelmallick/IntegratedLearner")
+if (!require(IntegratedLearner)) {
+    devtools::install_github("himelmallick/IntegratedLearner")
+}
 ```
 
 The modeling process begins by fitting "base learners" for each layer,
