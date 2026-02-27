@@ -135,12 +135,11 @@ available from GitHub. You can install it by running the following chunk.
 #| message: false
 #| warning: false
 
-if (!require(bayesplot)) {
-    BiocManager::install("bayesplot")
-}
-
 if (!require(IntegratedLearner)) {
-    devtools::install_github("himelmallick/IntegratedLearner")
+    devtools::install_github(
+        "himelmallick/IntegratedLearner",
+        dependencies = TRUE
+    )
 }
 ```
 
