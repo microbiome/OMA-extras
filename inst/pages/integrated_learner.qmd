@@ -136,7 +136,7 @@ available from GitHub. You can install it by running the following chunk.
 #| warning: false
 
 if (!require(bayesplot)) {
-    install.packages("bayesplot")
+    BiocManager::install("bayesplot")
 }
 
 if (!require(IntegratedLearner)) {
