@@ -7,7 +7,7 @@
 knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE)
 ```
 
-### Differential abundance analysis with ordinal regression model {#sec-orm}
+## Differential abundance analysis with ordinal regression model {#sec-orm}
 
 We show here how to perform DAA by analyzing relative abundances with ordinal
 regression model (ORM). We have chosen ORM as it makes few assumptions on the
@@ -90,7 +90,7 @@ tse$patient_status <- factor(tse$patient_status, levels = c("Control", "ADHD"))
 tse$cohort <- factor(tse$cohort, levels = c("Cohort_1", "Cohort_2", "Cohort_3"))
 ```
 
-#### The basic two-group comparison {#sec-orm-basic}
+### The basic two-group comparison {#sec-orm-basic}
 
 We compare the relative abundance of taxa between the people with and without
 ADHD (indicated by the variable `patient_status`).
@@ -149,7 +149,7 @@ categorical variable, it also tells the group used as the non-reference level
 abundance being higher in the non-reference group (here `ADHD`). Otherwise,
 estimates can be a bit difficult to interpret for ORMs.
 
-#### More complex analyses {#sec-orm-complex}
+### More complex analyses {#sec-orm-complex}
 
 Analysis with covariates and analysis of interaction terms can be performed in
 by just using different `formula` in the `run_orm` function, e.g.
@@ -227,7 +227,7 @@ tse$cohort <- factor(tse$cohort, levels = c("Cohort_1", "Cohort_2", "Cohort_3"))
 tse <- addPerCellQC(tse)
 ```
 
-#### The basic two-group comparison {#sec-firth-basic}
+### The basic two-group comparison {#sec-firth-basic}
 
 We perform here the basic two-group comparison while controlling for sequencing
 depth (`reads`) as in @sec-DPA. We compare the presence/absence of taxa
@@ -272,7 +272,7 @@ categorical variable, it also tells the group used as the non-reference level
 - `estimate` is the familiar log(odds ratio). A positive value indicates the
 taxon being more prevalent in the non-reference group (here `ADHD`).
 
-#### More complex analyses {#sec-firth-complex}
+### More complex analyses {#sec-firth-complex}
 
 Analysis with covariates and analysis of interaction terms can be performed in
 by just using different `formula` in the `run_firth` function, e.g.

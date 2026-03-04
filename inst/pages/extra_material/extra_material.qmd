@@ -508,9 +508,9 @@ You can find full workflow script without further explanations and comments from
 
 # Load objects
 seqtab.nochim <- readRDS(
-    system.file("extdata", "dada2_seqtab.nochim", package = "OMA")
+    system.file("extdata", "dada2_seqtab.nochim", package = "OMAextras")
 )
-taxa <- readRDS(system.file("extdata", "dada2_taxa", package = "OMA"))
+taxa <- readRDS(system.file("extdata", "dada2_taxa", package = "OMAextras"))
 ```
 
 Load required packages.

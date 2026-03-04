@@ -1,6 +1,6 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.58
+Version: 0.98.63
 Date: 2026-02-21
 Authors@R:
     c(
@@ -41,6 +41,7 @@ Suggests:
     igraph,
     IntegratedLearner,
     knitr,
+    limma,
     logistf,
     Maaslin2,
     mia,
@@ -62,10 +63,11 @@ Suggests:
     vegan,
     WGCNA
 Remotes:
+    github::himelmallick/IntegratedLearner,
     github::stefpeschel/NetCoMi,
+    github::zdk123/pulsar,
     github::zdk123/SpiecEasi,
-    github::GraceYoon/SPRING,
-    github::himelmallick/IntegratedLearner
+    github::GraceYoon/SPRING
 VignetteBuilder: knitr
 RoxygenNote: 7.3.3
 BiocType: Book
