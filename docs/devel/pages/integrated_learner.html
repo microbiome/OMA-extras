@@ -599,20 +599,34 @@ Lloyd-Price, Jason, Cesar Arze, Ashwin N. Ananthakrishnan, Melanie Schirmer, Jul
 Mallick, Himel, Anupreet Porwal, Satabdi Saha, Piyali Basak, Vladimir Svetnik, and Erina Paul. 2023. <span>“An Integrated Bayesian Framework for Multi-Omics Prediction and Classification.”</span> <em>Statistics in Medicine</em> 43 (5): 983–1002. <a href="https://doi.org/10.1002/sim.9953">https://doi.org/10.1002/sim.9953</a>.
 </div></div><p>Currently, <em><a href="https://github.com/himelmallick/IntegratedLearner">IntegratedLearner</a></em> is only available from GitHub. You can install it by running the following chunk.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"himelmallick/IntegratedLearner"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/himelmallick/IntegratedLearner">IntegratedLearner</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span></span>
+<span>        <span class="st">"himelmallick/IntegratedLearner"</span>,</span>
+<span>        dependencies <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">##  distribut... (NA -&gt; 0.6.0   ) [CRAN]</span></span>
+<span><span class="co">##  tensorA      (NA -&gt; 0.36.2.1) [CRAN]</span></span>
+<span><span class="co">##  posterior    (NA -&gt; 1.6.1   ) [CRAN]</span></span>
+<span><span class="co">##  ggridges     (NA -&gt; 0.5.7   ) [CRAN]</span></span>
+<span><span class="co">##  glmnetUtils  (NA -&gt; 1.1.9   ) [CRAN]</span></span>
+<span><span class="co">##  bayesplot    (NA -&gt; 1.15.0  ) [CRAN]</span></span>
+<span><span class="co">##  ── R CMD build ──────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">##  * checking for file ‘/tmp/RtmpCY8ybe/remotes4fb3258f417/himelmallick-IntegratedLearner-418e0a2/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">##  * preparing ‘IntegratedLearner’:</span></span>
+<span><span class="co">##  * checking DESCRIPTION meta-information ... OK</span></span>
+<span><span class="co">##  * checking for LF line-endings in source and make files and shell scripts</span></span>
+<span><span class="co">##  * checking for empty or unneeded directories</span></span>
+<span><span class="co">##  * looking to see if a ‘data/datalist’ file should be added</span></span>
+<span><span class="co">##  * building ‘IntegratedLearner_0.0.2.tar.gz’</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The modeling process begins by fitting “base learners” for each layer, with separate models trained for each omic dataset. Then, a “meta learner” integrates the outputs from these individual models to make the final predictions. For “base learners” and “meta learner”, we use <em>random forest</em> and <em>rank loss minimization</em> models, respectively.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>eval <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">IntegratedLearner</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/himelmallick/IntegratedLearner">IntegratedLearner</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ecpolley/SuperLearner">SuperLearner</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Fit the model</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">IntegratedLearnerFromMAE</span><span class="op">(</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/IntegratedLearner/man/IntegratedLearnerFromMAE.html">IntegratedLearnerFromMAE</a></span><span class="op">(</span></span>
 <span>    <span class="va">mae</span>,</span>
 <span>    <span class="co"># Select experiments and assays</span></span>
 <span>    experiment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://github.com/waldronlab/MultiAssayExperiment/reference/MultiAssayExperiment-methods.html">experiments</a></span><span class="op">(</span><span class="va">mae</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -625,7 +639,41 @@ Mallick, Himel, Anupreet Porwal, Satabdi Saha, Piyali Basak, Vladimir Svetnik, a
 <span>    meta_learner <span class="op">=</span> <span class="st">"SL.nnls.auc"</span>,</span>
 <span>    <span class="co"># The outcome is binary</span></span>
 <span>    family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span>
+<span><span class="co">##  Running base model for layer  1 ... </span></span>
+<span><span class="co">##  Running base model for layer  2 ... </span></span>
+<span><span class="co">##  Running stacked model...</span></span>
+<span><span class="co">##  Running concatenated model...</span></span>
+<span><span class="co">##  Time for model fit : 1.535 minutes </span></span>
+<span><span class="co">##  ========================================</span></span>
+<span><span class="co">##  Model fit for individual layers: SL.randomForest </span></span>
+<span><span class="co">##  Model fit for stacked layer: SL.nnls.auc </span></span>
+<span><span class="co">##  Model fit for concatenated layer: SL.randomForest </span></span>
+<span><span class="co">##  ========================================</span></span>
+<span><span class="co">##  AUC metric for training data: </span></span>
+<span><span class="co">##  Individual layers: </span></span>
+<span><span class="co">##  microbiota    pathway </span></span>
+<span><span class="co">##       0.970      0.946 </span></span>
+<span><span class="co">##  ======================</span></span>
+<span><span class="co">##  Stacked model:0.97 </span></span>
+<span><span class="co">##  ======================</span></span>
+<span><span class="co">##  Concatenated model:0.967 </span></span>
+<span><span class="co">##  ======================</span></span>
+<span><span class="co">##  ========================================</span></span>
+<span><span class="co">##  AUC metric for test data: </span></span>
+<span><span class="co">##  Individual layers: </span></span>
+<span><span class="co">##  microbiota    pathway </span></span>
+<span><span class="co">##       0.964      0.929 </span></span>
+<span><span class="co">##  ======================</span></span>
+<span><span class="co">##  Stacked model:0.962 </span></span>
+<span><span class="co">##  ======================</span></span>
+<span><span class="co">##  Concatenated model:0.952 </span></span>
+<span><span class="co">##  ======================</span></span>
+<span><span class="co">##  ========================================</span></span>
+<span><span class="co">##  Weights for individual layers predictions in IntegratedLearner: </span></span>
+<span><span class="co">##  microbiota    pathway </span></span>
+<span><span class="co">##        0.93       0.07 </span></span>
+<span><span class="co">##  ========================================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The output include the following models:</p>
 <ul>
@@ -636,26 +684,59 @@ Mallick, Himel, Anupreet Porwal, Satabdi Saha, Piyali Basak, Vladimir Svetnik, a
 <span class="header-section-number">3.3</span> Visualize results</h2>
 <p>We can summarize the model performance using a Receiver Operating Characteristic (ROC) plot.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">IntegratedLearner</span><span class="fu">:::</span><span class="fu">plot.learner</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">IntegratedLearner</span><span class="fu">:::</span><span class="fu"><a href="https://rdrr.io/pkg/IntegratedLearner/man/plot.learner.html">plot.learner</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="integrated_learner_files/figure-html/visualize_result-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Based on the ROC plot described below, we observe that the AUC is NA when considering only the pathway abundance data in the model, and NA for the model including only the species abundance data. The AUC increases to NA when using the early fusion model and reaches NA with the late fusion model. Overall, most integrated classifiers outperform individual layers in distinguishing between T2D and healthy controls.</p>
 <p>The model’s performance can also be evaluated and summarized using a confusion matrix.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/topepo/caret/">caret</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/topepo/caret/">caret</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">Y_test</span><span class="op">)</span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">yhat.test</span><span class="op">$</span><span class="va">stacked</span> <span class="op">&gt;</span> <span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">pred</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">conf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html">confusionMatrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pred</span>, reference <span class="op">=</span> <span class="va">obs</span><span class="op">)</span></span>
-<span><span class="va">conf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">conf</span></span>
+<span><span class="co">##  Confusion Matrix and Statistics</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##            Reference</span></span>
+<span><span class="co">##  Prediction   1   2</span></span>
+<span><span class="co">##           1 258  22</span></span>
+<span><span class="co">##           2   1  70</span></span>
+<span><span class="co">##                                          </span></span>
+<span><span class="co">##                 Accuracy : 0.934         </span></span>
+<span><span class="co">##                   95% CI : (0.903, 0.958)</span></span>
+<span><span class="co">##      No Information Rate : 0.738         </span></span>
+<span><span class="co">##      P-Value [Acc &gt; NIR] : &lt; 2e-16       </span></span>
+<span><span class="co">##                                          </span></span>
+<span><span class="co">##                    Kappa : 0.817         </span></span>
+<span><span class="co">##                                          </span></span>
+<span><span class="co">##   Mcnemar's Test P-Value : 3.04e-05      </span></span>
+<span><span class="co">##                                          </span></span>
+<span><span class="co">##              Sensitivity : 0.996         </span></span>
+<span><span class="co">##              Specificity : 0.761         </span></span>
+<span><span class="co">##           Pos Pred Value : 0.921         </span></span>
+<span><span class="co">##           Neg Pred Value : 0.986         </span></span>
+<span><span class="co">##               Prevalence : 0.738         </span></span>
+<span><span class="co">##           Detection Rate : 0.735         </span></span>
+<span><span class="co">##     Detection Prevalence : 0.798         </span></span>
+<span><span class="co">##        Balanced Accuracy : 0.879         </span></span>
+<span><span class="co">##                                          </span></span>
+<span><span class="co">##         'Positive' Class : 1             </span></span>
+<span><span class="co">##  </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The model appears to be performing well the the accuracy being NA. The model seems to precict correctly almost all IBD patients. It is also worth noting that over three-quarters of the controls are classified correctly</p>
 <p>Lastly, we may be interested in identifying the features that contribute most to predicting the outcome. To do this, we first extract feature importance scores from the individual models. Next, we scale these importance scores based on the weights assigned to each layer in the stacked model. This process provides us with the overall importance of each feature in the final model.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiome/miaViz">miaViz</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiome/miaViz">miaViz</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get individual models</span></span>
 <span><span class="va">models</span> <span class="op">&lt;-</span> <span class="va">fit</span><span class="op">$</span><span class="va">model_fits</span><span class="op">$</span><span class="va">model_layers</span></span>
@@ -673,6 +754,12 @@ Mallick, Himel, Anupreet Porwal, Satabdi Saha, Piyali Basak, Vladimir Svetnik, a
 <span><span class="co"># Plot feature importances</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/miaViz/man/plotLoadings.html">plotLoadings</a></span><span class="op">(</span><span class="va">importances</span>, ncomponents <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">20</span>, show.color <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="integrated_learner_files/figure-html/feat_importance-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>From the plot, we can observe that <em>NA</em> and <em>NA</em> appear to have the greatest predictive power among all the features in determining the outcome. However, the predictive power appears to be fairly evenly distributed across all features.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -711,7 +798,7 @@ Mallick, Himel, Anupreet Porwal, Satabdi Saha, Piyali Basak, Vladimir Svetnik, a
 <li><p>What features have the highest predictive power?</p></li>
 </ol>
 <p>Useful functions:</p>
-<p><code><a href="https://rdrr.io/r/utils/data.html">utils::data()</a></code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::colData()</a></code>, <code><a href="https://microbiome.github.io/mia/reference/getPrevalence.html">mia::subsetByPrevalent()</a></code>, <code>MatrixGenerics::rowSds()</code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay()</a></code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::rowData()</a></code>, <code><a href="https://microbiome.github.io/mia/reference/transformAssay.html">mia::transformAssay()</a></code>, <code>IntegratedLearner::IntegratedLearnerFromMAE()</code>, <code>IntegratedLearner:::plot.learner()</code>, <code><a href="https://rdrr.io/pkg/miaViz/man/plotLoadings.html">plotLoadings()</a></code></p>
+<p><code><a href="https://rdrr.io/r/utils/data.html">utils::data()</a></code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::colData()</a></code>, <code><a href="https://microbiome.github.io/mia/reference/getPrevalence.html">mia::subsetByPrevalent()</a></code>, <code>MatrixGenerics::rowSds()</code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay()</a></code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::rowData()</a></code>, <code><a href="https://microbiome.github.io/mia/reference/transformAssay.html">mia::transformAssay()</a></code>, <code><a href="https://rdrr.io/pkg/IntegratedLearner/man/IntegratedLearnerFromMAE.html">IntegratedLearner::IntegratedLearnerFromMAE()</a></code>, <code>IntegratedLearner:::plot.learner()</code>, <code><a href="https://rdrr.io/pkg/miaViz/man/plotLoadings.html">plotLoadings()</a></code></p>
 </div>
 </div>
 

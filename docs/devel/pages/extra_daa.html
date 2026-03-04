@@ -422,8 +422,16 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#sec-orm" id="toc-sec-orm" class="nav-link active" data-scroll-target="#sec-orm"><span class="header-section-number">6.0.1</span> Differential abundance analysis with ordinal regression model</a></li>
-  <li><a href="#sec-firth" id="toc-sec-firth" class="nav-link" data-scroll-target="#sec-firth"><span class="header-section-number">6.0.2</span> Analysis of presence/absence with Firth logistic regression</a></li>
+<li>
+<a href="#sec-orm" id="toc-sec-orm" class="nav-link active" data-scroll-target="#sec-orm"><span class="header-section-number">6.1</span> Differential abundance analysis with ordinal regression model</a>
+  <ul class="collapse">
+<li><a href="#sec-orm-basic" id="toc-sec-orm-basic" class="nav-link" data-scroll-target="#sec-orm-basic"><span class="header-section-number">6.1.1</span> The basic two-group comparison</a></li>
+  <li><a href="#sec-orm-complex" id="toc-sec-orm-complex" class="nav-link" data-scroll-target="#sec-orm-complex"><span class="header-section-number">6.1.2</span> More complex analyses</a></li>
+  <li><a href="#sec-firth" id="toc-sec-firth" class="nav-link" data-scroll-target="#sec-firth"><span class="header-section-number">6.1.3</span> Analysis of presence/absence with Firth logistic regression</a></li>
+  <li><a href="#sec-firth-basic" id="toc-sec-firth-basic" class="nav-link" data-scroll-target="#sec-firth-basic"><span class="header-section-number">6.1.4</span> The basic two-group comparison</a></li>
+  <li><a href="#sec-firth-complex" id="toc-sec-firth-complex" class="nav-link" data-scroll-target="#sec-firth-complex"><span class="header-section-number">6.1.5</span> More complex analyses</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -442,8 +450,8 @@ div.csl-indent {
   
 
 
-</header><section id="sec-orm" class="level3 page-columns page-full" data-number="6.0.1"><h3 data-number="6.0.1" class="anchored" data-anchor-id="sec-orm">
-<span class="header-section-number">6.0.1</span> Differential abundance analysis with ordinal regression model</h3>
+</header><section id="sec-orm" class="level2 page-columns page-full" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-orm">
+<span class="header-section-number">6.1</span> Differential abundance analysis with ordinal regression model</h2>
 <p>We show here how to perform DAA by analyzing relative abundances with ordinal regression model (ORM). We have chosen ORM as it makes few assumptions on the distributions of abundances while it can incorporate covariates (including interaction terms) in the analysis. As ORM performs very similarly to the familiar non-parametric Wilcoxon test in the basic two group comparison it can also be seen as an extension of the Wilcoxon test <span class="citation" data-cites="Harrell2001 Liu2017">(<a href="#ref-Harrell2001" role="doc-biblioref">Harrell 2001</a>; <a href="#ref-Liu2017" role="doc-biblioref">Liu et al. 2017</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Harrell2001" class="csl-entry" role="listitem">
 Harrell, Frank E. 2001. <em>Regression Modeling Strategies</em>. Springer New York. <a href="https://doi.org/10.1007/978-1-4757-3462-1">https://doi.org/10.1007/978-1-4757-3462-1</a>.
@@ -507,8 +515,8 @@ Liu, Qi, Bryan E. Shepherd, Chun Li, and Frank E. Harrell. 2017. <span>“Modeli
 <span><span class="co"># We also transform cohort as a factor</span></span>
 <span><span class="va">tse</span><span class="op">$</span><span class="va">cohort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">tse</span><span class="op">$</span><span class="va">cohort</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cohort_1"</span>, <span class="st">"Cohort_2"</span>, <span class="st">"Cohort_3"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="sec-orm-basic" class="level4 page-columns page-full" data-number="6.0.1.1"><h4 data-number="6.0.1.1" class="anchored" data-anchor-id="sec-orm-basic">
-<span class="header-section-number">6.0.1.1</span> The basic two-group comparison</h4>
+<section id="sec-orm-basic" class="level3 page-columns page-full" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-orm-basic">
+<span class="header-section-number">6.1.1</span> The basic two-group comparison</h3>
 <p>We compare the relative abundance of taxa between the people with and without ADHD (indicated by the variable <code>patient_status</code>).</p>
 <p>The code below works as follows.</p>
 <ol type="1">
@@ -623,11 +631,11 @@ Benjamini, Yoav, and Yosef Hochberg. 1995. <span>“Controlling the False Discov
 <code>variable</code> indicates the predictor variable. As <code>patient_status</code> is a categorical variable, it also tells the group used as the non-reference level (here <code>ADHD</code> as <code>Control</code> was set as the reference level).</li>
 <li>
 <code>estimate</code> is log(odds ratio). Most importantly, positive values indicate abundance being higher in the non-reference group (here <code>ADHD</code>). Otherwise, estimates can be a bit difficult to interpret for ORMs.</li>
-</ul></section><section id="sec-orm-complex" class="level4" data-number="6.0.1.2"><h4 data-number="6.0.1.2" class="anchored" data-anchor-id="sec-orm-complex">
-<span class="header-section-number">6.0.1.2</span> More complex analyses</h4>
+</ul></section><section id="sec-orm-complex" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-orm-complex">
+<span class="header-section-number">6.1.2</span> More complex analyses</h3>
 <p>Analysis with covariates and analysis of interaction terms can be performed in by just using different <code>formula</code> in the <code>run_orm</code> function, e.g. <code>formula = patient_status + cohort</code> or <code>formula = patient_status * cohort</code>.</p>
-</section></section><section id="sec-firth" class="level3 page-columns page-full" data-number="6.0.2"><h3 data-number="6.0.2" class="anchored" data-anchor-id="sec-firth">
-<span class="header-section-number">6.0.2</span> Analysis of presence/absence with Firth logistic regression</h3>
+</section><section id="sec-firth" class="level3 page-columns page-full" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="sec-firth">
+<span class="header-section-number">6.1.3</span> Analysis of presence/absence with Firth logistic regression</h3>
 <p>As some versions of logistic regression perform badly in the cases where, for instance, the prevalence of a taxon is zero in one group we show here how to perform DPAA with a robust version of logistic regression introduced by <span class="citation" data-cites="Firth1993">Firth (<a href="#ref-Firth1993" role="doc-biblioref">1993</a>)</span>. This version has been observed to perform well in DPAA in practice <span class="citation" data-cites="Pelto2025">(<a href="#ref-Pelto2025" role="doc-biblioref">Pelto et al. 2025</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Firth1993" class="csl-entry" role="listitem">
 Firth, David. 1993. <span>“Bias Reduction of Maximum Likelihood Estimates.”</span> <em>Biometrika</em> 80 (March): 27. <a href="https://doi.org/10.2307/2336755">https://doi.org/10.2307/2336755</a>.
@@ -687,8 +695,8 @@ Pelto, Juho, Kari Auranen, Janne V Kujala, and Leo Lahti. 2025. <span>“Element
 <span><span class="co"># sample (needed when analyzing presence/absence of taxa)</span></span>
 <span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/addPerCellQCMetrics.html">addPerCellQC</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="sec-firth-basic" class="level4" data-number="6.0.2.1"><h4 data-number="6.0.2.1" class="anchored" data-anchor-id="sec-firth-basic">
-<span class="header-section-number">6.0.2.1</span> The basic two-group comparison</h4>
+</section><section id="sec-firth-basic" class="level3" data-number="6.1.4"><h3 data-number="6.1.4" class="anchored" data-anchor-id="sec-firth-basic">
+<span class="header-section-number">6.1.4</span> The basic two-group comparison</h3>
 <p>We perform here the basic two-group comparison while controlling for sequencing depth (<code>reads</code>) as in <span class="quarto-unresolved-ref">?sec-DPA</span>. We compare the presence/absence of taxa between the people with and without ADHD.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
@@ -786,8 +794,8 @@ Pelto, Juho, Kari Auranen, Janne V Kujala, and Leo Lahti. 2025. <span>“Element
 <code>variable</code> indicates the predictor variable. As <code>patient_status</code> is a categorical variable, it also tells the group used as the non-reference level (here <code>ADHD</code> as <code>Control</code> was set as the reference level).</li>
 <li>
 <code>estimate</code> is the familiar log(odds ratio). A positive value indicates the taxon being more prevalent in the non-reference group (here <code>ADHD</code>).</li>
-</ul></section><section id="sec-firth-complex" class="level4" data-number="6.0.2.2"><h4 data-number="6.0.2.2" class="anchored" data-anchor-id="sec-firth-complex">
-<span class="header-section-number">6.0.2.2</span> More complex analyses</h4>
+</ul></section><section id="sec-firth-complex" class="level3" data-number="6.1.5"><h3 data-number="6.1.5" class="anchored" data-anchor-id="sec-firth-complex">
+<span class="header-section-number">6.1.5</span> More complex analyses</h3>
 <p>Analysis with covariates and analysis of interaction terms can be performed in by just using different <code>formula</code> in the <code>run_firth</code> function, e.g. <code>formula = patient_status + cohort + reads</code> or <code>formula = patient_status * cohort + reads</code>.</p>
 
 
