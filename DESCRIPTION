@@ -1,7 +1,7 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.63
-Date: 2026-02-21
+Version: 0.98.64
+Date: 2026-03-25
 Authors@R:
     c(
   person(given = "Tuomas", family = "Borman", role = c("aut", "cre"), email = "tuomas.v.borman@utu.fi", comment = c(ORCID = "0000-0002-8563-8884")),
@@ -12,7 +12,7 @@ Authors@R:
 Description:
     This is a reference cookbook for **Microbiome Data Science** with
     R and Bioconductor.
-License: CC BY-NC-SA 4.0
+License: CC BY 4.0
 Encoding: UTF-8
 URL: https://github.com/microbiome/OMA-extras
 BugReports: https://github.com/microbiome/OMA-extras/issues
