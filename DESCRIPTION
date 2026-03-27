@@ -63,7 +63,6 @@ Suggests:
     vegan,
     WGCNA
 Remotes:
-    github::duncantl/CodeDepends,
     github::himelmallick/IntegratedLearner,
     github::stefpeschel/NetCoMi,
     github::zdk123/pulsar,
