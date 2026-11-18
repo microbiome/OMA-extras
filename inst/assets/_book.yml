@@ -27,6 +27,7 @@ book:
     - pages/msea.qmd
     - pages/mmuphin_meta_analysis.qmd
     - pages/extra_daa.qmd
+    - pages/time_series.qmd
   appendices:
     - pages/session_info.qmd
   favicon: assets/favicon.png
