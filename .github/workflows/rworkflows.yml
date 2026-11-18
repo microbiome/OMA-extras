@@ -36,6 +36,13 @@ jobs:
         #   cont: ~
         #   rspm: ~
     steps:
+    # Temporary: ggtree (Bioconductor devel) needs the CRAN packages
+    # treelayout and tidytree (>= 0.4.9), which are newer than the CRAN
+    # snapshot used in the Bioconductor devel container. Install them from
+    # CRAN before the dependencies are installed. Remove once the snapshot
+    # includes them. Same fix as in microbiome/OMA#938.
+    - name: Install treelayout and tidytree from CRAN (temporary)
+      run: Rscript -e 'install.packages(c("treelayout", "tidytree"), repos = "https://cloud.r-project.org")'
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ false }}

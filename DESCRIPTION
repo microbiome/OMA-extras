@@ -1,6 +1,6 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.64
+Version: 0.98.65
 Date: 2026-03-25
 Authors@R:
     c(
