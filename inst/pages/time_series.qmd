@@ -39,6 +39,25 @@ same subjects repeatedly, this within-subject variability can be estimated and
 separated from between-subject differences. This reduces the uncertainty in
 comparisons between groups.
 
+Repeated sampling also reveals the dynamics of a community, such as whether
+a taxon has alternative stable states with a tipping point between them
+(@fig-ts-stability). Such dynamics can be reconstructed from one long time
+series, but many short time series from different subjects can be even more
+informative [@Ross2026].
+
+![Stability landscape of a bistable taxon. (a, b) The abundance has two
+stable states (blue and red) separated by a tipping point (orange); the
+landscape has deterministic and stochastic components. (c, d) The same
+dynamics can be observed in one long time series or in many short time
+series from different subjects. (e) Short time series from many subjects
+recover the true stationary density faster. Reproduced from @Ross2026 under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).](figures/time_series_stability.png){#fig-ts-stability
+fig-alt="Panels showing a double-well stability landscape with two stable
+states and a tipping point, its drift and diffusion functions, one long
+time series switching between two states, many short time series from
+several subjects, and a plot where multiple short time series reach
+agreement with the true density sooner than one long series."}
+
 Analyzing longitudinal data includes aspects that need to be taken into
 account, such as the dependence between samples collected from the same
 subject.
@@ -191,7 +210,7 @@ paired samples, the subject has to be included in the model. Below, we use
 between the time points in the LGG group. The argument `correlation_block`
 specifies the subject, so that samples from the same subject are resampled
 together and their correlation is accounted for in the model. LimROTS requires
-log-transformed data, so we use the CLR transformation.
+log-transformed data, so we use the robust CLR (rclr) transformation.
 
 ```{r}
 #| label: daa_limrots
