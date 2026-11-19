@@ -18,8 +18,11 @@ jobs:
       - name: 🧾 Checkout repository
         uses: actions/checkout@v3
 
-      - name: ⏳ Collect Workflow Telemetry
-        uses: runforesight/workflow-telemetry-action@v1
+      # Removed: runforesight/workflow-telemetry-action no longer exists, so
+      # the job failed at setup and the book was not deployed. Same change as
+      # in microbiome/OMA#880.
+      # - name: ⏳ Collect Workflow Telemetry
+      #   uses: runforesight/workflow-telemetry-action@v1
 
       - name: 🧹 Clean up Docker environment
         run: |
