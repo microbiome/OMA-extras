@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>7&nbsp; Machine learning – Orchestrating Microbiome Analysis — extras</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../pages/session_info.html" rel="next">
+<link href="../pages/machine_learning_intro.html" rel="prev">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-036ce5d4a32f44c60d96ed3111f9e174.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+</head>
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/mia_logo.png" alt="" class="navbar-logo light-content"><img src="../assets/mia_logo.png" alt="" class="navbar-logo dark-content"></a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Orchestrating Microbiome Analysis — extras</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-bi-github">
+<li>
+    <a class="dropdown-item" href="https://github.com/microbiome/OMA-extras/">
+ <span class="dropdown-text">Source Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://microbiome.github.io/OMA-extras/docs/devel/">
+ <span class="dropdown-text">Browse version <code>devel</code></span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/machine_learning_intro.html">Machine learning</a></li><li class="breadcrumb-item"><a href="../pages/machine_learning.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/network_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Network learning &amp; analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/network_comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Network comparison</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/msea.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/mmuphin_meta_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/extra_daa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/time_series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Time series analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/session_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Technical info</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">7.1</span> Setup</a></li>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing"><span class="header-section-number">7.2</span> Data preprocessing</a></li>
+  <li><a href="#model-training" id="toc-model-training" class="nav-link" data-scroll-target="#model-training"><span class="header-section-number">7.3</span> Model training</a></li>
+  <li>
+<a href="#sec-ml-classification" id="toc-sec-ml-classification" class="nav-link" data-scroll-target="#sec-ml-classification"><span class="header-section-number">7.4</span> Classification with random forest</a>
+  <ul class="collapse">
+<li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training"><span class="header-section-number">7.4.1</span> Training</a></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance"><span class="header-section-number">7.4.2</span> Performance</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">7.4.3</span> Visualization</a></li>
+  <li><a href="#model-interpretation" id="toc-model-interpretation" class="nav-link" data-scroll-target="#model-interpretation"><span class="header-section-number">7.4.4</span> Model interpretation</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-ml-regression" id="toc-sec-ml-regression" class="nav-link" data-scroll-target="#sec-ml-regression"><span class="header-section-number">7.5</span> Regression with random forest</a>
+  <ul class="collapse">
+<li><a href="#training-1" id="toc-training-1" class="nav-link" data-scroll-target="#training-1"><span class="header-section-number">7.5.1</span> Training</a></li>
+  <li><a href="#performance-1" id="toc-performance-1" class="nav-link" data-scroll-target="#performance-1"><span class="header-section-number">7.5.2</span> Performance</a></li>
+  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1"><span class="header-section-number">7.5.3</span> Visualization</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-ml-xgboost" id="toc-sec-ml-xgboost" class="nav-link" data-scroll-target="#sec-ml-xgboost"><span class="header-section-number">7.6</span> Random forest vs XGBoost</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/machine_learning_intro.html">Machine learning</a></li><li class="breadcrumb-item"><a href="../pages/machine_learning.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-machine_learning" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>This chapter demonstrates two supervised ML algorithms, random forest and XGBoost, that can be applied to classification and regression tasks. For an introduction to ML and supervised learning, see <a href="../pages/machine_learning_intro.html">Introduction to machine learning &amp; AI</a>.</p>
+<section id="setup" class="level2 page-columns page-full" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="setup">
+<span class="header-section-number">7.1</span> Setup</h2>
+<p>Published fecal microbiome data <span class="citation" data-cites="qin2012_t2d Pasolli2017">(<a href="#ref-qin2012_t2d" role="doc-biblioref">Qin et al. 2012</a>; <a href="#ref-Pasolli2017" role="doc-biblioref">Pasolli et al. 2017</a>)</span> (see <a href="https://microbiome.github.io/OMA/docs/devel/pages/data_sets.html#sec-data-qin2012">OMA: QinJ_2012 data set</a>) will be used to illustrate how to deploy supervised machine learning algorithms to address classification and regression problems. For classification, two ML models will be used to classify subjects in two groups: Type II diabetes patients or Healthy individuals (encoded as T2D and healthy in the metadata). For regression, models will be use to predict the body mass index (BMI) of each subject. In both tasks the models will be trained with participants gut microbiome data.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Pasolli2017" class="csl-entry" role="listitem">
+Pasolli, Edoardo, Lucas Schiffer, Paolo Manghi, et al. 2017. <span>“Accessible, Curated Metagenomic Data Through <span>ExperimentHub</span>.”</span> <em>Nature Methods</em> 14 (11): 1023–24. <a href="https://doi.org/10.1038/nmeth.4468">https://doi.org/10.1038/nmeth.4468</a>.
+</div><div id="ref-ridaura2013_obesityFMT" class="csl-entry" role="listitem">
+Ridaura, Vanessa K., Jeremiah J. Faith, Federico E. Rey, et al. 2013. <span>“Gut Microbiota from Twins Discordant for Obesity Modulate Metabolism in Mice.”</span> <em>Science</em> 341 (6150): 1241214. <a href="https://doi.org/10.1126/science.1241214">https://doi.org/10.1126/science.1241214</a>.
+</div></div><p>Mounting evidence show associations between gut microbiome and the onset of type II diabetes. Thus, it has been suggested that microbiome data could be used to discriminate between patients and healthy individuals. Indeed, that hypothesis was explored in the research article where the dataset we will work with was released <span class="citation" data-cites="qin2012_t2d">(<a href="#ref-qin2012_t2d" role="doc-biblioref">Qin et al. 2012</a>)</span>. On the other hand, experiments conducted with twins have shown that while the transplantation of gut microbiome from the obese twin induces obesity in mice, the gut microbiome of the lean twin doesn’t <span class="citation" data-cites="ridaura2013_obesityFMT">(<a href="#ref-ridaura2013_obesityFMT" role="doc-biblioref">Ridaura et al. 2013</a>)</span>. Thus, predicting the health status of a person or their BMI from their gut microbiome seems a plausible task, and an interesting opportunity to learn about supervised ML algorithms using real-world data.</p>
+<p>To do so, the R package <em><a href="https://CRAN.R-project.org/package=mikropml">mikropml</a></em> <span class="citation" data-cites="topcuoglu2020 topcuoglu2021">(<a href="#ref-topcuoglu2020" role="doc-biblioref">Topçuoğlu et al. 2020</a>, <a href="#ref-topcuoglu2021" role="doc-biblioref">2021</a>)</span> will be used throughout this chapter. This package was developed to offer a user-friendly interface to supervised ML algorithms implemented in the <em><a href="https://CRAN.R-project.org/package=caret">caret</a></em> package <span class="citation" data-cites="Kuhn2008">(<a href="#ref-Kuhn2008" role="doc-biblioref">Kuhn 2008</a>)</span>. <a href="https://www.schlosslab.org/mikropml/articles/introduction.html#the-methods-we-support">Here</a> is a list of models supported by <em><a href="https://CRAN.R-project.org/package=mikropml">mikropml</a></em>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-topcuoglu2020" class="csl-entry" role="listitem">
+Topçuoğlu, Begüm D., Nicholas A. Lesniak, Mack T. Ruffin, Jenna Wiens, and Patrick D. Schloss. 2020. <span>“A Framework for Effective Application of Machine Learning to Microbiome-Based Classification Problems.”</span> <em>mBio</em> 11 (3): 10.1128/mbio.00434–20. <a href="https://doi.org/10.1128/mbio.00434-20">https://doi.org/10.1128/mbio.00434-20</a>.
+</div><div id="ref-topcuoglu2021" class="csl-entry" role="listitem">
+Topçuoğlu, Begüm D., Zena Lapp, Kelly L. Sovacool, Evan Snitkin, Jenna Wiens, and Patrick D. Schloss. 2021. <span>“<span class="nocase">mikropml</span>: User-Friendly r Package for Supervised Machine Learning Pipelines.”</span> <em>Journal of Open Source Software</em> 6 (61): 3073. <a href="https://doi.org/10.21105/joss.03073">https://doi.org/10.21105/joss.03073</a>.
+</div><div id="ref-Kuhn2008" class="csl-entry" role="listitem">
+Kuhn, Max. 2008. <span>“Building Predictive Models in <span>R</span> Using the <span class="nocase">caret</span> Package.”</span> <em>Journal of Statistical Software</em> 28 (5): 1–26. <a href="https://doi.org/10.18637/jss.v028.i05">https://doi.org/10.18637/jss.v028.i05</a>.
+</div></div><p>The code below will retrieve the data and show the number of participants on each category.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/waldronlab/curatedMetagenomicData">curatedMetagenomicData</a></span><span class="op">)</span></span>
+<span><span class="co">##  Loading required package: SummarizedExperiment</span></span>
+<span><span class="co">##  Loading required package: MatrixGenerics</span></span>
+<span><span class="co">##  Loading required package: matrixStats</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'MatrixGenerics'</span></span>
+<span><span class="co">##  The following objects are masked from 'package:matrixStats':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,</span></span>
+<span><span class="co">##      colCounts, colCummaxs, colCummins, colCumprods, colCumsums,</span></span>
+<span><span class="co">##      colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,</span></span>
+<span><span class="co">##      colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,</span></span>
+<span><span class="co">##      colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,</span></span>
+<span><span class="co">##      colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,</span></span>
+<span><span class="co">##      colWeightedMeans, colWeightedMedians, colWeightedSds,</span></span>
+<span><span class="co">##      colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,</span></span>
+<span><span class="co">##      rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,</span></span>
+<span><span class="co">##      rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,</span></span>
+<span><span class="co">##      rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,</span></span>
+<span><span class="co">##      rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,</span></span>
+<span><span class="co">##      rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs,</span></span>
+<span><span class="co">##      rowVars, rowWeightedMads, rowWeightedMeans, rowWeightedMedians,</span></span>
+<span><span class="co">##      rowWeightedSds, rowWeightedVars</span></span>
+<span><span class="co">##  Loading required package: GenomicRanges</span></span>
+<span><span class="co">##  Loading required package: stats4</span></span>
+<span><span class="co">##  Loading required package: BiocGenerics</span></span>
+<span><span class="co">##  Loading required package: generics</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'generics'</span></span>
+<span><span class="co">##  The following objects are masked from 'package:base':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      as.difftime, as.factor, as.ordered, intersect, is.element,</span></span>
+<span><span class="co">##      setdiff, setequal, union</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'BiocGenerics'</span></span>
+<span><span class="co">##  The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      IQR, mad, sd, var, xtabs</span></span>
+<span><span class="co">##  The following object is masked from 'package:utils':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      data</span></span>
+<span><span class="co">##  The following objects are masked from 'package:base':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      Filter, Find, Map, Position, Reduce, anyDuplicated, aperm,</span></span>
+<span><span class="co">##      append, as.data.frame, basename, cbind, colnames, dirname,</span></span>
+<span><span class="co">##      do.call, duplicated, eval, evalq, get, grep, grepl, is.unsorted,</span></span>
+<span><span class="co">##      lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,</span></span>
+<span><span class="co">##      pmin.int, rank, rbind, rownames, sapply, saveRDS, scale,</span></span>
+<span><span class="co">##      sequence, table, tapply, transform, unique, unsplit, which.max,</span></span>
+<span><span class="co">##      which.min</span></span>
+<span><span class="co">##  Loading required package: S4Vectors</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'S4Vectors'</span></span>
+<span><span class="co">##  The following object is masked from 'package:utils':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      findMatches</span></span>
+<span><span class="co">##  The following objects are masked from 'package:base':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      I, expand.grid, unname</span></span>
+<span><span class="co">##  Loading required package: IRanges</span></span>
+<span><span class="co">##  Loading required package: Seqinfo</span></span>
+<span><span class="co">##  Loading required package: Biobase</span></span>
+<span><span class="co">##  Welcome to Bioconductor</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      Vignettes contain introductory material; view with</span></span>
+<span><span class="co">##      'browseVignettes()'. To cite Bioconductor, see</span></span>
+<span><span class="co">##      'citation("Biobase")', and for packages 'citation("pkgname")'.</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'Biobase'</span></span>
+<span><span class="co">##  The following object is masked from 'package:MatrixGenerics':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      rowMedians</span></span>
+<span><span class="co">##  The following objects are masked from 'package:matrixStats':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      anyMissing, rowMedians</span></span>
+<span><span class="co">##  Loading required package: TreeSummarizedExperiment</span></span>
+<span><span class="co">##  Loading required package: SingleCellExperiment</span></span>
+<span><span class="co">##  Loading required package: Biostrings</span></span>
+<span><span class="co">##  Loading required package: XVector</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'Biostrings'</span></span>
+<span><span class="co">##  The following object is masked from 'package:base':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      strsplit</span></span>
+<span><span class="co">##  OpenTelemetry error: there is no package called 'otelsdk'</span></span>
+<span><span class="co">##  Warning: replacing previous import 'BiocGenerics::version' by</span></span>
+<span><span class="co">##  'BiocManager::version' when loading 'AnnotationHub'</span></span>
+<span><span class="co">##  OpenTelemetry error: there is no package called 'otelsdk'</span></span>
+<span></span>
+<span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="va">sampleMetadata</span><span class="op">[</span><span class="va">sampleMetadata</span><span class="op">[[</span><span class="st">"study_name"</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="st">"QinJ_2012"</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/returnSamples.html">returnSamples</a></span><span class="op">(</span></span>
+<span>    <span class="va">samples</span>,</span>
+<span>    dataType <span class="op">=</span> <span class="st">"relative_abundance"</span>,</span>
+<span>    counts <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># use counts instead of rel abundances</span></span>
+<span>    rownames <span class="op">=</span> <span class="st">"short"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  $`2021-10-14.QinJ_2012.relative_abundance`</span></span>
+<span><span class="co">##  dropping rows without rowTree matches:</span></span>
+<span><span class="co">##    k__Bacteria|p__Actinobacteria|c__Coriobacteriia|o__Coriobacteriales|f__Atopobiaceae|g__Olsenella|s__Olsenella_profusa</span></span>
+<span><span class="co">##    k__Bacteria|p__Actinobacteria|c__Coriobacteriia|o__Coriobacteriales|f__Coriobacteriaceae|g__Collinsella|s__Collinsella_stercoris</span></span>
+<span><span class="co">##    k__Bacteria|p__Firmicutes|c__Bacilli|o__Bacillales|f__Bacillales_unclassified|g__Gemella|s__Gemella_bergeri</span></span>
+<span><span class="co">##    k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Carnobacteriaceae|g__Granulicatella|s__Granulicatella_elegans</span></span>
+<span><span class="co">##    k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Ruminococcaceae|g__Ruminococcus|s__Ruminococcus_champanellensis</span></span>
+<span><span class="co">##    k__Bacteria|p__Firmicutes|c__Erysipelotrichia|o__Erysipelotrichales|f__Erysipelotrichaceae|g__Bulleidia|s__Bulleidia_extructa</span></span>
+<span><span class="co">##    k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Sutterellaceae|g__Sutterella|s__Sutterella_parvirubra</span></span>
+<span><span class="co">##    k__Bacteria|p__Synergistetes|c__Synergistia|o__Synergistales|f__Synergistaceae|g__Cloacibacillus|s__Cloacibacillus_evryensis</span></span>
+<span><span class="co">##  Warning: dropping 5 taxa from `2021-10-14.QinJ_2012.relative_abundance` with no species-level name:</span></span>
+<span><span class="co">##    Collinsella_massiliensis</span></span>
+<span><span class="co">##    Streptococcus_anginosus_group</span></span>
+<span><span class="co">##    Enterobacter_cloacae_complex</span></span>
+<span><span class="co">##    Bacillus_cereus_group</span></span>
+<span><span class="co">##    Pseudomonas_aeruginosa_group</span></span>
+<span><span class="co">##  These are MetaPhlAn species groups and complexes that NCBI does not resolve to a species. Use rownames = "long" to keep every taxon.</span></span>
+<span><span class="co">##  Duplicated labels were made unique.</span></span>
+<span></span>
+<span><span class="co"># Change assay's name to reflect its content</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">assayNames</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"counts"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">tse</span><span class="op">[[</span><span class="st">"disease"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">T2D</th>
+<th style="text-align: right;">healthy</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">170</td>
+<td style="text-align: right;">193</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</section><section id="data-preprocessing" class="level2 page-columns page-full" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="data-preprocessing">
+<span class="header-section-number">7.2</span> Data preprocessing</h2>
+<p>Before applying any ML algorithm, the data must be preprocessed. This speeds up the training of the models by reducing the amount of features analyzed, a desirable outcome when working with high-dimensional microbiome data. In addition to faster performance, common pre-processing steps have biological justifications. For instance:</p>
+<ul>
+<li><p><strong>Collapse highly correlated features:</strong> In a microbial community, it’s common for the abundance of two or more taxonomic features to be highly correlated due to ecological interactions. Thus, removing or collapsing correlated features allows the model to analyze them as one group.</p></li>
+<li><p><strong>Remove features with near-zero variance:</strong> Features that don’t vary enough across groups can hardly help in discerning between them, as they don’t hold any biologically relevant information. Additionally, under certain data splits, these variables can show zero variance.</p></li>
+<li><p><strong>Remove features with low prevalence:</strong> Microbiome data is sparse, and taxonomic features present in just a few samples of each group hardly provide useful biological information for their classification.</p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Important: Data leakage is a common pitfall.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data leakage occurs when information from the test set influences the model training process, leading to overly optimistic performance estimates. This can happen, for example, if preprocessing steps like scaling are applied to both the training and test data together, allowing the model to indirectly “see” the test data during training. Fortunately, there are questions we can ask ourselves to avoid data leakage <span class="citation" data-cites="bernett2024_dataLeakage">(<a href="#ref-bernett2024_dataLeakage" role="doc-biblioref">Bernett et al. 2024</a>)</span>. The key rule is to split the data first and fit any data-dependent preprocessing on the training set only (<a href="#fig-data-leakage" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>).</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-data-leakage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-data-leakage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-data-leakage">flowchart TB
+    subgraph wrong["Leakage"]
+        direction LR
+        w1["All data"] --&gt; w2["Preprocess"] --&gt; w3["Split into&lt;br/&gt;train / test"] --&gt; w4["Train &amp;&lt;br/&gt;evaluate"]
+    end
+    subgraph right["No leakage"]
+        direction LR
+        r1["All data"] --&gt; r2["Split into&lt;br/&gt;train / test"] --&gt; r3["Fit preprocessing&lt;br/&gt;on train"] --&gt; r4["Apply to test,&lt;br/&gt;train &amp; evaluate"]
+    end
+    wrong ~~~ right
+    classDef bad fill:#fbe9eb,stroke:#b2182b,color:#070707
+    classDef good fill:#e6f3f7,stroke:#0087af,color:#070707
+    class w1,w2,w3,w4 bad
+    class r1,r2,r3,r4 good
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-leakage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Data-dependent preprocessing, such as scaling or filtering, causes leakage when it is fitted on all data before the split (top). Split first, fit the preprocessing on the training set, and apply the same fitted steps to the test set (bottom).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To avoid it here, we split the samples into a training set and a test set before preprocessing. Steps that learn from the data across samples, such as the prevalence filter, use only the training samples, and steps that use one sample at a time, such as relative abundances and alpha diversity, can be applied to all samples.</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="ref-bernett2024_dataLeakage" class="csl-entry" role="listitem">
+Bernett, Judith, David B. Blumenthal, Dominik G. Grimm, et al. 2024. <span>“Guiding Questions to Avoid Data Leakage in Biological Machine Learning Applications.”</span> <em>Nature Methods</em> 21 (8): 1444–53. <a href="https://doi.org/10.1038/s41592-024-02362-y">https://doi.org/10.1038/s41592-024-02362-y</a>.
+</div></div><p>First, we split the samples into a training set (80%) and a test set (20%). The split is stratified by disease status so that both sets have similar proportions of patients and healthy individuals.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://microbiome.github.io/mia/">mia</a></span><span class="op">)</span></span>
+<span><span class="co">##  Loading required package: MultiAssayExperiment</span></span>
+<span><span class="co">##  This is mia version 1.21.30</span></span>
+<span><span class="co">##  - Online documentation and vignettes: https://microbiome.github.io/mia/</span></span>
+<span><span class="co">##  - Online book 'Orchestrating Microbiome Analysis (OMA)': https://bioconductor.org/books/release/OMA/</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.schlosslab.org/mikropml/">mikropml</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">train_idx</span> <span class="op">&lt;-</span> <span class="fu">caret</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/createDataPartition.html">createDataPartition</a></span><span class="op">(</span></span>
+<span>    <span class="va">tse</span><span class="op">[[</span><span class="st">"disease"</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    p <span class="op">=</span> <span class="fl">0.8</span>, list <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">train_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span><span class="va">train_idx</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we keep the taxa that are present in more than 10% of the training samples, and calculate relative abundances and alpha diversity indices that provide ecosystem-level information. See <a href="https://microbiome.github.io/OMA/docs/devel/pages/alpha_diversity.html">OMA: Alpha diversity</a> for a discussion on alpha diversity.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Keep taxa present in more than 10% of the training samples</span></span>
+<span><span class="va">prevalence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://microbiome.github.io/mia/reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span><span class="va">tse</span><span class="op">[</span>, <span class="va">train_samples</span><span class="op">]</span>, assay.type <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span></span>
+<span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="va">tse</span><span class="op">[</span><span class="va">prevalence</span> <span class="op">&gt;</span> <span class="fl">0.1</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Transform to relative abundances</span></span>
+<span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://microbiome.github.io/mia/reference/transformAssay.html">transformAssay</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">tse</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"counts"</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"relabundance"</span>,</span>
+<span>    MARGIN <span class="op">=</span> <span class="st">"cols"</span>,</span>
+<span>    pseudocount <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">##  A pseudocount of 25 was applied.</span></span>
+<span></span>
+<span><span class="co"># Alpha diversity indices to be calculated</span></span>
+<span><span class="va">alpha_divs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"dbp_dominance"</span>,</span>
+<span>    <span class="st">"faith_diversity"</span>,</span>
+<span>    <span class="st">"observed_richness"</span>,</span>
+<span>    <span class="st">"shannon_diversity"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add alpha diversity indices to the metadata for latter use in our ML tasks</span></span>
+<span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://microbiome.github.io/mia/reference/addAlpha.html">addAlpha</a></span><span class="op">(</span></span>
+<span>    <span class="va">tse</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"counts"</span>,</span>
+<span>    index <span class="op">=</span> <span class="va">alpha_divs</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we join the outcome of interest (i.e., diagnosis status or BMI) of each participant with the microbiome abundances and alpha diversities using <code><a href="http://www.schlosslab.org/mikropml/reference/preprocess_data.html">preprocess_data()</a></code>. By default, this function also centers and scales the features, removes features with near-zero variance and can collapse correlated features. These steps learn from all samples, including the test set, so we turn them off. Random forests do not need centered or scaled features.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Settings that keep preprocess_data() from learning from all samples</span></span>
+<span><span class="va">prep_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    method <span class="op">=</span> <span class="cn">NULL</span>, remove_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    collapse_corr_feats <span class="op">=</span> <span class="cn">FALSE</span>, prefilter_threshold <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Preprocess data for classification</span></span>
+<span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">preprocess_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    dataset <span class="op">=</span> <span class="va">tse</span>,</span>
+<span>    outcome_colname <span class="op">=</span> <span class="st">"disease"</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"relabundance"</span>,</span>
+<span>    name <span class="op">=</span> <span class="st">"prep_classification"</span>,</span>
+<span>    col.var <span class="op">=</span> <span class="va">alpha_divs</span> <span class="co"># add these to the predictors</span></span>
+<span><span class="op">)</span>, <span class="va">prep_args</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##  Using 'disease' as the outcome column.</span></span>
+<span><span class="co">##  Adding preprocessed data to altExp(dataset, 'prep_classification').</span></span>
+<span></span>
+<span><span class="co"># Preprocess data for regression</span></span>
+<span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">preprocess_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    dataset <span class="op">=</span> <span class="va">tse</span>,</span>
+<span>    outcome_colname <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"relabundance"</span>,</span>
+<span>    name <span class="op">=</span> <span class="st">"prep_regression"</span>,</span>
+<span>    col.var <span class="op">=</span> <span class="va">alpha_divs</span></span>
+<span><span class="op">)</span>, <span class="va">prep_args</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##  Using 'BMI' as the outcome column.</span></span>
+<span><span class="co">##  Removed 19/363 (5.23%) of samples because of missing outcome value (NA).</span></span>
+<span><span class="co">##  Adding preprocessed data to altExp(dataset, 'prep_regression').</span></span>
+<span></span>
+<span><span class="co"># Training samples among the remaining samples (samples without BMI are</span></span>
+<span><span class="co"># removed)</span></span>
+<span><span class="va">train_idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">train_samples</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code><a href="http://www.schlosslab.org/mikropml/reference/preprocess_data.html">preprocess_data()</a></code> stores the result in an <code>altExp</code> if the set of features changes, otherwise as an assay. Here the alpha diversity indices become features, so the results are in the <code>altExp</code>s “prep_classification” and “prep_regression”, and <code>col.var</code> is not needed in <code><a href="http://www.schlosslab.org/mikropml/reference/run_ml.html">run_ml()</a></code>. Samples without BMI are removed, which is why the training samples are looked up again by name.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note: Preprocessing strategies impact the performance of ML models.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although microbiome data <strong>is</strong> compositional, proportion-based transformations —such as relative abundance or Hellinger— or even simpler approaches often outperform compositional transformations like CLR when building supervised ML models <span class="citation" data-cites="yerke2024">(<a href="#ref-yerke2024" role="doc-biblioref">Yerke et al. 2024</a>)</span>. The authors note that the impact of the chosen transformations decreases as the signal-to-noise ratio increases. In other words, the more distinct the conditions we aim to classify, the less influence preprocessing transformations will have on model performance.</p>
+<p>The aforementioned paper described the effect in both regression and classification tasks. A similar observations have also been done in other papers where they extensively compared different transformations in microbiome classification data <span class="citation" data-cites="Karwowska2025 Giliberti2022">(<a href="#ref-Karwowska2025" role="doc-biblioref">Karwowska et al. 2025</a>; <a href="#ref-Giliberti2022" role="doc-biblioref">Giliberti et al. 2022</a>)</span>. These papers suggest presence/absence being the preferred approach in supervised ML applications. Even though the papers benchmarked transformations only in classification, their findings are likely applicable to regression as well.</p>
+<p>These studies were conducted with stool samples which contain many sources of biases as they serve as proxy for our main interest: the gut microbiome. This can explain why the simpler approaches are more robust and reproducible. Moreover, in addition to improving model performance, proportion or presence/absence-based transformations are more intuitive and therefore easier to interpret.</p>
+<p>Given this, it is worth exploring different preprocessing approaches. The <code>preprocess_data</code> function from the <em><a href="https://CRAN.R-project.org/package=mikropml">mikropml</a></em> package supports a variety of strategies described <a href="https://www.schlosslab.org/mikropml/reference/preprocess_data.html">here</a>. For a discussion in transformations methods, see <a href="https://microbiome.github.io/OMA/docs/devel/pages/transformation.html">OMA: Transformation</a>.</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="ref-Giliberti2022" class="csl-entry" role="listitem">
+Giliberti, Renato, Sara Cavaliere, Italia Elisa Mauriello, Danilo Ercolini, and Edoardo Pasolli. 2022. <span>“Host Phenotype Classification from Human Microbiome Data Is Mainly Driven by the Presence of Microbial Taxa.”</span> <em>PLOS Computational Biology</em> 18 (4): 1–22. <a href="https://doi.org/10.1371/journal.pcbi.1010066">https://doi.org/10.1371/journal.pcbi.1010066</a>.
+</div></div><div class="no-row-height column-margin column-container"><div id="ref-Karwowska2025" class="csl-entry" role="listitem">
+Karwowska, Zuzanna, Oliver Aasmets, Mait Metspalu, et al. 2025. <span>“Effects of Data Transformation and Model Selection on Feature Importance in Microbiome Classification Data.”</span> <em>Microbiome</em> 13 (1). <a href="https://doi.org/10.1186/s40168-024-01996-6">https://doi.org/10.1186/s40168-024-01996-6</a>.
+</div></div><div class="no-row-height column-margin column-container"><div id="ref-yerke2024" class="csl-entry" role="listitem">
+Yerke, Aaron, Daisy Fry Brumit, and Anthony A. Fodor. 2024. <span>“Proportion-Based Normalizations Outperform Compositional Data Transformations in Machine Learning Applications.”</span> <em>Microbiome</em> 12 (1): 45. <a href="https://doi.org/10.1186/s40168-023-01747-z">https://doi.org/10.1186/s40168-023-01747-z</a>.
+</div></div></section><section id="model-training" class="level2 page-columns page-full" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="model-training">
+<span class="header-section-number">7.3</span> Model training</h2>
+<p>Now we can deploy supervised ML models on the preprocessed data. In this section, two algorithms will be covered:</p>
+<ul>
+<li>Random Forest, for classification and regression</li>
+<li>XGBoost, compared with random forest at the end of the chapter</li>
+</ul>
+<p>These are within the most used supervised ML methods in the microbiome field. Possible reasons are that they can be used for classification and regression tasks, and that they show a good balance between performance and interpretability. Since the focus of this book is the implementation and interpretation of these models, other resources are suggested for an introduction to the mathematical underpinnings of these —and other— models <span class="citation" data-cites="james2013_ISLR">(<a href="#ref-james2013_ISLR" role="doc-biblioref">Gareth James 2013</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-james2013_ISLR" class="csl-entry" role="listitem">
+Gareth James, Robert Tibshirani, Trevor Hastie. 2013. <em>An Introduction to Statistical Learning: With Applications in <span>R</span></em>. New York : Springer, [2013] ©2013. <a href="https://search.library.wisc.edu/catalog/9910207152902121">https://search.library.wisc.edu/catalog/9910207152902121</a>.
+</div></div><p>To evaluate how well a model generalizes to new data, the data is split into a training set and a test set, commonly in an 80/20 ratio, as we did above. Other proportions can be used depending on the size of the dataset and the application.</p>
+<p>Training is usually combined with cross-validation <span class="citation" data-cites="Stone1974">(<a href="#ref-Stone1974" role="doc-biblioref">Stone 1974</a>)</span> to make the model more robust. In K-fold cross-validation, the data is divided into K folds (subsets) of similar size. The model is trained on K-1 folds and validated on the remaining fold. This is repeated K times so that each fold serves as the validation set once (<a href="#fig-cv" class="quarto-xref">Figure&nbsp;<span>7.2</span></a>).</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Stone1974" class="csl-entry" role="listitem">
+Stone, M. 1974. <span>“Cross-Validatory Choice and Assessment of Statistical Predictions.”</span> <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 36 (2): 111–33. <a href="https://doi.org/10.1111/j.2517-6161.1974.tb00994.x">https://doi.org/10.1111/j.2517-6161.1974.tb00994.x</a>.
+</div></div><div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Grid of tiles with five rows, one per iteration, and five fold columns plus a separate test-set column. In each row one fold, moving along the diagonal, is coloured as validation and the other four as training, while the test-set tile is coloured as test in every row.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="machine_learning_files/figure-html/fig-cv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Grid of tiles with five rows, one per iteration, and five fold columns plus a separate test-set column. In each row one fold, moving along the diagonal, is coloured as validation and the other four as training, while the test-set tile is coloured as test in every row." width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: 5-fold cross-validation. The data is first split into a training set (80%) and a test set (20%). The training set is divided into five folds. In each iteration, the model is trained on four folds and validated on the remaining fold. The test set is used only for the final evaluation.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>When the dataset is small, splitting it into training and test sets might not be feasible. In such cases, cross-validation alone can provide a rough estimate of the model’s performance. While this approach is not as reliable as having a separate test set, it still indicates how well the model might perform on new data.</p>
+<p>Random Forests (RF) <span class="citation" data-cites="Breiman2001">(<a href="#ref-Breiman2001" role="doc-biblioref">Breiman 2001</a>)</span> is an ensemble algorithm. That means that RF deploys and combines the outputs of multiple decision trees through majority voting or averaging the predicted numerical outcome. Since each tree is trained on a random subset of the data and features, RF reduces overfitting and enhance generalization to new data.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Breiman2001" class="csl-entry" role="listitem">
+Breiman, Leo. 2001. <span>“Random Forests.”</span> <em>Machine Learning</em> 45 (1): 5–32. <a href="https://doi.org/10.1023/A:1010933404324">https://doi.org/10.1023/A:1010933404324</a>.
+</div></div><p>We give <code><a href="http://www.schlosslab.org/mikropml/reference/run_ml.html">run_ml()</a></code> the training samples with <code>training_frac</code>, so that the model is trained on the same samples that were used in preprocessing. The remaining samples form the test set. See the <a href="https://www.schlosslab.org/mikropml/articles/parallel.html">documentation</a> of <em><a href="https://CRAN.R-project.org/package=mikropml">mikropml</a></em> for repeating the analysis with multiple splits.</p>
+</section><section id="sec-ml-classification" class="level2 page-columns page-full" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="sec-ml-classification">
+<span class="header-section-number">7.4</span> Classification with random forest</h2>
+<p>When applied to classification problems, each tree predicts the class of an observation (e.g., healthy or T2D) based on the values of the features (e.g., taxonomic). Each tree finds the best split of the data by reducing how mixed the classes are, often using metrics like entropy or Gini impurity.</p>
+<section id="training" class="level3" data-number="7.4.1"><h3 data-number="7.4.1" class="anchored" data-anchor-id="training">
+<span class="header-section-number">7.4.1</span> Training</h3>
+<p>Below, the RF algorithm is used for a classification task:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Train random forest for classification</span></span>
+<span><span class="va">rf_classification</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.schlosslab.org/mikropml/reference/run_ml.html">run_ml</a></span><span class="op">(</span></span>
+<span>    dataset <span class="op">=</span> <span class="va">tse</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"rf"</span>,</span>
+<span>    outcome_colname <span class="op">=</span> <span class="st">"disease"</span>,</span>
+<span>    altexp <span class="op">=</span> <span class="st">"prep_classification"</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"prep_classification"</span>,</span>
+<span>    seed <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    kfold <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    cv_times <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    training_frac <span class="op">=</span> <span class="va">train_idx</span>,</span>
+<span>    find_feature_importance <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">##  Using 'disease' as the outcome column.</span></span>
+<span><span class="co">##  Using the custom training set indices provided by `training_frac`.</span></span>
+<span><span class="co">##        The fraction of data in the training set will be 0.79</span></span>
+<span><span class="co">##  Training the model...</span></span>
+<span><span class="co">##  Loading required package: lattice</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##  Attaching package: 'caret'</span></span>
+<span><span class="co">##  The following object is masked from 'package:future':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      cluster</span></span>
+<span><span class="co">##  The following object is masked from 'package:mikropml':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      compare_models</span></span>
+<span><span class="co">##  The following object is masked from 'package:mia':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      cluster</span></span>
+<span><span class="co">##  The following object is masked from 'package:generics':</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      train</span></span>
+<span><span class="co">##  Training complete.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="performance" class="level3 page-columns page-full" data-number="7.4.2"><h3 data-number="7.4.2" class="anchored" data-anchor-id="performance">
+<span class="header-section-number">7.4.2</span> Performance</h3>
+<p>After the model is trained (i.e., learns patterns) on the training samples, the test samples, which the model has not seen, are used to assess how well the model generalizes the patterns it learned to new data.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># RF performance in classification tasks</span></span>
+<span><span class="va">rf_classification</span><span class="op">[[</span><span class="st">"performance"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 3%">
+<col style="width: 2%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">cv_metric_AUC</th>
+<th style="text-align: right;">logLoss</th>
+<th style="text-align: right;">AUC</th>
+<th style="text-align: right;">prAUC</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">Kappa</th>
+<th style="text-align: right;">F1</th>
+<th style="text-align: right;">Sensitivity</th>
+<th style="text-align: right;">Specificity</th>
+<th style="text-align: right;">Pos_Pred_Value</th>
+<th style="text-align: right;">Neg_Pred_Value</th>
+<th style="text-align: right;">Precision</th>
+<th style="text-align: right;">Recall</th>
+<th style="text-align: right;">Detection_Rate</th>
+<th style="text-align: right;">Balanced_Accuracy</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: right;">seed</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">0.7435415</td>
+<td style="text-align: right;">0.6367394</td>
+<td style="text-align: right;">0.6784579</td>
+<td style="text-align: right;">0.6742414</td>
+<td style="text-align: right;">0.6338028</td>
+<td style="text-align: right;">0.2627796</td>
+<td style="text-align: right;">0.6666667</td>
+<td style="text-align: right;">0.7027027</td>
+<td style="text-align: right;">0.5588235</td>
+<td style="text-align: right;">0.6341463</td>
+<td style="text-align: right;">0.6333333</td>
+<td style="text-align: right;">0.6341463</td>
+<td style="text-align: right;">0.7027027</td>
+<td style="text-align: right;">0.3661972</td>
+<td style="text-align: right;">0.6307631</td>
+<td style="text-align: left;">rf</td>
+<td style="text-align: right;">1</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<p>A common metric to quickly assess model performance in binary classification tasks is the area under the receiver operator characteristic curve ‘AUC’. Notice that the result tables include two types of AUC metrics: <code>cv_metric_AUC</code>, which is the cross-validated AUC within the 80% of data used in training (each fold is predicted by a model that did not see it during fitting), and <code>AUC</code>, which is the AUC for the 20% used in testing. Both estimate performance on unseen data, so they should be similar. A cross-validation AUC that clearly exceeds the test AUC may indicate that the model selection overfitted the training set or that the test set differs from the training set. Small differences in either direction are expected by chance and thus shouldn’t be a concern.</p>
+<p>Now let’s take a look at the results. The AUC values (cross-validation AUC = 0.744 and test AUC = 0.678) suggest a relatively good performance considering that predicting outcomes based on complex microbiome data is typically a challenging task. With a single, fairly small test set, the test AUC can differ from the cross-validation AUC by chance, in either direction.</p>
+<p>Now let’s interpret our results at the light of previous research. In the largest multi-cohort analysis of gut microbiome associations with T2D published to date <span class="citation" data-cites="mei2024_t2d">(<a href="#ref-mei2024_t2d" role="doc-biblioref">Mei et al. 2024</a>)</span>, authors trained RF models to discriminate healthy participants and T2D patients using microbiome and anthropometric variables like age, sex and BMI. Interestingly, they included the study we are working with in their analysis. Their reported AUC of 0.74 can be compared with ours. Comparable values would support the potential of the gut microbiome to discriminate between healthy individuals and T2D patients.</p>
+<div class="no-row-height column-margin column-container"></div><p>Although the tasks we addressed required binomial classification (i.e., classify sampples either as patients or controls), some research questions will require the classification of observations in more than just two groups, a task known as multiclass classification. For instance, we may have been interested in classifying patients as (1) healthy individuals, (2) T2D patients with obesity, and (3) T2D patients without obesity by integrating BMI information. In such cases, metrics like AUC (developed for binary classification) can be generalized. This metric is known as multiclass AUC, or One-vs-Rest AUC. This approach evaluates how well each class is distinguished from the others, enabling the assessment of model performance in multiclass problems. Multiclass classification can be implemented with <code>run_ml</code> too, as described <a href="https://www.schlosslab.org/mikropml/articles/introduction.html?q=multiclass#multiclass-data">here</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip: Always use multiple performance metrics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Regardless of the type of classification task performed, it is often desirable to look at different metrics to accurately assess the model’s performance. This is particularly relevant in cases where classes are imbalanced. Suppose a dataset consists of 95% healthy individuals, and only 5% T2D patients. In such a case, a model can easily achieve 95% accuracy by just predicting (labelling) all samples as healthy, despite being useless for the classification of T2D patients.</p>
+<p>This is an extreme case and hopefully we won’t encounter such situations. However, it highlights that class imbalance can lead to misleading interpretations of performance metrics like accuracy and AUC. Thus, when dealing with imbalanced classes, other metrics like F1-score and the area under the precision recall curve (prAUC), might be more appropriate.</p>
+<p>In addition to relying in other performance metrics, different strategies for handling class imbalance datasets have been discussed <span class="citation" data-cites="Papoutsoglou2023">(<a href="#ref-Papoutsoglou2023" role="doc-biblioref">Papoutsoglou et al. 2023</a>)</span> and applied <span class="citation" data-cites="Diez2022">(<a href="#ref-Diez2022" role="doc-biblioref">Diez Lopez et al. 2022</a>)</span> in microbiome data analysis before.</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="ref-Diez2022" class="csl-entry" role="listitem">
+Diez Lopez, Celia, Diego Montiel Gonzalez, Athina Vidaki, and Manfred Kayser. 2022. <span>“Prediction of Smoking Habits from Class-Imbalanced Saliva Microbiome Data Using Data Augmentation and Machine Learning.”</span> <em>Frontiers in Microbiology</em> 13. <a href="https://doi.org/10.3389/fmicb.2022.886201">https://doi.org/10.3389/fmicb.2022.886201</a>.
+</div></div><div class="no-row-height column-margin column-container"><div id="ref-Papoutsoglou2023" class="csl-entry" role="listitem">
+Papoutsoglou, Georgios, Sonia Tarazona, Marta B. Lopes, et al. 2023. <span>“Machine Learning Approaches in Microbiome Research: Challenges and Best Practices.”</span> <em>Frontiers in Microbiology</em> 14. <a href="https://doi.org/10.3389/fmicb.2023.1261889">https://doi.org/10.3389/fmicb.2023.1261889</a>.
+</div></div></section><section id="visualization" class="level3 page-columns page-full" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="visualization">
+<span class="header-section-number">7.4.3</span> Visualization</h3>
+<p>The area under the receiver-operator characteristic (ROC) curve, also called ‘AUC’ was introduced before as common metric to assess model’s performance in binary classification tasks. As it name suggests, AUC is just the area under a curve. Since different ROC curves can have similar AUC, visualizing the curve can give complementary information.</p>
+<p>Complementary to ROC curves, the precision-recall curves (PRC) are preferred in datasets with class imbalance, where AUC can be misleading, as discussed above.</p>
+<p>The code below is used to calculate the metrics required to generate both curves:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># calc_model_sensspec() treats the first class level of the model as the</span></span>
+<span><span class="co"># positive class. The levels are in alphabetical order (healthy, T2D), so we</span></span>
+<span><span class="co"># reorder them to make T2D the positive class.</span></span>
+<span><span class="va">pos_class</span> <span class="op">&lt;-</span> <span class="st">"T2D"</span></span>
+<span><span class="va">model_t2d</span> <span class="op">&lt;-</span> <span class="va">rf_classification</span><span class="op">[[</span><span class="st">"trained_model"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">model_t2d</span><span class="op">[[</span><span class="st">"levels"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pos_class</span>, <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">model_t2d</span><span class="op">[[</span><span class="st">"levels"</span><span class="op">]</span><span class="op">]</span>, <span class="va">pos_class</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate RF model metrics required for plotting</span></span>
+<span><span class="va">senspec</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.schlosslab.org/mikropml/reference/sensspec.html">calc_model_sensspec</a></span><span class="op">(</span><span class="va">model_t2d</span>, <span class="va">rf_classification</span><span class="op">[[</span><span class="st">"test_data"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">##  Using 'disease' as the outcome column.</span></span>
+<span><span class="co"># Add model label to data</span></span>
+<span><span class="va">senspec</span><span class="op">$</span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">"rf"</span></span>
+<span></span>
+<span><span class="co"># Inspect part of the output</span></span>
+<span><span class="va">senspec</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 15%">
+<col style="width: 5%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 7%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">T2D</th>
+<th style="text-align: right;">healthy</th>
+<th style="text-align: left;">actual</th>
+<th style="text-align: right;">tp</th>
+<th style="text-align: right;">fp</th>
+<th style="text-align: right;">sensitivity</th>
+<th style="text-align: right;">fpr</th>
+<th style="text-align: right;">specificity</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: left;">model</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">T2D-050</td>
+<td style="text-align: right;">0.798</td>
+<td style="text-align: right;">0.202</td>
+<td style="text-align: left;">T2D</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0294118</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">rf</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T2D-083</td>
+<td style="text-align: right;">0.758</td>
+<td style="text-align: right;">0.242</td>
+<td style="text-align: left;">T2D</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0588235</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">rf</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">T2D-026</td>
+<td style="text-align: right;">0.710</td>
+<td style="text-align: right;">0.290</td>
+<td style="text-align: left;">T2D</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0882353</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">rf</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T2D-092</td>
+<td style="text-align: right;">0.688</td>
+<td style="text-align: right;">0.312</td>
+<td style="text-align: left;">T2D</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1176471</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">rf</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">T2D-089</td>
+<td style="text-align: right;">0.680</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: left;">T2D</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1470588</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">rf</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T2D-017</td>
+<td style="text-align: right;">0.674</td>
+<td style="text-align: right;">0.326</td>
+<td style="text-align: left;">T2D</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1764706</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">rf</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The metrics ‘Sensitivity’ and ‘Specificity’ are used in ROC curves, and ‘Sensitivity’ and ‘Precision’ are used in PRC curves. Note that ‘Sensitivity’ and ‘Recall’ are the same metric. While the term ‘Sensitivity’ is preferred in the biomedical literature, ‘Recall’ is more prevalent in other fields. ‘Precision’, also called positive predictive value, is the proportion of samples predicted as positive that are truly positive.</p>
+<p>The code below generates the ROC and PRC curves and shows them side by side (<a href="#fig-ml-roc-prc" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>):</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Show the plotting code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. Plot the ROC curve</span></span>
+<span><span class="va">roc_p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">senspec</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_path</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">fpr</span>, y <span class="op">=</span> <span class="va">sensitivity</span>, color <span class="op">=</span> <span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># 1.1 Add line representing 'random guess' performance</span></span>
+<span><span class="va">roc_p</span> <span class="op">&lt;-</span> <span class="va">roc_p</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_abline</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey30"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span></span>
+<span><span class="co"># 1.2 Add axis titles and custom theme</span></span>
+<span><span class="va">roc_p</span> <span class="op">&lt;-</span> <span class="va">roc_p</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"FPR or (1 - Specificity)"</span>, y <span class="op">=</span> <span class="st">"Sensitivity"</span>, title <span class="op">=</span> <span class="st">"ROC"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># 2. Plot the PRC curve</span></span>
+<span><span class="va">prc_p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">senspec</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_path</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">sensitivity</span>, y <span class="op">=</span> <span class="va">precision</span>, color <span class="op">=</span> <span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># 2.1 Add line representing 'random guess' performance, which is the</span></span>
+<span><span class="co"># proportion of the positive class in the test data</span></span>
+<span><span class="va">baseline</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rf_classification</span><span class="op">[[</span><span class="st">"test_data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"disease"</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="va">pos_class</span><span class="op">)</span></span>
+<span><span class="va">prc_p</span> <span class="op">&lt;-</span> <span class="va">prc_p</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_hline</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey30"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, yintercept <span class="op">=</span> <span class="va">baseline</span><span class="op">)</span></span>
+<span><span class="co"># 2.2 Add axis titles and custom theme</span></span>
+<span><span class="va">prc_p</span> <span class="op">&lt;-</span> <span class="va">prc_p</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Recall or Sensitivity"</span>, y <span class="op">=</span> <span class="st">"Precision"</span>, title <span class="op">=</span> <span class="st">"PRC"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># 3. Plot ROC and PRC side by side</span></span>
+<span><span class="va">roc_p</span> <span class="op">+</span> <span class="va">prc_p</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div id="fig-ml-roc-prc" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Two side-by-side line plots. The left ROC panel plots sensitivity against false positive rate with a dashed diagonal line, and the right precision-recall panel plots precision against recall with a dashed horizontal line at the proportion of T2D patients in the test set.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ml-roc-prc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="machine_learning_files/figure-html/fig-ml-roc-prc-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Two side-by-side line plots. The left ROC panel plots sensitivity against false positive rate with a dashed diagonal line, and the right precision-recall panel plots precision against recall with a dashed horizontal line at the proportion of T2D patients in the test set." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ml-roc-prc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: ROC curve (left) and precision-recall curve (right) of the random forest model classifying T2D patients and healthy individuals in the QinJ_2012 test data. Dashed grey lines show the expected performance of random guessing.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Before describing the plots and their meaning, it is worth noting that the ROC curve resembles the curve presented in the article where this dataset was first analyzed <span class="citation" data-cites="qin2012_t2d">(<a href="#ref-qin2012_t2d" role="doc-biblioref">Qin et al. 2012</a>)</span> (see Figure 4B). Interestingly, authors used other supervised ML algorithm, and it was trained in a set of 50 microbiome genes (instead of taxonomic features and alpha diversity metrics, as we did). However, it is interesting that concordant AUCs and ROC curves shapes were obtained using different microbiome-derived information.</p>
+<div class="no-row-height column-margin column-container"></div><p>Regarding our figures, note the dashed gray lines in both plots representing the expected performance of a model that is classifying samples randomly. In the PRC plot, this is the proportion of the positive class (T2D) in the test data, here 0.48. Therefore, the greater the distance between that reference and the line representing our model’s performance, the better. Thus, perfect performance will be achieve when the line is the farthest from that reference.</p>
+<p>In our example, a model with perfect performance is such that, by learning patterns from the microbiome data, it can correctly identify T2D patients with perfect sensitivity (i.e., all T2D patients are classified as such) while maintaining a false positive rate (FPR) of 0 (i.e., no healthy individual is misclassified as T2D). In the ROC plot, this means the model consistently achieves a Sensitivity of 1 and a FPR of 0, pushing the curve towards the top left corner.</p>
+<p>In terms of the PRC plot, the perfect model would consistently achieve a Recall and Precision of 1, pushing the curve towards the top right corner. That, in turn, would mean that the model has perfect Sensitivity (i.e., all T2D patients are classified as such), while maintaining a perfect Precision (i.e., every individual classified as T2D is actually a T2D patient).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note: Visualization of multiclass ROC curves
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It was discussed above that ROC curves (and AUCs) can be extended to multiclass classification tasks. One example of such approach is this article <span class="citation" data-cites="su2022_multiclassML">(<a href="#ref-su2022_multiclassML" role="doc-biblioref">Su et al. 2022</a>)</span> where authors used gut microbiome data to train different classification supervised ML algorithms to discriminate between patients of 9 different diseases. Notice that the visualization of multiclass ROC curves can be achieved in a similar way to what was described in this chapter. In addition, the R package <em><a href="https://CRAN.R-project.org/package=pROC">pROC</a></em> <span class="citation" data-cites="Robin2011">(<a href="#ref-Robin2011" role="doc-biblioref">Robin et al. 2011</a>)</span> provides handy functions to build multiclass visualizations.</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="ref-Robin2011" class="csl-entry" role="listitem">
+Robin, Xavier, Natacha Turck, Alexandre Hainard, et al. 2011. <span>“<span class="nocase">pROC</span>: An Open-Source Package for <span>R</span> and <span>S+</span> to Analyze and Compare <span>ROC</span> Curves.”</span> <em>BMC Bioinformatics</em> 12: 77. <a href="https://doi.org/10.1186/1471-2105-12-77">https://doi.org/10.1186/1471-2105-12-77</a>.
+</div></div><div class="no-row-height column-margin column-container"><div id="ref-su2022_multiclassML" class="csl-entry" role="listitem">
+Su, Qi, Qin Liu, Raphaela Iris Lau, et al. 2022. <span>“Faecal Microbiome-Based Machine Learning for Multi-Class Disease Diagnosis.”</span> <em><span>Nature Communications</span></em> 13 (1). <a href="https://doi.org/10.1038/s41467-022-34405-3">https://doi.org/10.1038/s41467-022-34405-3</a>.
+</div></div></section><section id="model-interpretation" class="level3 page-columns page-full" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="model-interpretation">
+<span class="header-section-number">7.4.4</span> Model interpretation</h3>
+<p>Besides the performance of the model, researchers are often interested in understanding what are the features that are affecting the model’s performance, a property of ML models called interpretability.</p>
+<p>ML models have different degrees of interpretability. One way to understand how different features (e.g., taxonomic identity) affect model’s performance is by randomly permuting the values of that feature across samples and then evaluating the amount of change in a performance metric.</p>
+<p>The code below shows how to determine feature importance for the RF model trained for classification. Minimal changes are required to determine feature importance for the other models in this chapter, like the RF model used in regression. The ten most important features are shown in <a href="#fig-ml-feature-importance" class="quarto-xref">Figure&nbsp;<span>7.4</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># estimate features importance</span></span>
+<span><span class="va">feat_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.schlosslab.org/mikropml/reference/get_feature_importance.html">get_feature_importance</a></span><span class="op">(</span></span>
+<span>    trained_model <span class="op">=</span> <span class="va">rf_classification</span><span class="op">[[</span><span class="st">"trained_model"</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    test_data <span class="op">=</span> <span class="va">rf_classification</span><span class="op">[[</span><span class="st">"test_data"</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    outcome_colname <span class="op">=</span> <span class="st">"disease"</span>,</span>
+<span>    perf_metric_function <span class="op">=</span> <span class="va">multiClassSummary</span>,</span>
+<span>    perf_metric_name <span class="op">=</span> <span class="st">"AUC"</span>,</span>
+<span>    class_probs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"rf"</span>,</span>
+<span>    seed <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    nperms <span class="op">=</span> <span class="fl">5</span> <span class="co"># 1/20 of default to speed calculations up</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Identify the 10 most important features</span></span>
+<span><span class="va">ordered_features</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">feat_imp</span><span class="op">$</span><span class="va">perf_metric_diff</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">ordered_features</span> <span class="op">&lt;-</span> <span class="va">ordered_features</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Retain only those features</span></span>
+<span><span class="va">feat_imp</span> <span class="op">&lt;-</span> <span class="va">feat_imp</span><span class="op">[</span><span class="va">ordered_features</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Conver column 'feat' into a factor to fix its order in the plot</span></span>
+<span><span class="va">feat_imp</span><span class="op">$</span><span class="va">feat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">feat_imp</span><span class="op">$</span><span class="va">feat</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">feat_imp</span><span class="op">$</span><span class="va">feat</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot mean feature importance</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">feat_imp</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_col</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">perf_metric_diff</span>, y <span class="op">=</span> <span class="va">feat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Decrease in performance"</span>, y <span class="op">=</span> <span class="st">"Feature"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-ml-feature-importance" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Horizontal bar chart of ten taxonomic features (y-axis) ordered by their decrease in model performance (x-axis), with the most important feature at the top.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ml-feature-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="machine_learning_files/figure-html/fig-ml-feature-importance-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Horizontal bar chart of ten taxonomic features (y-axis) ordered by their decrease in model performance (x-axis), with the most important feature at the top." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ml-feature-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: The ten most important features of the random forest model classifying T2D patients and healthy individuals in the QinJ_2012 data, measured as the decrease in test AUC when the values of each feature are permuted.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>This plot shows the features with the highest effect on model’s performance. In other words, which features have most of the information required to differentiate between healthy participant and T2D patients. However, note that the differences in model performance are very close to zero, which indicates a small contribution of each taxonomic feature in allowing the model to distinguish between groups.</p>
+<p>Interestingly, our results are coherent with what authors of the original analysis reported <span class="citation" data-cites="qin2012_t2d">(<a href="#ref-qin2012_t2d" role="doc-biblioref">Qin et al. 2012</a>)</span>. They report several <em>Clostridium</em> representatives enriched in the T2D patients (see Figure 2A), and the two most important features of our model, <em>[Clostridium] innocuum</em> and <em>Erysipelatoclostridium ramosum</em> (formerly <em>Clostridium ramosum</em>), belong to this group. <em>Clostridium</em> was also reported as having the largest differences in the mean abundances between groups <span class="citation" data-cites="mei2024_t2d">(<a href="#ref-mei2024_t2d" role="doc-biblioref">Mei et al. 2024</a>)</span> (see Figures 2A and 2B). Note that the ranking of features can change with the data split and the random seed.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-qin2012_t2d" class="csl-entry" role="listitem">
+Qin, Junjie, Yingrui Li, Zhiming Cai, et al. 2012. <span>“A Metagenome-Wide Association Study of Gut Microbiota in Type 2 Diabetes.”</span> <em>Nature</em> 490: 55–60. <a href="https://doi.org/10.1038/nature11450">https://doi.org/10.1038/nature11450</a>.
+</div><div id="ref-mei2024_t2d" class="csl-entry" role="listitem">
+Mei, Zhendong, Fenglei Wang, Amrisha Bhosle, et al. 2024. <span>“Strain-Specific Gut Microbial Signatures in Type 2 Diabetes Identified in a Cross-Cohort Analysis of 8,117 Metagenomes.”</span> <em>Nature Medicine</em> 30 (8): 2265–76. <a href="https://doi.org/10.1038/s41591-024-03067-7">https://doi.org/10.1038/s41591-024-03067-7</a>.
+</div></div><div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Important: A call to avoid oversimplifications
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Feature importance plots are often interpreted in the literature with a reductionist mindset. Thus, researchers often conclude that a single feature is responsible of a complex clinical output of interest. However, more often than not, microbes interact with one another, and thus the effect of a single taxonomic feature doesn’t always inform about ecosystem-level properties of the microbiome. It is important to bear that in mind when interpreting the results of our models.</p>
+</div>
+</div>
+</section></section><section id="sec-ml-regression" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="sec-ml-regression">
+<span class="header-section-number">7.5</span> Regression with random forest</h2>
+<p>For regression tasks, each tree predicts a numerical outcome (e.g., BMI) based on the values of the features (e.g., taxonomic). Each tree split the data to minimize the difference between predicted and real (observed) values, often using metrics like mean squared error (MSE). One strength of RF is that it can learn non-linear patterns in the data that simpler regression algorithms might not capture.</p>
+<section id="training-1" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="training-1">
+<span class="header-section-number">7.5.1</span> Training</h3>
+<p>Regarding its implementation, note that just by changing the outcome from a categorical to a continuous variable, RF models can now be used in regression tasks:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Train random forest for regression</span></span>
+<span><span class="va">rf_regression</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.schlosslab.org/mikropml/reference/run_ml.html">run_ml</a></span><span class="op">(</span></span>
+<span>    dataset <span class="op">=</span> <span class="va">tse</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"rf"</span>,</span>
+<span>    outcome_colname <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    altexp <span class="op">=</span> <span class="st">"prep_regression"</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"prep_regression"</span>,</span>
+<span>    seed <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    kfold <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    cv_times <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    training_frac <span class="op">=</span> <span class="va">train_idx</span>,</span>
+<span>    find_feature_importance <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">##  Using 'BMI' as the outcome column.</span></span>
+<span><span class="co">##  Using the custom training set indices provided by `training_frac`.</span></span>
+<span><span class="co">##        The fraction of data in the training set will be 0.79</span></span>
+<span><span class="co">##  Training the model...</span></span>
+<span><span class="co">##  Training complete.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="performance-1" class="level3" data-number="7.5.2"><h3 data-number="7.5.2" class="anchored" data-anchor-id="performance-1">
+<span class="header-section-number">7.5.2</span> Performance</h3>
+<p>When RF are used in regression tasks, the performance metrics are different to what was discussed for classifications.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># RF performance in regression tasks</span></span>
+<span><span class="va">rf_regression</span><span class="op">[[</span><span class="st">"performance"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">cv_metric_RMSE</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">Rsquared</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: right;">seed</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">3.488552</td>
+<td style="text-align: right;">3.432807</td>
+<td style="text-align: right;">0.1269172</td>
+<td style="text-align: right;">2.673672</td>
+<td style="text-align: left;">rf</td>
+<td style="text-align: right;">1</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<p>A commonly used metric to quickly assess model performance in regression tasks is the root mean square error (RMSE). As its name suggests, this metric is just the root of the mean squared difference between the observed and predicted values of the outcome variable (patient’s BMI in this example).</p>
+<p>Similarly to AUC in classification, the results table include two types of RMSE metrics: <code>cv_metric_RMSE</code>, which is the cross-validated RMSE within the training data, and <code>RMSE</code>, which is the metric for the test data. The cross-validation (3.489) and test (3.433) RMSE are similar. As discussed in the classification results, a clearly worse test performance would suggest overfitting, which doesn’t seem to be the case here. However, this does not tell whether the predictions are useful. For that, we compare the model with a null model that predicts the mean BMI of the training samples for every test sample.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># BMI of the training and test samples</span></span>
+<span><span class="va">train_bmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">colData</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span><span class="va">train_idx</span>, <span class="st">"BMI"</span><span class="op">]</span></span>
+<span><span class="va">test_bmi</span> <span class="op">&lt;-</span> <span class="va">rf_regression</span><span class="op">[[</span><span class="st">"test_data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"BMI"</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># RMSE of the null model in the test data</span></span>
+<span><span class="va">null_rmse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">(</span><span class="va">test_bmi</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">train_bmi</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">null_rmse</span></span>
+<span><span class="co">##  [1] 3.598795</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="visualization-1" class="level3" data-number="7.5.3"><h3 data-number="7.5.3" class="anchored" data-anchor-id="visualization-1">
+<span class="header-section-number">7.5.3</span> Visualization</h3>
+<p>In this chapter RF was used to learn patterns in the gut microbiome to predict the BMI of the participants. The most used diagnostic visualization of model’s performance is to compare observed against predicted BMI values.</p>
+<p>The code below is used to generate that plot using the observations in the test data (<a href="#fig-ml-bmi-pred-obs" class="quarto-xref">Figure&nbsp;<span>7.5</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get the test set: data not used in training the model</span></span>
+<span><span class="va">test_data</span> <span class="op">&lt;-</span> <span class="va">rf_regression</span><span class="op">[[</span><span class="st">"test_data"</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Get the trained model</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="va">rf_regression</span><span class="op">[[</span><span class="st">"trained_model"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"finalModel"</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Use the model to predict BMI values in the test set</span></span>
+<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">test_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add predicted BMI values to the test dataset</span></span>
+<span><span class="va">test_data</span><span class="op">$</span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="va">pred</span></span>
+<span><span class="co"># Add diagnosis status to test data.</span></span>
+<span><span class="co"># This variable was created when preprocessing for classification</span></span>
+<span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">)</span></span>
+<span><span class="va">test_data</span><span class="op">$</span><span class="va">disease</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">colData</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span><span class="va">ids</span>, <span class="st">"disease"</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">$</span><span class="va">disease</span><span class="op">)</span></span>
+<span><span class="co">##  </span></span>
+<span><span class="co">##      T2D healthy </span></span>
+<span><span class="co">##       34      37</span></span>
+<span></span>
+<span><span class="co"># Plot actual (y-axis) vs predicted (x-axis) BMI values</span></span>
+<span><span class="va">obs_vs_pred</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">test_data</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">pred</span>, y <span class="op">=</span> <span class="va">BMI</span>, color <span class="op">=</span> <span class="va">disease</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co"># Add line showing perfect prediction</span></span>
+<span><span class="va">obs_vs_pred</span> <span class="op">&lt;-</span> <span class="va">obs_vs_pred</span> <span class="op">+</span> <span class="fu">geom_abline</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey30"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span></span>
+<span><span class="co"># Make axes of same scale, covering all observed and predicted values</span></span>
+<span><span class="va">lims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">$</span><span class="va">pred</span>, <span class="va">test_data</span><span class="op">$</span><span class="va">BMI</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">obs_vs_pred</span> <span class="op">&lt;-</span> <span class="va">obs_vs_pred</span> <span class="op">+</span> <span class="fu">coord_equal</span><span class="op">(</span>xlim <span class="op">=</span> <span class="va">lims</span>, ylim <span class="op">=</span> <span class="va">lims</span><span class="op">)</span></span>
+<span><span class="co"># Custom axes titles</span></span>
+<span><span class="va">obs_vs_pred</span> <span class="op">&lt;-</span> <span class="va">obs_vs_pred</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Predicted BMI"</span>, y <span class="op">=</span> <span class="st">"Observed BMI"</span><span class="op">)</span></span>
+<span><span class="co"># Add custom theme and visualize the plot</span></span>
+<span><span class="va">obs_vs_pred</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-ml-bmi-pred-obs" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Scatter plot of predicted BMI (x-axis) against observed BMI (y-axis) on equal scales covering all observed and predicted values, with points coloured by disease status and a dashed diagonal line marking perfect prediction.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ml-bmi-pred-obs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="machine_learning_files/figure-html/fig-ml-bmi-pred-obs-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Scatter plot of predicted BMI (x-axis) against observed BMI (y-axis) on equal scales covering all observed and predicted values, with points coloured by disease status and a dashed diagonal line marking perfect prediction." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ml-bmi-pred-obs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: Observed versus random forest-predicted BMI in the QinJ_2012 test data, coloured by disease status. The dashed grey line shows perfect prediction.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The dashed gray line in the plot above represents a perfect correlation between the observed and the model-predicted BMI values of each participant. Thus, the line indicates perfect performance of the model. We can see that while the predictions are around the mean BMI (close to 23), the observed values range approximately between 17 and 38, showing poor correlation between observed and predicted BMI values. Note that both groups show a similar spread in BMI.</p>
+<p>This plot clearly indicates a poor performance of our model. This usually means that either the gut microbiome is not related to BMI, making it impossible for the model to use microbiome patterns to predict it, or that our model is overfitted. The similar cross-validation and test RMSE suggest that the model is not overfitted. Moreover, the test RMSE of the model (3.433) is not much better than that of the null model (3.599). Thus, in this dataset the gut microbiome composition, as used here, seems to carry little information about BMI.</p>
+<p>This illustrate another important aspect of supervised ML. Regardless of the complexity of the models deployed, their predictive performance depends in their ability to learn meaningful patterns from the data. If such patterns don’t exist it would be impossible for the model to make accurate predictions. This is most likely what happened in this regression task. Notice that this can certainly happen in classification tasks too.</p>
+</section></section><section id="sec-ml-xgboost" class="level2 page-columns page-full" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="sec-ml-xgboost">
+<span class="header-section-number">7.6</span> Random forest vs XGBoost</h2>
+<p>Extreme Gradient Boosting (XGBoost) <span class="citation" data-cites="Chen2016a">(<a href="#ref-Chen2016a" role="doc-biblioref">Chen and Guestrin 2016</a>)</span> is another ensemble algorithm where decision trees are sequentially built. In this strategy, each new tree improves the performance of the previous.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Chen2016a" class="csl-entry" role="listitem">
+Chen, Tianqi, and Carlos Guestrin. 2016. <span>“<span>XGBoost</span>: A Scalable Tree Boosting System.”</span> <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, KDD ’16, 785–94. <a href="https://doi.org/10.1145/2939672.2939785">https://doi.org/10.1145/2939672.2939785</a>.
+</div></div><p>When applied to classification, each tree predicts the class of an observation (e.g., healthy or T2D) based on feature values (e.g., taxonomic). However, instead of ‘voting’ like in Random Forest, XGBoost adds the predictions of the trees. Each new tree is fitted to the gradient of the loss function (for squared error loss, the residuals) of the current ensemble, so that it corrects the errors of the previous trees.</p>
+<p>It must be noted that XGBoost is a more complex model usually described as one of the best performing models for tabular data <span class="citation" data-cites="SHWARTZZIV202284">(<a href="#ref-SHWARTZZIV202284" role="doc-biblioref">Shwartz-Ziv and Armon 2022</a>)</span>, such as the count tables used in microbiome data analysis.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-SHWARTZZIV202284" class="csl-entry" role="listitem">
+Shwartz-Ziv, Ravid, and Amitai Armon. 2022. <span>“Tabular Data: Deep Learning Is Not All You Need.”</span> <em>Information Fusion</em> 81: 84–90. https://doi.org/<a href="https://doi.org/10.1016/j.inffus.2021.11.011">https://doi.org/10.1016/j.inffus.2021.11.011</a>.
+</div></div><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note: XGBoost is currently not run
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The code in this section is not run, because the current versions of <em><a href="https://CRAN.R-project.org/package=xgboost">xgboost</a></em> (3.x) and <em><a href="https://CRAN.R-project.org/package=caret">caret</a></em>, which <em><a href="https://CRAN.R-project.org/package=mikropml">mikropml</a></em> uses, are not compatible. It works with <em><a href="https://CRAN.R-project.org/package=xgboost">xgboost</a></em> 1.7.</p>
+</div>
+</div>
+<p>The XGBoost model is trained in the same way as the random forest, only the method changes:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Train XGBoost for classification</span></span>
+<span><span class="va">xgb</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.schlosslab.org/mikropml/reference/run_ml.html">run_ml</a></span><span class="op">(</span></span>
+<span>    dataset <span class="op">=</span> <span class="va">tse</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"xgbTree"</span>,</span>
+<span>    outcome_colname <span class="op">=</span> <span class="st">"disease"</span>,</span>
+<span>    altexp <span class="op">=</span> <span class="st">"prep_classification"</span>,</span>
+<span>    assay.type <span class="op">=</span> <span class="st">"prep_classification"</span>,</span>
+<span>    seed <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    kfold <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    cv_times <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    training_frac <span class="op">=</span> <span class="va">train_idx</span>,</span>
+<span>    find_feature_importance <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compare the performance of the two models</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span></span>
+<span>    RF <span class="op">=</span> <span class="va">rf_classification</span><span class="op">[[</span><span class="st">"performance"</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    XGBoost <span class="op">=</span> <span class="va">xgb</span><span class="op">[[</span><span class="st">"performance"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compare ROC curves: combine the metrics of both models and plot them</span></span>
+<span><span class="co"># with the code used for the random forest above</span></span>
+<span><span class="va">xgb_model</span> <span class="op">&lt;-</span> <span class="va">xgb</span><span class="op">[[</span><span class="st">"trained_model"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">xgb_model</span><span class="op">[[</span><span class="st">"levels"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">model_t2d</span><span class="op">[[</span><span class="st">"levels"</span><span class="op">]</span><span class="op">]</span> <span class="co"># T2D as the positive class</span></span>
+<span><span class="va">xgb_senspec</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.schlosslab.org/mikropml/reference/sensspec.html">calc_model_sensspec</a></span><span class="op">(</span><span class="va">xgb_model</span>, <span class="va">xgb</span><span class="op">[[</span><span class="st">"test_data"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">xgb_senspec</span><span class="op">$</span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">"XGBoost"</span></span>
+<span><span class="va">senspec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">senspec</span>, <span class="va">xgb_senspec</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Comparing the AUC values and the ROC curves of the two models shows whether the more complex XGBoost model performs better than RF on this task. Often their performance is similar. This illustrates an important point in ML: sometimes simpler models can perform as good as more complex ones. Thus, it is often a good idea to deploy different models and compare their performance on the same task.</p>
+<p>Although not demonstrated in this chapter, XGBoost can be used in regressions tasks using similar code to the one shown above. The only difference will be the outcome variable selected. See the RF example as a reference.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Goal:</strong> After completing these exercises, you should be able to fit supervised machine learning model to microbiome data.</p>
+<p><strong>Exercise 1: Supervised ML</strong></p>
+<ol type="1">
+<li><p>Load any of the example datasets mentioned in <a href="https://microbiome.github.io/OMA/docs/devel/pages/import.html#sec-example-data">OMA: Open data resources</a>.</p></li>
+<li><p>Observe <code>colData</code> and check that the metadata includes outcome variables that you want to model.</p></li>
+<li><p>Visualize the selected outcome variable with a histogram if it is continuous, or a bar plot if it is categorical. What is the distribution? If the distribution is biased, how can this affect the training of the model?</p></li>
+<li><p>Apply a transformation, such as relative abundance or presence/absence (see the note on preprocessing strategies above).</p></li>
+<li><p>Split the samples into training and test sets. Filter the features using only the training samples, and preprocess the data without steps that learn from all samples.</p></li>
+<li><p>Fit a random forest model with <code>find_feature_importance = TRUE</code>.</p></li>
+<li><p>Visualize results. Do the model perform well by predicting the outcome with a high accuracy?</p></li>
+<li><p>What features are the most important for predicting the outcome?</p></li>
+</ol>
+<p>Useful functions:</p>
+<p><code><a href="https://rdrr.io/r/utils/data.html">utils::data()</a></code>, <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::colData()</a></code>, <code><a href="https://rdrr.io/pkg/miaViz/man/plotHistogram.html">miaViz::plotHistogram()</a></code>, <code><a href="https://rdrr.io/pkg/miaViz/man/plotHistogram.html">miaViz::plotBarplot()</a></code>, <code><a href="https://microbiome.github.io/mia/reference/getPrevalence.html">mia::getPrevalence()</a></code>, <code><a href="https://microbiome.github.io/mia/reference/transformAssay.html">mia::transformAssay()</a></code>, <code><a href="http://www.schlosslab.org/mikropml/reference/preprocess_data.html">mikropml::preprocess_data()</a></code>, <code><a href="http://www.schlosslab.org/mikropml/reference/run_ml.html">mikropml::run_ml()</a></code>, <code><a href="http://www.schlosslab.org/mikropml/reference/plot_model_performance.html">mikropml::plot_model_performance()</a></code></p>
+</div>
+</div>
+
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../pages/machine_learning_intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../pages/session_info.html" class="pagination-link" aria-label="Technical info">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Technical info</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="./">Orchestrating Microbiome Analysis with Bioconductor — extras</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://github.com/js2264/BiocBook/">BiocBook</a> with <span class="emoji" data-emoji="heart">❤️</span></p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

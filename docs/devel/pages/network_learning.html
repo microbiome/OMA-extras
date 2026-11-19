@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>1&nbsp; Network learning &amp; analysis – Orchestrating Microbiome Analysis — extras</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -56,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -86,19 +91,18 @@ div.csl-indent {
 <link href="../assets/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6d7e0e055978adcb0dc3bbe98a6d8351.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-80c687981879d47e1ba8a072125697b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-de1fe328051f57d00ac15cf2aa1c065c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-80c687981879d47e1ba8a072125697b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-036ce5d4a32f44c60d96ed3111f9e174.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -123,7 +127,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -369,11 +373,7 @@ window.Quarto = {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
@@ -400,37 +400,60 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/integrated_learner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-omics prediction and classification</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pages/msea.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/mmuphin_meta_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/extra_daa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/time_series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Time series analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Machine learning</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/session_info.html" class="sidebar-item-text sidebar-link">
@@ -570,7 +593,7 @@ document.addEventListener("click", function (event) {
 <li>Covariance shrinkage (<em><a href="https://CRAN.R-project.org/package=corpcor">corpcor</a></em> package) (+ normalization)</li>
 <li>SparCC (implemented in <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em>); applied in <a href="#sec-sparcc-correlation" class="quarto-xref"><span>Section 1.7.1</span></a>
 </li>
-<li><em><a href="https://bioconductor.org/packages/3.23/ccrepe">ccrepe</a></em></li>
+<li><em><a href="https://bioconductor.org/packages/3.24/ccrepe">ccrepe</a></em></li>
 <li><em><a href="https://github.com/huayingfang/CCLasso">CCLasso</a></em></li>
 </ul>
 </li>
@@ -599,7 +622,7 @@ document.addEventListener("click", function (event) {
 </li>
 </ul>
 </li>
-<li><p><strong>Sparsification:</strong> Transforming the estimated associations directly into adjacencies would lead to a dense network where all nodes are connected and only weighted network measures are meaningful. Therefore, the association matrix is usually sparsified to select edges of interest. A common sparsification approach for correlations is thresholding, where correlations with a magnitude below the threshold are set to zero. Another possibility is a statistical test (Student’s t-test or permutation test) with the null hypothesis that the correlation is equal to zero. <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> uses the StARS stability selection approach <span class="citation" data-cites="liu2010stability">(<a href="#ref-liu2010stability" role="doc-biblioref">Liu, Roeder, and Wasserman 2010</a>)</span> to decide on an appropriate sparsification level of the inferred conditional dependence graph.</p></li>
+<li><p><strong>Sparsification:</strong> Transforming the estimated associations directly into adjacencies would lead to a dense network where all nodes are connected and only weighted network measures are meaningful. Therefore, the association matrix is usually sparsified to select edges of interest. A common sparsification approach for correlations is thresholding, where correlations with a magnitude below the threshold are set to zero. Another possibility is a statistical test (Student’s t-test or permutation test) with the null hypothesis that the correlation is equal to zero. <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> uses the StARS stability selection approach <span class="citation" data-cites="liu2010stability">(<a href="#ref-liu2010stability" role="doc-biblioref">Liu et al. 2010</a>)</span> to decide on an appropriate sparsification level of the inferred conditional dependence graph.</p></li>
 <li>
 <p><strong>Transformation into dissimilarity:</strong> A common next step is to simply use the absolute values of the sparsified associations as the edge weights. In this way, correlations of high magnitude (both positive and negative) will have a high edge weight. From a biological point of view, it would also make sense to assign a low edge weight to taxonomic features that are strongly negatively associated, which would correspond to a high dissimilarity value. Here we follow <span class="citation" data-cites="vanDongen2012metric">Dongen and Enright (<a href="#ref-vanDongen2012metric" role="doc-biblioref">2012</a>)</span> to directly transform the sparse associations <span class="math inline">\(r_{ij}^*\)</span> into dissimilarities, which can later be used for shortest path network measures. Depending on the desired handling of negative associations, one of the two proposed transformations should be chosen:</p>
 <p>5a: <strong>“signed”:</strong> <span class="math inline">\(d_{ij} = \sqrt{0.5(1-r^*_{ij})}\)</span>, where strongly negatively associated taxonomic features have the largest distance and are placed further apart in the network.</p>
@@ -607,7 +630,7 @@ document.addEventListener("click", function (event) {
 </li>
 <li><p><strong>Transformation into similarity / edge weight:</strong> Finally, the dissimilarities are transformed into similarities by <span class="math inline">\(s_{ij} = 1 - d_{ij}\)</span>, which are used as edge weights. Thus, the similarity matrix is equal to the adjacency matrix in a weighted network.</p></li>
 </ol>
-<div class="no-row-height column-margin column-container"></div><p>The main association measure used in this chapter is the <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> (“Semi-Parametric Rank-based approach for INference in Graphical model”) method proposed by <span class="citation" data-cites="yoon2019microbial">Yoon, Gaynanova, and Müller (<a href="#ref-yoon2019microbial" role="doc-biblioref">2019</a>)</span>. <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> learns conditional dependency graphs for compositional data and follows the neighborhood selection method introduced by <span class="citation" data-cites="meinshausen2006high">Meinshausen and Bühlmann (<a href="#ref-meinshausen2006high" role="doc-biblioref">2006</a>)</span> (“MB”). We will show how to apply the method directly, as well as how to use it in conjunction with the R package <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em>, which is specifically designed for the construction and analysis of networks for microbiome data.</p>
+<div class="no-row-height column-margin column-container"></div><p>The main association measure used in this chapter is the <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> (“Semi-Parametric Rank-based approach for INference in Graphical model”) method proposed by <span class="citation" data-cites="yoon2019microbial">Yoon et al. (<a href="#ref-yoon2019microbial" role="doc-biblioref">2019</a>)</span>. <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> learns conditional dependency graphs for compositional data and follows the neighborhood selection method introduced by <span class="citation" data-cites="meinshausen2006high">Meinshausen and Bühlmann (<a href="#ref-meinshausen2006high" role="doc-biblioref">2006</a>)</span> (“MB”). We will show how to apply the method directly, as well as how to use it in conjunction with the R package <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em>, which is specifically designed for the construction and analysis of networks for microbiome data.</p>
 <p>See <a href="#sec-more-about-association" class="quarto-xref"><span>Section 1.6</span></a> for a comparison of all three association types (correlation, partial correlation, and proportionality) with more information on each measure and applications.</p>
 <p>We demonstrate the workflow using the the <strong>PeerJ data set</strong> <span class="citation" data-cites="potbhare2022skin">(<a href="#ref-potbhare2022skin" role="doc-biblioref">Potbhare et al. 2022</a>)</span>. It contains skin microbial profiles of 58 subjects.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-potbhare2022skin" class="csl-entry" role="listitem">
@@ -625,67 +648,23 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 <p>Three packages used in this chapter are available on GitHub only: <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em>, <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em>, and <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em>. We recommend that you install these packages before proceeding.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zdk123/pulsar">pulsar</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"zdk123/pulsar"</span><span class="op">)</span></span>
+<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html">install_github</a></span><span class="op">(</span><span class="st">"zdk123/pulsar"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">##  ── R CMD build ──────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##  * checking for file ‘/tmp/RtmpiuyOsc/remotesc86e50e8dd/zdk123-pulsar-ae31833/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">##  * preparing ‘pulsar’:</span></span>
-<span><span class="co">##  * checking DESCRIPTION meta-information ... OK</span></span>
-<span><span class="co">##  * checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">##  * checking for empty or unneeded directories</span></span>
-<span><span class="co">##  * building ‘pulsar_0.3.11.tar.gz’</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"zdk123/SpiecEasi"</span><span class="op">)</span></span>
+<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html">install_github</a></span><span class="op">(</span><span class="st">"zdk123/SpiecEasi"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">##  </span></span>
-<span><span class="co">##  ── R CMD build ──────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##  * checking for file ‘/tmp/RtmpiuyOsc/remotesc8582b4443/zdk123-SpiecEasi-faed6a4/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">##  * preparing ‘SpiecEasi’:</span></span>
-<span><span class="co">##  * checking DESCRIPTION meta-information ... OK</span></span>
-<span><span class="co">##  * cleaning src</span></span>
-<span><span class="co">##  * checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">##  * checking for empty or unneeded directories</span></span>
-<span><span class="co">##  Removed empty directory ‘SpiecEasi/inst’</span></span>
-<span><span class="co">##  * looking to see if a ‘data/datalist’ file should be added</span></span>
-<span><span class="co">##  * building ‘SpiecEasi_1.99.0.tar.gz’</span></span>
 <span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">SPRING</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"GraceYoon/SPRING"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/IrinaStatsLab/SPRING">SPRING</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html">install_github</a></span><span class="op">(</span><span class="st">"GraceYoon/SPRING"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">##  mixedCCA (1.6.3 -&gt; 511c4af4b...) [GitHub]</span></span>
-<span><span class="co">##  </span></span>
-<span><span class="co">##  ── R CMD build ──────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##  * checking for file ‘/tmp/RtmpiuyOsc/remotesc82ba8e040/irinagain-mixedCCA-511c4af/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">##  * preparing ‘mixedCCA’:</span></span>
-<span><span class="co">##  * checking DESCRIPTION meta-information ... OK</span></span>
-<span><span class="co">##  * cleaning src</span></span>
-<span><span class="co">##  * checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">##  * checking for empty or unneeded directories</span></span>
-<span><span class="co">##  Omitted ‘LazyData’ from DESCRIPTION</span></span>
-<span><span class="co">##  * building ‘mixedCCA_1.6.3.tar.gz’</span></span>
-<span><span class="co">##  ── R CMD build ──────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##  * checking for file ‘/tmp/RtmpiuyOsc/remotesc81f183573/GraceYoon-SPRING-3d641a4/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">##  * preparing ‘SPRING’:</span></span>
-<span><span class="co">##  * checking DESCRIPTION meta-information ... OK</span></span>
-<span><span class="co">##  * checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">##  * checking for empty or unneeded directories</span></span>
-<span><span class="co">##  * building ‘SPRING_1.0.4.tar.gz’</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://netcomi.de">NetCoMi</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span></span>
+<span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html">install_github</a></span><span class="op">(</span></span>
 <span>        <span class="st">"stefpeschel/NetCoMi"</span>,</span>
 <span>        repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://cloud.r-project.org/"</span>, <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/repositories.html">repositories</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co">##  </span></span>
-<span><span class="co">##  ── R CMD build ──────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##  * checking for file ‘/tmp/RtmpiuyOsc/remotesc84db6a9b7/stefpeschel-NetCoMi-3b8de20/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">##  * preparing ‘NetCoMi’:</span></span>
-<span><span class="co">##  * checking DESCRIPTION meta-information ... OK</span></span>
-<span><span class="co">##  * checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">##  * checking for empty or unneeded directories</span></span>
-<span><span class="co">##  * building ‘NetCoMi_1.2.0.tar.gz’</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="data-preparation" class="level3" data-number="1.1.3"><h3 data-number="1.1.3" class="anchored" data-anchor-id="data-preparation">
 <span class="header-section-number">1.1.3</span> Data preparation</h3>
@@ -729,13 +708,13 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 </section><section id="sec-spring-network" class="level3 page-columns page-full" data-number="1.1.4"><h3 data-number="1.1.4" class="anchored" data-anchor-id="sec-spring-network">
 <span class="header-section-number">1.1.4</span> SPRING network</h3>
 <p>As explained in <a href="#sec-network-learning-workflow" class="quarto-xref"><span>Section 1.1.1</span></a>, we use <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> (“Semi-Parametric Rank-based approach for INference in Graphical model”) as association measure. We first use the <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> function directly to construct a conditional dependency graph.</p>
-<p>Neither zero replacement nor normalization (steps 1 and 2 in our workflow) are required because <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> uses a modified clr (mclr) transformation that can handle zero counts, and the correlation estimation method itself can also deal with zeros in the data. mclr is similar to the clr transformation except that mclr considers only the non-zero values. More precisely, the geometric mean is derived from positive values only, and zero counts remain zero after the transformation. This approach is similar to the “robust clr” (rclr) transformation included in the <em><a href="https://CRAN.R-project.org/package=vegan">vegan</a></em> package, except that mclr applies a positive shift to all non-zero values to make them strictly positive. See <span class="citation" data-cites="yoon2019microbial">(<a href="#ref-yoon2019microbial" role="doc-biblioref">Yoon, Gaynanova, and Müller 2019</a>)</span> for details.</p>
+<p>Neither zero replacement nor normalization (steps 1 and 2 in our workflow) are required because <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> uses a modified clr (mclr) transformation that can handle zero counts, and the correlation estimation method itself can also deal with zeros in the data. mclr is similar to the clr transformation except that mclr considers only the non-zero values. More precisely, the geometric mean is derived from positive values only, and zero counts remain zero after the transformation. This approach is similar to the “robust clr” (rclr) transformation included in the <em><a href="https://CRAN.R-project.org/package=vegan">vegan</a></em> package, except that mclr applies a positive shift to all non-zero values to make them strictly positive. See <span class="citation" data-cites="yoon2019microbial">(<a href="#ref-yoon2019microbial" role="doc-biblioref">Yoon et al. 2019</a>)</span> for details.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-yoon2021fast" class="csl-entry" role="listitem">
-Yoon, Grace, Christian L Müller, and Irina Gaynanova. 2021. <span>“Fast Computation of Latent Correlations.”</span> <em><span>Journal of Computational and Graphical Statistics</span></em> 30 (4): 1249–56.
-</div></div><p>The <code>Rmethod</code> argument is set to “approx” to estimate the correlations using a hybrid multi-linear interpolation approach proposed by <span class="citation" data-cites="yoon2021fast">Yoon, Müller, and Gaynanova (<a href="#ref-yoon2021fast" role="doc-biblioref">2021</a>)</span>. This method considerably reduces the runtime while controlling the approximation error.</p>
-<p><em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> uses the StARS (“Stability Approach to Regularization Selection”) method <span class="citation" data-cites="liu2010stability">(<a href="#ref-liu2010stability" role="doc-biblioref">Liu, Roeder, and Wasserman 2010</a>)</span> to obtain a sparse association matrix. Thus, also step 4 of our workflow is already included. We set the StARS threshold to 0.05 to get a sparser graph.</p>
+Yoon, Grace, Christian L Müller, and Irina Gaynanova. 2021. <span>“Fast Computation of Latent Correlations.”</span> <em><span class="nocase">Journal of Computational and Graphical Statistics</span></em> 30 (4): 1249–56.
+</div></div><p>The <code>Rmethod</code> argument is set to “approx” to estimate the correlations using a hybrid multi-linear interpolation approach proposed by <span class="citation" data-cites="yoon2021fast">Yoon et al. (<a href="#ref-yoon2021fast" role="doc-biblioref">2021</a>)</span>. This method considerably reduces the runtime while controlling the approximation error.</p>
+<p><em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> uses the StARS (“Stability Approach to Regularization Selection”) method <span class="citation" data-cites="liu2010stability">(<a href="#ref-liu2010stability" role="doc-biblioref">Liu et al. 2010</a>)</span> to obtain a sparse association matrix. Thus, also step 4 of our workflow is already included. We set the StARS threshold to 0.05 to get a sparser graph.</p>
 <div class="no-row-height column-margin column-container"></div><div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">SPRING</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/IrinaStatsLab/SPRING">SPRING</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">13075</span><span class="op">)</span></span>
@@ -760,7 +739,7 @@ Yoon, Grace, Christian L Müller, and Irina Gaynanova. 2021. <span>“Fast Compu
 <p>Since <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> already includes a sparsification approach, the <code>thresh</code> argument is not needed here, but will be needed in <a href="#sec-more-about-association" class="quarto-xref"><span>Section 1.6</span></a> for other association measures.</p>
 <p>To be consistent with the workflow, we provide two dissimilarity transformations: “signed” and “unsigned” (see <a href="#sec-network-learning-workflow" class="quarto-xref"><span>Section 1.1.1</span></a> for an explanation). These transformations were introduced by <span class="citation" data-cites="vanDongen2012metric">Dongen and Enright (<a href="#ref-vanDongen2012metric" role="doc-biblioref">2012</a>)</span>. We use the “signed” transformation in our examples so that strongly negatively associated genera have low edge weights.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-vanDongen2012metric" class="csl-entry" role="listitem">
-Dongen, Stijn van, and Anton J. Enright. 2012. <span>“<span class="nocase">Metric distances derived from cosine similarity and Pearson and Spearman correlations</span>.”</span> <em><span>arXiv Preprint</span></em> 2: 2–6. <a href="http://arxiv.org/abs/1208.3145">http://arxiv.org/abs/1208.3145</a>.
+Dongen, Stijn van, and Anton J. Enright. 2012. <span>“<span class="nocase">Metric distances derived from cosine similarity and Pearson and Spearman correlations</span>.”</span> <em><span class="nocase">arXiv preprint</span></em> 2: 2–6. <a href="http://arxiv.org/abs/1208.3145">http://arxiv.org/abs/1208.3145</a>.
 </div></div><p>The output of the function is an <code>igraph</code> object, which can be plotted and analyzed using functions from the <em><a href="https://CRAN.R-project.org/package=igraph">igraph</a></em> package.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Arguments:</span></span>
@@ -802,7 +781,7 @@ Dongen, Stijn van, and Anton J. Enright. 2012. <span>“<span class="nocase">Met
 <span class="header-section-number">1.1.5</span> NetCoMi network</h3>
 <p><em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em> <span class="citation" data-cites="peschel2021netcomi">(<a href="#ref-peschel2021netcomi" role="doc-biblioref">Peschel et al. 2021</a>)</span> package is specifically designed to construct, analyze, and compare networks for microbiome data and implements the complete workflow described in <a href="#sec-network-learning-workflow" class="quarto-xref"><span>Section 1.1.1</span></a>. Instead of using several functions for each of the steps, <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em> provides a single function for network construction (<code><a href="https://netcomi.de/reference/netConstruct.html">netConstruct()</a></code>), so the package streamlines the workflow considerably. The user can choose from a variety of methods for data preprocessing, association estimation, sparsification, and transformation. The returned <code>microNet</code> object can then be passed to <code><a href="https://netcomi.de/reference/netAnalyze.html">netAnalyze()</a></code> (the network analysis function) so that all necessary information is available for the network analysis workflow.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-peschel2021netcomi" class="csl-entry" role="listitem">
-Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix, and Martin Depner. 2021. <span>“<span class="nocase">NetCoMi: network construction and comparison for microbiome data in R</span>.”</span> <em><span>Briefings in Bioinformatics</span></em> 22 (4): bbaa290. <a href="https://doi.org/10.1093/bib/bbaa290">https://doi.org/10.1093/bib/bbaa290</a>.
+Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix, and Martin Depner. 2021. <span>“<span class="nocase">NetCoMi: network construction and comparison for microbiome data in R</span>.”</span> <em><span class="nocase">Briefings in Bioinformatics</span></em> 22 (4): bbaa290. <a href="https://doi.org/10.1093/bib/bbaa290">https://doi.org/10.1093/bib/bbaa290</a>.
 </div></div><div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://netcomi.de">NetCoMi</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -902,21 +881,21 @@ Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix,
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">centr_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">spring_cor</span><span class="op">)</span></span>
 <span><span class="va">centr_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">##                   Degree Betweenness Closeness Eigenvector</span></span>
-<span><span class="co">##  Abyssicoccus          0           0       NaN    0.000000</span></span>
-<span><span class="co">##  Acidaminococcus       2           0    0.6464    0.186184</span></span>
-<span><span class="co">##  Acinetobacter         3           5    0.5544    0.125749</span></span>
-<span><span class="co">##  Actinomyces           0           0       NaN    0.000000</span></span>
-<span><span class="co">##  Actinoplanes          2          99    0.5104    0.010988</span></span>
-<span><span class="co">##  Aerococcus            0           0       NaN    0.000000</span></span>
-<span><span class="co">##  Aeromonas             4         351    0.7477    0.202306</span></span>
-<span><span class="co">##  Agromyces             6         435    0.7733    0.529302</span></span>
-<span><span class="co">##  Algicola              4         264    0.7206    0.150044</span></span>
-<span><span class="co">##  Alicyclobacillus      0           0       NaN    0.000000</span></span>
-<span><span class="co">##  Alteribacillus        0           0       NaN    0.000000</span></span>
-<span><span class="co">##  Ammoniibacillus       1           0    0.5064    0.054192</span></span>
-<span><span class="co">##  Amphritea             5         382    0.6256    0.013348</span></span>
-<span><span class="co">##  Amycolatopsis         1           0    0.6117    0.133849</span></span>
-<span><span class="co">##  Anaerococcus          2         392    0.4064    0.001288</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">##  Abyssicoccus          0           0       NaN   1.186e-18</span></span>
+<span><span class="co">##  Acidaminococcus       2           0    0.6464   1.862e-01</span></span>
+<span><span class="co">##  Acinetobacter         3           5    0.5544   1.257e-01</span></span>
+<span><span class="co">##  Actinomyces           0           0       NaN   1.186e-18</span></span>
+<span><span class="co">##  Actinoplanes          2          99    0.5104   1.099e-02</span></span>
+<span><span class="co">##  Aerococcus            0           0       NaN   1.186e-18</span></span>
+<span><span class="co">##  Aeromonas             4         351    0.7477   2.023e-01</span></span>
+<span><span class="co">##  Agromyces             6         435    0.7733   5.293e-01</span></span>
+<span><span class="co">##  Algicola              4         264    0.7206   1.500e-01</span></span>
+<span><span class="co">##  Alicyclobacillus      0           0       NaN   1.186e-18</span></span>
+<span><span class="co">##  Alteribacillus        0           0       NaN   1.186e-18</span></span>
+<span><span class="co">##  Ammoniibacillus       1           0    0.5064   5.419e-02</span></span>
+<span><span class="co">##  Amphritea             5         382    0.6256   1.335e-02</span></span>
+<span><span class="co">##  Amycolatopsis         1           0    0.6117   1.338e-01</span></span>
+<span><span class="co">##  Anaerococcus          2         392    0.4064   1.288e-03</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The closeness centrality is “NaN” for some genera. These are unconnected nodes, as can be seen by the zero degree and betweenness centrality.</p>
 </section><section id="scale-node-sizes-by-degree" class="level3" data-number="1.2.3"><h3 data-number="1.2.3" class="anchored" data-anchor-id="scale-node-sizes-by-degree">
@@ -936,12 +915,12 @@ Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix,
 <span><span class="va">vsize_df</span> <span class="op">&lt;-</span> <span class="fu">get_vsizes</span><span class="op">(</span><span class="va">centr_df</span><span class="op">)</span></span>
 <span><span class="va">vsize_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">##                  Degree Betweenness Closeness Eigenvector</span></span>
-<span><span class="co">##  Abyssicoccus         0       0.000     0.000      0.0000</span></span>
-<span><span class="co">##  Acidaminococcus      2       0.000     6.464      1.8618</span></span>
-<span><span class="co">##  Acinetobacter        3       1.609     5.544      1.2575</span></span>
-<span><span class="co">##  Actinomyces          0       0.000     0.000      0.0000</span></span>
-<span><span class="co">##  Actinoplanes         2       4.595     5.104      0.1099</span></span>
-<span><span class="co">##  Aerococcus           0       0.000     0.000      0.0000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">##  Abyssicoccus         0       0.000     0.000   1.186e-17</span></span>
+<span><span class="co">##  Acidaminococcus      2       0.000     6.464   1.862e+00</span></span>
+<span><span class="co">##  Acinetobacter        3       1.609     5.544   1.257e+00</span></span>
+<span><span class="co">##  Actinomyces          0       0.000     0.000   1.186e-17</span></span>
+<span><span class="co">##  Actinoplanes         2       4.595     5.104   1.099e-01</span></span>
+<span><span class="co">##  Aerococcus           0       0.000     0.000   1.186e-17</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -1022,7 +1001,7 @@ Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix,
 <p>The network has a large number of singletons and sparsely connected nodes, and only a small number of nodes with a higher degree of 7 or more.</p>
 </section><section id="clustered-heatmaps" class="level3" data-number="1.2.5"><h3 data-number="1.2.5" class="anchored" data-anchor-id="clustered-heatmaps">
 <span class="header-section-number">1.2.5</span> Clustered heatmaps</h3>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.23/ComplexHeatmap">ComplexHeatmap</a></em> package, we plot a heatmap of the association matrix estimated with <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em>. Rows and columns are sorted according to the clusters identified via hierarchical clustering.</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.24/ComplexHeatmap">ComplexHeatmap</a></em> package, we plot a heatmap of the association matrix estimated with <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em>. Rows and columns are sorted according to the clusters identified via hierarchical clustering.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/circlize">circlize</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1092,12 +1071,6 @@ Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix,
 <span>    hubPar <span class="op">=</span> <span class="st">"eigenvector"</span>,</span>
 <span>    normDeg <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="network_learning_files/figure-html/netAnalyze_single-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">netcomi_netprops</span>, numbNodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1113,7 +1086,7 @@ Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix,
 ##                                   
 ##  Relative LCC size         0.70068
 ##  Clustering coefficient    0.21253
-##  Modularity                0.70495
+##  Modularity                0.70551
 ##  Positive edge percentage 99.35065
 ##  Edge density              0.02932
 ##  Natural connectivity      0.01173
@@ -1126,7 +1099,7 @@ Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix,
 ##                                   
 ##  Number of components     44.00000
 ##  Clustering coefficient    0.21253
-##  Modularity                0.70787
+##  Modularity                0.70860
 ##  Positive edge percentage 99.35484
 ##  Edge density              0.01444
 ##  Natural connectivity      0.00782
@@ -1311,23 +1284,23 @@ Ullmann, Theresa, Stefanie Peschel, Philipp Finger, Christian L Müller, and Ann
 <p>As mentioned in the introduction of this chapter, there are three types of association measures that are commonly used to express relationships between features: correlation, conditional dependence, and proportionality. Below, we provide a brief explanation of each of these measures, along with lists of available compositionality-aware approaches.</p>
 <ul>
 <li>
-<strong>Correlation:</strong> Two popular measures of ecological association are Pearson’s correlation coefficient and Spearman’s rank correlation coefficient, both of which can be inferred from empirical (sample) covariances. However, in the <span class="math inline">\(p\gg n\)</span> setting, which most microbiome datasets are in, sample covariances and correlations are unreliable because the parameters being estimated are typically underdetermined. One way to improve sample covariance estimates is to assume that the underlying covariance matrix is sparse and use a regularized covariance estimator to implement this structural assumption. The Schäfer-Strimmer shrinkage estimator <span class="citation" data-cites="schafer2005shrinkage">(<a href="#ref-schafer2005shrinkage" role="doc-biblioref">Schäfer and Strimmer 2005</a>)</span> is one possible method for estimating a sparse correlation matrix. Other popular methods, especially designed to estimate correlations for compositional data, are SparCC (“Sparse Correlations for Compositional data”) (implemented in <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em>) by <span class="citation" data-cites="Friedman2012">J. Friedman and Alm (<a href="#ref-Friedman2012" role="doc-biblioref">2012</a>)</span>, <em><a href="https://bioconductor.org/packages/3.23/ccrepe">ccrepe</a></em> (“Compositionality Corrected by REnormalization and PErmutation”) by <span class="citation" data-cites="faust2012microbial">Faust et al. (<a href="#ref-faust2012microbial" role="doc-biblioref">2012</a>)</span>, and <em><a href="https://github.com/huayingfang/CCLasso">CCLasso</a></em> (“Correlation inference for Compositional data through Lasso”) by <span class="citation" data-cites="fang2015cclasso">Huaying Fang et al. (<a href="#ref-fang2015cclasso" role="doc-biblioref">2015</a>)</span>. The latter three methods already include a compositionality aware normalization, and SparCC also includes a zero replacement approach.</li>
+<strong>Correlation:</strong> Two popular measures of ecological association are Pearson’s correlation coefficient and Spearman’s rank correlation coefficient, both of which can be inferred from empirical (sample) covariances. However, in the <span class="math inline">\(p\gg n\)</span> setting, which most microbiome datasets are in, sample covariances and correlations are unreliable because the parameters being estimated are typically underdetermined. One way to improve sample covariance estimates is to assume that the underlying covariance matrix is sparse and use a regularized covariance estimator to implement this structural assumption. The Schäfer-Strimmer shrinkage estimator <span class="citation" data-cites="schafer2005shrinkage">(<a href="#ref-schafer2005shrinkage" role="doc-biblioref">Schäfer and Strimmer 2005</a>)</span> is one possible method for estimating a sparse correlation matrix. Other popular methods, especially designed to estimate correlations for compositional data, are SparCC (“Sparse Correlations for Compositional data”) (implemented in <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em>) by <span class="citation" data-cites="Friedman2012">Friedman and Alm (<a href="#ref-Friedman2012" role="doc-biblioref">2012</a>)</span>, <em><a href="https://bioconductor.org/packages/3.24/ccrepe">ccrepe</a></em> (“Compositionality Corrected by REnormalization and PErmutation”) by <span class="citation" data-cites="faust2012microbial">Faust et al. (<a href="#ref-faust2012microbial" role="doc-biblioref">2012</a>)</span>, and <em><a href="https://github.com/huayingfang/CCLasso">CCLasso</a></em> (“Correlation inference for Compositional data through Lasso”) by <span class="citation" data-cites="fang2015cclasso">Fang et al. (<a href="#ref-fang2015cclasso" role="doc-biblioref">2015</a>)</span>. The latter three methods already include a compositionality aware normalization, and SparCC also includes a zero replacement approach.</li>
 <li>
-<strong>Conditional dependence:</strong> Since standard correlations include both direct and indirect dependencies, conditional dependence or partial correlation is often preferred for measuring association. Unlike (marginal) correlation, it expresses the relationship between two features conditioned on all other features in the data set. The approach and R package <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> (“Sparse InversE Covariance estimation for Ecological Association and Statistical Inference”) by <span class="citation" data-cites="Kurtz2015">Kurtz et al. (<a href="#ref-Kurtz2015" role="doc-biblioref">2015</a>)</span> is specifically designed for inferring ecological networks from microbiome data and includes two approaches for estimating conditional dependence structures between taxonomic features: Neighborhood Selection; short “MB” <span class="citation" data-cites="meinshausen2006high">(<a href="#ref-meinshausen2006high" role="doc-biblioref">Meinshausen and Bühlmann 2006</a>)</span> and (inverse) covariance selection <span class="citation" data-cites="friedman2008sparse">(<a href="#ref-friedman2008sparse" role="doc-biblioref">Jerome Friedman, Hastie, and Tibshirani 2008</a>)</span>, which is based on a penalized maximum likelihood approach and is also known as “graphical lasso”. Another approach and R package for inferring partial correlations from microbiome data is <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> (“Semi-Parametric Rank-based approach for INference in Graphical model”) by <span class="citation" data-cites="yoon2019microbial">Yoon, Gaynanova, and Müller (<a href="#ref-yoon2019microbial" role="doc-biblioref">2019</a>)</span>. They also use the MB neighborhood selection method, but introduce a novel semi-parametric rank-based approach for sparse partial correlation estimation that can naturally handle the excess of zeros in the data. <em><a href="https://github.com/huayingfang/gCoda">gCoda</a></em> <span class="citation" data-cites="fang2017gcoda">(<a href="#ref-fang2017gcoda" role="doc-biblioref">H. Fang et al. 2017</a>)</span> is another conditional dependence measure based on penalized maximum likelihood estimation. All of the aforementioned conditional dependence measures address the high dimensionality of microbiome data.</li>
+<strong>Conditional dependence:</strong> Since standard correlations include both direct and indirect dependencies, conditional dependence or partial correlation is often preferred for measuring association. Unlike (marginal) correlation, it expresses the relationship between two features conditioned on all other features in the data set. The approach and R package <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> (“Sparse InversE Covariance estimation for Ecological Association and Statistical Inference”) by <span class="citation" data-cites="Kurtz2015">Kurtz et al. (<a href="#ref-Kurtz2015" role="doc-biblioref">2015</a>)</span> is specifically designed for inferring ecological networks from microbiome data and includes two approaches for estimating conditional dependence structures between taxonomic features: Neighborhood Selection; short “MB” <span class="citation" data-cites="meinshausen2006high">(<a href="#ref-meinshausen2006high" role="doc-biblioref">Meinshausen and Bühlmann 2006</a>)</span> and (inverse) covariance selection <span class="citation" data-cites="friedman2008sparse">(<a href="#ref-friedman2008sparse" role="doc-biblioref">Friedman et al. 2008</a>)</span>, which is based on a penalized maximum likelihood approach and is also known as “graphical lasso”. Another approach and R package for inferring partial correlations from microbiome data is <em><a href="https://github.com/GraceYoon/SPRING">SPRING</a></em> (“Semi-Parametric Rank-based approach for INference in Graphical model”) by <span class="citation" data-cites="yoon2019microbial">Yoon et al. (<a href="#ref-yoon2019microbial" role="doc-biblioref">2019</a>)</span>. They also use the MB neighborhood selection method, but introduce a novel semi-parametric rank-based approach for sparse partial correlation estimation that can naturally handle the excess of zeros in the data. <em><a href="https://github.com/huayingfang/gCoda">gCoda</a></em> <span class="citation" data-cites="fang2017gcoda">(<a href="#ref-fang2017gcoda" role="doc-biblioref">Fang et al. 2017</a>)</span> is another conditional dependence measure based on penalized maximum likelihood estimation. All of the aforementioned conditional dependence measures address the high dimensionality of microbiome data.</li>
 <li>
 <strong>Proportionality:</strong> <span class="citation" data-cites="lovell2015proportionality">Lovell et al. (<a href="#ref-lovell2015proportionality" role="doc-biblioref">2015</a>)</span> introduce proportionality as an alternative measure of pairwise association for compositional data. The idea is that if the relative abundances between two features <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are proportional, then their corresponding absolute abundances are also proportional: <span class="math inline">\(\frac{\omega_i}{m} \propto \frac{\omega_j}{m} \Rightarrow \omega_i \propto \omega_j\)</span>, where <span class="math inline">\(m\)</span> is the sum of counts in the sample. It follows that proportionality is identical for the observed (relative) read counts and the true unobserved counts. The proportionality measure proposed by <span class="citation" data-cites="lovell2015proportionality">Lovell et al. (<a href="#ref-lovell2015proportionality" role="doc-biblioref">2015</a>)</span> is based on log-ratio variance <span class="math inline">\(var(log \frac{x_i}{x_j})\)</span>, which is zero when <span class="math inline">\(\omega_i\)</span> and <span class="math inline">\(\omega_j\)</span> are perfectly proportional. Proportionality is implemented in the R package <em><a href="https://github.com/tpq/propr">propr</a></em>. <span class="citation" data-cites="badri2020shrinkage">Badri et al. (<a href="#ref-badri2020shrinkage" role="doc-biblioref">2020</a>)</span> extend the proportionality measure to a so-called “shrinkage proportionality estimator”. It combines proportionality with the covariance shrinkage approach to obtain consistent association estimates even with small sample sizes.</li>
 </ul><div class="no-row-height column-margin column-container"><div id="ref-schafer2005shrinkage" class="csl-entry" role="listitem">
-Schäfer, Juliane, and Korbinian Strimmer. 2005. <span>“<span class="nocase">A shrinkage approach to large-scale covariance matrix estimation and implications for functional genomics</span>.”</span> <em><span>Statistical Applications in Genetics and Molecular Biology</span></em> 4 (1): 1–30. <a href="https://doi.org/10.2202/1544-6115.1175">https://doi.org/10.2202/1544-6115.1175</a>.
+Schäfer, Juliane, and Korbinian Strimmer. 2005. <span>“<span class="nocase">A shrinkage approach to large-scale covariance matrix estimation and implications for functional genomics</span>.”</span> <em><span class="nocase">Statistical Applications in Genetics and Molecular Biology</span></em> 4 (1): 1–30. <a href="https://doi.org/10.2202/1544-6115.1175">https://doi.org/10.2202/1544-6115.1175</a>.
 </div><div id="ref-faust2012microbial" class="csl-entry" role="listitem">
-Faust, Karoline, J. Fah Sathirapongsasuti, Jacques Izard, Nicola Segata, Dirk Gevers, Jeroen Raes, and Curtis Huttenhower. 2012. <span>“<span class="nocase">Microbial Co-occurrence Relationships in the Human Microbiome</span>.”</span> <em><span>PLoS Computational Biology</span></em> 8 (7): e1002606. <a href="https://doi.org/10.1371/journal.pcbi.1002606">https://doi.org/10.1371/journal.pcbi.1002606</a>.
+Faust, Karoline, J. Fah Sathirapongsasuti, Jacques Izard, et al. 2012. <span>“<span class="nocase">Microbial Co-occurrence Relationships in the Human Microbiome</span>.”</span> <em><span>PLoS Computational Biology</span></em> 8 (7): e1002606. <a href="https://doi.org/10.1371/journal.pcbi.1002606">https://doi.org/10.1371/journal.pcbi.1002606</a>.
 </div><div id="ref-fang2015cclasso" class="csl-entry" role="listitem">
 Fang, Huaying, Chengcheng Huang, Hongyu Zhao, and Minghua Deng. 2015. <span>“<span class="nocase">CCLasso: Correlation inference for compositional data through Lasso</span>.”</span> <em>Bioinformatics</em> 31 (19): 3172–80. <a href="https://doi.org/10.1093/bioinformatics/btv349">https://doi.org/10.1093/bioinformatics/btv349</a>.
 </div><div id="ref-friedman2008sparse" class="csl-entry" role="listitem">
 Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2008. <span>“<span class="nocase">Sparse inverse covariance estimation with the graphical lasso</span>.”</span> <em><span>Biostatistics (Oxford, England)</span></em> 9 (3): 432–41. <a href="https://doi.org/10.1093/BIOSTATISTICS/KXM045">https://doi.org/10.1093/BIOSTATISTICS/KXM045</a>.
 </div><div id="ref-yoon2019microbial" class="csl-entry" role="listitem">
-Yoon, Grace, Irina Gaynanova, and Christian L Müller. 2019. <span>“<span class="nocase">Microbial networks in SPRING - Semi-parametric rank-based correlation and partial correlation estimation for quantitative microbiome data</span>.”</span> <em><span>Frontiers in Genetics</span></em> 10: 516. <a href="https://doi.org/10.3389/fgene.2019.00516">https://doi.org/10.3389/fgene.2019.00516</a>.
+Yoon, Grace, Irina Gaynanova, and Christian L Müller. 2019. <span>“<span class="nocase">Microbial networks in SPRING - Semi-parametric rank-based correlation and partial correlation estimation for quantitative microbiome data</span>.”</span> <em><span class="nocase">Frontiers in Genetics</span></em> 10: 516. <a href="https://doi.org/10.3389/fgene.2019.00516">https://doi.org/10.3389/fgene.2019.00516</a>.
 </div><div id="ref-fang2017gcoda" class="csl-entry" role="listitem">
-Fang, H, C Huang, H Zhao, and M Deng. 2017. <span>“<span class="nocase">gCoda: Conditional Dependence Network Inference for Compositional Data</span>.”</span> <em><span>Journal of Computational Biology</span></em> 24 (7): 699–708. <a href="https://doi.org/10.1089/cmb.2017.0054">https://doi.org/10.1089/cmb.2017.0054</a>.
+Fang, H, C Huang, H Zhao, and M Deng. 2017. <span>“<span class="nocase">gCoda: Conditional Dependence Network Inference for Compositional Data</span>.”</span> <em><span class="nocase">Journal of Computational Biology</span></em> 24 (7): 699–708. <a href="https://doi.org/10.1089/cmb.2017.0054">https://doi.org/10.1089/cmb.2017.0054</a>.
 </div></div></section><section id="comparison-of-association-measures" class="level2 page-columns page-full" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="comparison-of-association-measures">
 <span class="header-section-number">1.7</span> Comparison of association measures</h2>
 <p>In this section, we provide three additional examples for constructing a network using each of the three types of association:</p>
@@ -1340,7 +1313,7 @@ Fang, H, C Huang, H Zhao, and M Deng. 2017. <span>“<span class="nocase">gCoda:
 </ul>
 <section id="sec-sparcc-correlation" class="level3 page-columns page-full" data-number="1.7.1"><h3 data-number="1.7.1" class="anchored" data-anchor-id="sec-sparcc-correlation">
 <span class="header-section-number">1.7.1</span> SparCC</h3>
-<p>The first association measure we look at is SparCC (“Sparse Correlations for Compositional data”), introduced by <span class="citation" data-cites="Friedman2012">J. Friedman and Alm (<a href="#ref-Friedman2012" role="doc-biblioref">2012</a>)</span>. It estimates Pearson correlations while taking into account the compositional structure of the data. The <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> package provides an implementation of this method.</p>
+<p>The first association measure we look at is SparCC (“Sparse Correlations for Compositional data”), introduced by <span class="citation" data-cites="Friedman2012">Friedman and Alm (<a href="#ref-Friedman2012" role="doc-biblioref">2012</a>)</span>. It estimates Pearson correlations while taking into account the compositional structure of the data. The <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> package provides an implementation of this method.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Friedman2012" class="csl-entry" role="listitem">
 Friedman, J, and EJ Alm. 2012. <span>“Inferring Correlation Networks from Genomic Survey Data.”</span> <em><span>PLoS Computational Biology</span></em> 8 (9): e1002687. <a href="https://doi.org/10.1371/journal.pcbi.1002687">https://doi.org/10.1371/journal.pcbi.1002687</a>.
 </div></div><div class="cell" data-layout-align="center">
@@ -1365,7 +1338,7 @@ Friedman, J, and EJ Alm. 2012. <span>“Inferring Correlation Networks from Geno
 <div class="no-row-height column-margin column-container"><div id="ref-lovell2015proportionality" class="csl-entry" role="listitem">
 Lovell, David, Vera Pawlowsky-Glahn, Juan José Egozcue, Samuel Marguerat, and Jürg Bähler. 2015. <span>“<span class="nocase">Proportionality: A Valid Alternative to Correlation for Relative Data</span>.”</span> <em><span>PLoS Computational Biology</span></em> 11 (3): 1–12. <a href="https://doi.org/10.1371/journal.pcbi.1004075">https://doi.org/10.1371/journal.pcbi.1004075</a>.
 </div><div id="ref-badri2020shrinkage" class="csl-entry" role="listitem">
-Badri, Michelle, Zachary D. Kurtz, Richard Bonneau, and Christian L. Müller. 2020. <span>“<span class="nocase">Shrinkage improves estimation of microbial associations under different normalization methods</span>.”</span> <em><span>NAR Genomics and Bioinformatics</span></em> 2 (4). <a href="https://doi.org/10.1093/NARGAB/LQAA100">https://doi.org/10.1093/NARGAB/LQAA100</a>.
+Badri, Michelle, Zachary D. Kurtz, Richard Bonneau, and Christian L. Müller. 2020. <span>“<span class="nocase">Shrinkage improves estimation of microbial associations under different normalization methods</span>.”</span> <em><span class="nocase">NAR Genomics and Bioinformatics</span></em> 2 (4). <a href="https://doi.org/10.1093/NARGAB/LQAA100">https://doi.org/10.1093/NARGAB/LQAA100</a>.
 </div></div><div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strimmerlab.github.io/software/corpcor/">corpcor</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1397,7 +1370,7 @@ Badri, Michelle, Zachary D. Kurtz, Richard Bonneau, and Christian L. Müller. 20
 <div class="no-row-height column-margin column-container"><div id="ref-Kurtz2015" class="csl-entry" role="listitem">
 Kurtz, ZD, CL Müller, ER Miraldi, DR Littman, MJ Blaser, and Bonneau RA. 2015. <span>“Sparse and Compositionally Robust Inference of Microbial Ecological Networks.”</span> <em><span>PLoS Computational Biology</span></em> 11 (5): e1004226. <a href="https://doi.org/10.1371/journal.pcbi.1004226">https://doi.org/10.1371/journal.pcbi.1004226</a>.
 </div><div id="ref-meinshausen2006high" class="csl-entry" role="listitem">
-Meinshausen, Nicolai, and Peter Bühlmann. 2006. <span>“<span class="nocase">High-dimensional graphs and variable selection with the Lasso</span>.”</span> <em><span>Annals of Statistics</span></em> 34 (3): 1436–62. <a href="https://doi.org/10.1214/009053606000000281">https://doi.org/10.1214/009053606000000281</a>.
+Meinshausen, Nicolai, and Peter Bühlmann. 2006. <span>“<span class="nocase">High-dimensional graphs and variable selection with the Lasso</span>.”</span> <em><span class="nocase">Annals of Statistics</span></em> 34 (3): 1436–62. <a href="https://doi.org/10.1214/009053606000000281">https://doi.org/10.1214/009053606000000281</a>.
 </div></div><div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1409,9 +1382,9 @@ Meinshausen, Nicolai, and Peter Bühlmann. 2006. <span>“<span class="nocase">H
 <span>    pulsar.params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rep.num <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Since <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> uses the StARS (“Stability Approach to Regularization Selection”) method <span class="citation" data-cites="liu2010stability">(<a href="#ref-liu2010stability" role="doc-biblioref">Liu, Roeder, and Wasserman 2010</a>)</span> to obtain a sparse association matrix, we don’t need to set a threshold here. We store the partial correlations corresponding to the StARS-optimal lambda and convert them into an <em><a href="https://CRAN.R-project.org/package=igraph">igraph</a></em> object.</p>
+<p>Since <em><a href="https://github.com/zdk123/SpiecEasi">SpiecEasi</a></em> uses the StARS (“Stability Approach to Regularization Selection”) method <span class="citation" data-cites="liu2010stability">(<a href="#ref-liu2010stability" role="doc-biblioref">Liu et al. 2010</a>)</span> to obtain a sparse association matrix, we don’t need to set a threshold here. We store the partial correlations corresponding to the StARS-optimal lambda and convert them into an <em><a href="https://CRAN.R-project.org/package=igraph">igraph</a></em> object.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-liu2010stability" class="csl-entry" role="listitem">
-Liu, Han, Kathryn Roeder, and Larry Wasserman. 2010. <span>“<span class="nocase">Stability Approach to Regularization Selection (StARS) for High Dimensional Graphical Models</span>.”</span> <em><span>Advances in Neural Information Processing Systems</span></em>. <a href="https://doi.org/10.48550/arxiv.1006.3316">https://doi.org/10.48550/arxiv.1006.3316</a>.
+Liu, Han, Kathryn Roeder, and Larry Wasserman. 2010. <span>“<span class="nocase">Stability Approach to Regularization Selection (StARS) for High Dimensional Graphical Models</span>.”</span> <em><span class="nocase">Advances in Neural Information Processing Systems</span></em>, ahead of print. <a href="https://doi.org/10.48550/arxiv.1006.3316">https://doi.org/10.48550/arxiv.1006.3316</a>.
 </div></div><div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get optimal matrix with partial correlations</span></span>
 <span><span class="va">se_mb_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SpiecEasi/man/getOptInd.html">getOptBeta</a></span><span class="op">(</span><span class="va">se_mb_est</span><span class="op">)</span><span class="op">)</span></span>
@@ -1512,7 +1485,7 @@ Liu, Han, Kathryn Roeder, and Larry Wasserman. 2010. <span>“<span class="nocas
 <p>The SparCC and shrinkage proportionality networks have a considerably higher proportion of singletons (zero-degree nodes) than the two conditional dependency graphs, but a lower proportion of nodes with degrees between one and five. The SpiecEasi and SPRING graphs, on the other hand, have a higher proportion of low degree nodes, but no highly connected nodes with a degree greater than eleven.</p>
 </section><section id="clustered-heatmaps-1" class="level4" data-number="1.7.5.2"><h4 data-number="1.7.5.2" class="anchored" data-anchor-id="clustered-heatmaps-1">
 <span class="header-section-number">1.7.5.2</span> Clustered heatmaps</h4>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.23/ComplexHeatmap">ComplexHeatmap</a></em> package, we plot heatmaps of the association matrices for the four considered association measures. Rows and columns are sorted according to the clusters identified via hierarchical clustering.</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.24/ComplexHeatmap">ComplexHeatmap</a></em> package, we plot heatmaps of the association matrices for the four considered association measures. Rows and columns are sorted according to the clusters identified via hierarchical clustering.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/circlize">circlize</a></span><span class="op">)</span></span>

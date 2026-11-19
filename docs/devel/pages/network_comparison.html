@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>2&nbsp; Network comparison – Orchestrating Microbiome Analysis — extras</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -56,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -81,24 +86,23 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../pages/integrated_learner.html" rel="next">
+<link href="../pages/msea.html" rel="next">
 <link href="../pages/network_learning.html" rel="prev">
 <link href="../assets/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6d7e0e055978adcb0dc3bbe98a6d8351.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-80c687981879d47e1ba8a072125697b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-de1fe328051f57d00ac15cf2aa1c065c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-80c687981879d47e1ba8a072125697b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-036ce5d4a32f44c60d96ed3111f9e174.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -344,11 +348,7 @@ div.csl-indent {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
@@ -375,37 +375,60 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/integrated_learner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-omics prediction and classification</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pages/msea.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/mmuphin_meta_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/extra_daa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/time_series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Time series analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Machine learning</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/session_info.html" class="sidebar-item-text sidebar-link">
@@ -576,12 +599,6 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 <span>    hubPar <span class="op">=</span> <span class="st">"eigenvector"</span>,</span>
 <span>    normDeg <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="network_comparison_files/figure-html/netAnalyze_diet-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
-</figure>
-</div>
-</div>
 </div>
 <p>In both of the networks, some graphlet correlations are significantly different from zero. However, none of the correlations are significantly different between the groups.</p>
 <div class="cell" data-layout-align="center">
@@ -602,7 +619,7 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 ##                           Mixed diet Vegetarian
 ##  Relative LCC size           0.21951    0.25610
 ##  Clustering coefficient      0.10393    0.22433
-##  Modularity                  0.51500    0.47707
+##  Modularity                  0.51194    0.47981
 ##  Positive edge percentage   80.00000  100.00000
 ##  Edge density                0.13072    0.12381
 ##  Natural connectivity        0.07312    0.06253
@@ -615,7 +632,7 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 ##                           Mixed diet Vegetarian
 ##  Number of components       50.00000   52.00000
 ##  Clustering coefficient      0.07506    0.16530
-##  Modularity                  0.75184    0.66821
+##  Modularity                  0.75138    0.67392
 ##  Positive edge percentage   88.57143  100.00000
 ##  Edge density                0.01054    0.01084
 ##  Natural connectivity        0.01342    0.01347
@@ -898,12 +915,12 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 ##  
 ##  Whole network:
 ##                              Mix     Veg    abs.diff.     p-value    
-##  Number of components     50.000  52.000        2.000     0.93706    
-##  Clustering coefficient    0.075   0.165        0.090     0.46254    
-##  Modularity                0.752   0.668        0.084     0.24975    
-##  Positive edge percentage 88.571 100.000       11.429     0.02398 *  
-##  Edge density              0.011   0.011        0.000     0.97303    
-##  Natural connectivity      0.013   0.013        0.000     0.89011    
+##  Number of components     50.000  52.000        2.000    0.937063    
+##  Clustering coefficient    0.075   0.165        0.090    0.462537    
+##  Modularity                0.752   0.668        0.084    0.249750    
+##  Positive edge percentage 88.571 100.000       11.429    0.023976 *  
+##  Edge density              0.011   0.011        0.000    0.973027    
+##  Natural connectivity      0.013   0.013        0.000    0.890110    
 ##  -----
 ##  p-values: one-tailed test with null hypothesis diff=0
 ##   *: Dissimilarity = 1 - edge weight
@@ -913,11 +930,11 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 ##  Jaccard index (similarity betw. sets of most central nodes)
 ##  ```````````````````````````````````````````````````````````
 ##                      Jacc   P(&lt;=Jacc)     P(&gt;=Jacc)    
-##  degree             0.560      0.9944       0.01637 *  
-##  betweenness centr. 0.294      0.4777       0.71860    
-##  closeness centr.   0.560      0.9944       0.01637 *  
-##  eigenvec. centr.   0.560      0.9944       0.01637 *  
-##  hub taxa           0.111      0.1431       0.97399    
+##  degree             0.560    0.994400      0.016374 *  
+##  betweenness centr. 0.294    0.477665      0.718603    
+##  closeness centr.   0.560    0.994400      0.016374 *  
+##  eigenvec. centr.   0.560    0.994400      0.016374 *  
+##  hub taxa           0.111    0.143068      0.973988    
 ##  -----
 ##  Jaccard index in [0,1] (1 indicates perfect agreement)
 ##  
@@ -926,7 +943,7 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 ##  ``````````````````````````````````````````````````
 ##          wholeNet       LCC
 ##  ARI        0.367     0.035
-##  p-value    0.000     0.563
+##  p-value 0.00e+00  0.563000
 ##  -----
 ##  ARI in [-1,1] with ARI=1: perfect agreement betw. clusterings
 ##                     ARI=0: expected for two random clusterings
@@ -936,48 +953,48 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 ##  Graphlet Correlation Distance
 ##  `````````````````````````````
 ##          wholeNet         LCC  
-##  GCD       1.5980      2.1770  
-##  p-value   0.4226      0.7143  
+##  GCD        1.598       2.177  
+##  p-value 0.422577    0.714286  
 ##  -----
 ##  GCD &gt;= 0 (GCD=0 indicates perfect agreement between GCMs)
 ##  p-value: permutation test with null hypothesis GCD=0
 ##  
 ##  ______________________________
 ##  Centrality measures
-##  - In decreasing order
+##  - In decreasing order of absolute differences
 ##  - Centrality of disconnected components is zero
 ##  ````````````````````````````````````````````````
 ##  Degree (unnormalized):
-##                       Mix Veg abs.diff. adj.p-value  
-##  Siccibacter            0   5         5           1  
-##  Aeromonas              1   5         4           1  
-##  Citrobacter            4   0         4           1  
-##  Escherichia/Shigella   2   5         3           1  
-##  Streptococcus          3   0         3           1  
+##                       Mix Veg abs.diff.  p-value     adj.p-value  
+##  Siccibacter            0   5         5 0.015984 *      1.000000  
+##  Aeromonas              1   5         4 0.224775        1.000000  
+##  Citrobacter            4   0         4 0.287712        1.000000  
+##  Escherichia/Shigella   2   5         3 0.421578        1.000000  
+##  Streptococcus          3   0         3 0.115884        1.000000  
 ##  
 ##  Betweenness centrality (normalized):
-##                         Mix   Veg abs.diff. adj.p-value  
-##  Escherichia/Shigella 0.118 0.532     0.414           1  
-##  Aeromonas            0.000 0.368     0.368           1  
-##  Serratia             0.419 0.100     0.319           1  
-##  Siccibacter          0.000 0.300     0.300           1  
-##  Streptococcus        0.279 0.000     0.279           1  
+##                         Mix   Veg abs.diff.  p-value     adj.p-value  
+##  Escherichia/Shigella 0.118 0.532     0.414 0.236763        1.000000  
+##  Aeromonas            0.000 0.368     0.368 0.114885        1.000000  
+##  Serratia             0.419 0.100     0.319 0.316683        1.000000  
+##  Siccibacter          0.000 0.300     0.300 0.047952 *      1.000000  
+##  Streptococcus        0.279 0.000     0.279 0.068931 .      1.000000  
 ##  
 ##  Closeness centrality (normalized):
-##                  Mix   Veg abs.diff. adj.p-value  
-##  Siccibacter   0.000 0.727     0.727      0.2676  
-##  Citrobacter   0.713 0.000     0.713      0.9799  
-##  Streptococcus 0.615 0.000     0.615      0.2676  
-##  Escherichia   0.587 0.000     0.587      0.9799  
-##  Xenorhabdus   0.000 0.527     0.527      0.2676  
+##                  Mix   Veg abs.diff.  p-value     adj.p-value  
+##  Siccibacter   0.000 0.727     0.727 0.009990 **     0.267573  
+##  Citrobacter   0.713 0.000     0.713 0.091908 .      0.979903  
+##  Streptococcus 0.615 0.000     0.615 0.005994 **     0.267573  
+##  Escherichia   0.587 0.000     0.587 0.123876        0.979903  
+##  Xenorhabdus   0.000 0.527     0.527 0.007992 **     0.267573  
 ##  
 ##  Eigenvector centrality (normalized):
-##                         Mix   Veg abs.diff. adj.p-value  
-##  Siccibacter          0.000 0.888     0.888      0.6553  
-##  Citrobacter          0.810 0.000     0.810      1.0000  
-##  Escherichia          0.610 0.000     0.610      1.0000  
-##  Serratia             1.000 0.416     0.584      1.0000  
-##  Escherichia/Shigella 0.387 0.969     0.582      1.0000  
+##                         Mix   Veg abs.diff.  p-value     adj.p-value  
+##  Siccibacter          0.000 0.888     0.888 0.007992 **     0.655345  
+##  Citrobacter          0.810 0.000     0.810 0.197802        1.000000  
+##  Escherichia          0.610 0.000     0.610 0.287712        1.000000  
+##  Serratia             1.000 0.416     0.584 0.278721        1.000000  
+##  Escherichia/Shigella 0.387 0.969     0.582 0.272727        1.000000  
 ##  
 ##  _________________________________________________________
 ##  Significance codes: ***: 0.001, **: 0.01, *: 0.05, .: 0.1</code></pre>
@@ -1042,9 +1059,9 @@ Potbhare, Renuka, Ameeta RaviKumar, Eveliina Munukka, Leo Lahti, and Richa Ashma
 <p>Edge colors represent the direction of the associations in the two groups. For example, if two OTUs are positively correlated in the mixed diet group and uncorrelated in the vegetarian group (such as Serratia and Citrobacter), the edge color is dark green.</p>
 </section><section id="sec-netcomp-methods" class="level2 page-columns page-full" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="sec-netcomp-methods">
 <span class="header-section-number">2.5</span> Network comparison methods</h2>
-<p>While many approaches exist for the detection of <strong>differential correlations</strong>, e.g. <span class="citation" data-cites="yu2019new mckenzie2016dgca siska2017differential">(<a href="#ref-yu2019new" role="doc-biblioref">Yu et al. 2019</a>; <a href="#ref-mckenzie2016dgca" role="doc-biblioref">McKenzie et al. 2016</a>; <a href="#ref-siska2017differential" role="doc-biblioref">Siska and Kechris 2017</a>)</span>, the literature on the more general case of <strong>differential association</strong> detection is scarce. <span class="citation" data-cites="bhuva2019differential">Bhuva et al. (<a href="#ref-bhuva2019differential" role="doc-biblioref">2019</a>)</span> compare various methods in a simulation study, which again includes many differential correlation approaches, but also more general methods such as latent differential graphical models. <span class="citation" data-cites="gill2010statistical">Gill, Datta, and Datta (<a href="#ref-gill2010statistical" role="doc-biblioref">2010</a>)</span> introduce an approach to analyze whether the connectivity of individual nodes is different between two groups using permutation tests, which is applicable to any kind of association. <span class="citation" data-cites="he2019statistical">He et al. (<a href="#ref-he2019statistical" role="doc-biblioref">2019</a>)</span> propose a test to infer the differential network structure for two conditional dependence networks.</p>
+<p>While many approaches exist for the detection of <strong>differential correlations</strong>, e.g. <span class="citation" data-cites="yu2019new mckenzie2016dgca siska2017differential">(<a href="#ref-yu2019new" role="doc-biblioref">Yu et al. 2019</a>; <a href="#ref-mckenzie2016dgca" role="doc-biblioref">McKenzie et al. 2016</a>; <a href="#ref-siska2017differential" role="doc-biblioref">Siska and Kechris 2017</a>)</span>, the literature on the more general case of <strong>differential association</strong> detection is scarce. <span class="citation" data-cites="bhuva2019differential">Bhuva et al. (<a href="#ref-bhuva2019differential" role="doc-biblioref">2019</a>)</span> compare various methods in a simulation study, which again includes many differential correlation approaches, but also more general methods such as latent differential graphical models. <span class="citation" data-cites="gill2010statistical">Gill et al. (<a href="#ref-gill2010statistical" role="doc-biblioref">2010</a>)</span> introduce an approach to analyze whether the connectivity of individual nodes is different between two groups using permutation tests, which is applicable to any kind of association. <span class="citation" data-cites="he2019statistical">He et al. (<a href="#ref-he2019statistical" role="doc-biblioref">2019</a>)</span> propose a test to infer the differential network structure for two conditional dependence networks.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-yu2019new" class="csl-entry" role="listitem">
-Yu, Danyang, Zeyu Zhang, Kimberly Glass, Jessica Su, Dawn L. DeMeo, Kelan Tantisira, Scott T. Weiss, and Weiliang Qiu. 2019. <span>“<span class="nocase">New Statistical Methods for Constructing Robust Differential Correlation Networks to characterize the interactions among microRNAs</span>.”</span> <em><span>Scientific Reports</span></em> 9 (1): 1–12. <a href="https://doi.org/10.1038/s41598-019-40167-8">https://doi.org/10.1038/s41598-019-40167-8</a>.
+Yu, Danyang, Zeyu Zhang, Kimberly Glass, et al. 2019. <span>“<span class="nocase">New Statistical Methods for Constructing Robust Differential Correlation Networks to characterize the interactions among microRNAs</span>.”</span> <em><span>Scientific Reports</span></em> 9 (1): 1–12. <a href="https://doi.org/10.1038/s41598-019-40167-8">https://doi.org/10.1038/s41598-019-40167-8</a>.
 </div><div id="ref-mckenzie2016dgca" class="csl-entry" role="listitem">
 McKenzie, Andrew T., Igor Katsyv, Won Min Song, Minghui Wang, and Bin Zhang. 2016. <span>“<span class="nocase">DGCA: A comprehensive R package for Differential Gene Correlation Analysis</span>.”</span> <em><span>BMC Systems Biology</span></em> 10 (1): 1–25. <a href="https://doi.org/10.1186/s12918-016-0349-1">https://doi.org/10.1186/s12918-016-0349-1</a>.
 </div><div id="ref-siska2017differential" class="csl-entry" role="listitem">
@@ -1058,9 +1075,9 @@ He, Hao, Shaolong Cao, Ji gang Zhang, Hui Shen, Yu Ping Wang, and Hong wen Deng.
 </div><div id="ref-shojaie2021differential" class="csl-entry" role="listitem">
 Shojaie, Ali. 2021. <span>“<span class="nocase">Differential network analysis: A statistical perspective</span>.”</span> <em><span>Wiley Interdisciplinary Reviews: Computational Statistics</span></em> 13 (2): e1508. <a href="https://doi.org/10.1002/WICS.1508">https://doi.org/10.1002/WICS.1508</a>.
 </div><div id="ref-lichtblau2017comparative" class="csl-entry" role="listitem">
-Lichtblau, Yvonne, Karin Zimmermann, Berit Haldemann, Dido Lenze, Michael Hummel, and Ulf Leser. 2017. <span>“<span class="nocase">Comparative assessment of differential network analysis methods</span>.”</span> <em><span>Briefings in Bioinformatics</span></em> 18 (5): 837–50. <a href="https://doi.org/10.1093/bib/bbw061">https://doi.org/10.1093/bib/bbw061</a>.
+Lichtblau, Yvonne, Karin Zimmermann, Berit Haldemann, Dido Lenze, Michael Hummel, and Ulf Leser. 2017. <span>“<span class="nocase">Comparative assessment of differential network analysis methods</span>.”</span> <em><span class="nocase">Briefings in Bioinformatics</span></em> 18 (5): 837–50. <a href="https://doi.org/10.1093/bib/bbw061">https://doi.org/10.1093/bib/bbw061</a>.
 </div><div id="ref-jardim2019bionetstat" class="csl-entry" role="listitem">
-Jardim, Vinícius Carvalho, Suzana De Siqueira Santos, Andre Fujita, and Marcos Silveira Buckeridge. 2019. <span>“<span class="nocase">BioNetStat: A tool for biological networks differential analysis</span>.”</span> <em><span>Frontiers in Genetics</span></em> 10 (JUN): 1–13. <a href="https://doi.org/10.3389/fgene.2019.00594">https://doi.org/10.3389/fgene.2019.00594</a>.
+Jardim, Vinícius Carvalho, Suzana De Siqueira Santos, Andre Fujita, and Marcos Silveira Buckeridge. 2019. <span>“<span class="nocase">BioNetStat: A tool for biological networks differential analysis</span>.”</span> <em><span class="nocase">Frontiers in Genetics</span></em> 10 (JUN): 1–13. <a href="https://doi.org/10.3389/fgene.2019.00594">https://doi.org/10.3389/fgene.2019.00594</a>.
 </div></div><p>Performing <strong>differential network analysis</strong> is challenging because network measures do not follow classical statistical distributions. <span class="citation" data-cites="shojaie2021differential">Shojaie (<a href="#ref-shojaie2021differential" role="doc-biblioref">2021</a>)</span> provide an overview of differential network analysis methods, but focus only on changes in edge sets. <span class="citation" data-cites="lichtblau2017comparative">Lichtblau et al. (<a href="#ref-lichtblau2017comparative" role="doc-biblioref">2017</a>)</span> compare differential network analysis methods that incorporate multiple local and global network measures. <span class="citation" data-cites="jardim2019bionetstat">Jardim et al. (<a href="#ref-jardim2019bionetstat" role="doc-biblioref">2019</a>)</span> present a tool, <em><a href="https://github.com/jardimViniciusC/BioNetStat">BioNetStat</a></em>, for differential analysis of biological networks, which is able to compare certain network measures between groups.</p>
 <p>The <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em> package used for network comparison in this chapter includes the following <strong>differential network analysis approaches:</strong>:</p>
 <ul>
@@ -1075,14 +1092,14 @@ Jardim, Vinícius Carvalho, Suzana De Siqueira Santos, Andre Fujita, and Marcos 
 </ul>
 <p>See <span class="citation" data-cites="peschel2021netcomi">(<a href="#ref-peschel2021netcomi" role="doc-biblioref">Peschel et al. 2021</a>)</span> for an explanation of the first three approaches. The GCM was proposed by <span class="citation" data-cites="yaverouglu2014revealing">Yaveroğlu et al. (<a href="#ref-yaverouglu2014revealing" role="doc-biblioref">2014</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-peschel2021netcomi" class="csl-entry" role="listitem">
-Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix, and Martin Depner. 2021. <span>“<span class="nocase">NetCoMi: network construction and comparison for microbiome data in R</span>.”</span> <em><span>Briefings in Bioinformatics</span></em> 22 (4): bbaa290. <a href="https://doi.org/10.1093/bib/bbaa290">https://doi.org/10.1093/bib/bbaa290</a>.
+Peschel, Stefanie, Christian L Müller, Erika von Mutius, Anne-Laure Boulesteix, and Martin Depner. 2021. <span>“<span class="nocase">NetCoMi: network construction and comparison for microbiome data in R</span>.”</span> <em><span class="nocase">Briefings in Bioinformatics</span></em> 22 (4): bbaa290. <a href="https://doi.org/10.1093/bib/bbaa290">https://doi.org/10.1093/bib/bbaa290</a>.
 </div><div id="ref-yaverouglu2014revealing" class="csl-entry" role="listitem">
-Yaveroğlu, Ömer Nebil, Noël Malod-Dognin, Darren Davis, Zoran Levnajic, Vuk Janjic, Rasa Karapandza, Aleksandar Stojmirovic, and Nataša Pržulj. 2014. <span>“<span class="nocase">Revealing the Hidden Language of Complex Networks</span>.”</span> <em><span>Scientific Reports</span></em> 4 (1): 1–9. <a href="https://doi.org/10.1038/srep04547">https://doi.org/10.1038/srep04547</a>.
+Yaveroğlu, Ömer Nebil, Noël Malod-Dognin, Darren Davis, et al. 2014. <span>“<span class="nocase">Revealing the Hidden Language of Complex Networks</span>.”</span> <em><span>Scientific Reports</span></em> 4 (1): 1–9. <a href="https://doi.org/10.1038/srep04547">https://doi.org/10.1038/srep04547</a>.
 </div><div id="ref-fisher1970statistical" class="csl-entry" role="listitem">
-Fisher, Ronald Aylmer. 1970. <span>“Statistical Methods for Research Workers.”</span> In <em><span class="nocase">Breakthroughs in statistics: Methodology and distribution</span></em>, 66–70. Springer.
+Fisher, Ronald Aylmer. 1970. <span>“Statistical Methods for Research Workers.”</span> In <em><span class="nocase">Breakthroughs in statistics: Methodology and distribution</span></em>. Springer.
 </div><div id="ref-siska2016discordant" class="csl-entry" role="listitem">
 Siska, Charlotte, Russell Bowler, and Katerina Kechris. 2016. <span>“<span class="nocase">The discordant method: A novel approach for differential correlation</span>.”</span> <em>Bioinformatics</em> 32 (5): 690–96. <a href="https://doi.org/10.1093/bioinformatics/btv633">https://doi.org/10.1093/bioinformatics/btv633</a>.
-</div></div><p>Two methods (Fisher’s z-test <span class="citation" data-cites="fisher1970statistical">(<a href="#ref-fisher1970statistical" role="doc-biblioref">Fisher 1970</a>)</span> and the Discordant method <span class="citation" data-cites="siska2016discordant">(<a href="#ref-siska2016discordant" role="doc-biblioref">Siska, Bowler, and Kechris 2016</a>)</span>) are available for identifying differential correlations, and <strong>permutation tests</strong> for the more general case of identifying <strong>differential associations</strong>. See <span class="citation" data-cites="peschel2021netcomi">(<a href="#ref-peschel2021netcomi" role="doc-biblioref">Peschel et al. 2021</a>)</span> for details. <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em> offers also a function for plotting a differential network.</p>
+</div></div><p>Two methods (Fisher’s z-test <span class="citation" data-cites="fisher1970statistical">(<a href="#ref-fisher1970statistical" role="doc-biblioref">Fisher 1970</a>)</span> and the Discordant method <span class="citation" data-cites="siska2016discordant">(<a href="#ref-siska2016discordant" role="doc-biblioref">Siska et al. 2016</a>)</span>) are available for identifying differential correlations, and <strong>permutation tests</strong> for the more general case of identifying <strong>differential associations</strong>. See <span class="citation" data-cites="peschel2021netcomi">(<a href="#ref-peschel2021netcomi" role="doc-biblioref">Peschel et al. 2021</a>)</span> for details. <em><a href="https://github.com/stefpeschel/NetCoMi">NetCoMi</a></em> offers also a function for plotting a differential network.</p>
 
 
 
@@ -1504,8 +1521,8 @@ Siska, Charlotte, Russell Bowler, and Katerina Kechris. 2016. <span>“<span cla
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/integrated_learner.html" class="pagination-link" aria-label="Multi-omics prediction and classification">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-omics prediction and classification</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/msea.html" class="pagination-link" aria-label="Microbe Set Enrichment Analysis (MSEA)">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

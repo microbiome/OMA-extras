@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>4&nbsp; Microbe Set Enrichment Analysis (MSEA) – Orchestrating Microbiome Analysis — extras</title>
+<title>3&nbsp; Microbe Set Enrichment Analysis (MSEA) – Orchestrating Microbiome Analysis — extras</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -56,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -82,23 +87,22 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../pages/mmuphin_meta_analysis.html" rel="next">
-<link href="../pages/integrated_learner.html" rel="prev">
+<link href="../pages/network_comparison.html" rel="prev">
 <link href="../assets/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6d7e0e055978adcb0dc3bbe98a6d8351.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-80c687981879d47e1ba8a072125697b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-de1fe328051f57d00ac15cf2aa1c065c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-80c687981879d47e1ba8a072125697b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-036ce5d4a32f44c60d96ed3111f9e174.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2f1fe5fedccd1203b1aa867fe9cfce58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -123,7 +127,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -360,7 +364,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/msea.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/msea.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -369,11 +373,7 @@ window.Quarto = {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
@@ -400,37 +400,60 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/integrated_learner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-omics prediction and classification</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pages/msea.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/mmuphin_meta_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/extra_daa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/time_series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Time series analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Machine learning</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/machine_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/session_info.html" class="sidebar-item-text sidebar-link">
@@ -447,16 +470,16 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#input-data-for-msea-using-species-relative-abundance-data" id="toc-input-data-for-msea-using-species-relative-abundance-data" class="nav-link active" data-scroll-target="#input-data-for-msea-using-species-relative-abundance-data"><span class="header-section-number">4.1</span> Input data for MSEA using species relative abundance data</a></li>
-  <li><a href="#performing-the-msea-analysis-with-species-relative-abundance-data" id="toc-performing-the-msea-analysis-with-species-relative-abundance-data" class="nav-link" data-scroll-target="#performing-the-msea-analysis-with-species-relative-abundance-data"><span class="header-section-number">4.2</span> Performing the MSEA analysis with species relative abundance data</a></li>
-  <li><a href="#print-the-most-significant-modules-for-species-relative-abundance-data" id="toc-print-the-most-significant-modules-for-species-relative-abundance-data" class="nav-link" data-scroll-target="#print-the-most-significant-modules-for-species-relative-abundance-data"><span class="header-section-number">4.3</span> Print the most significant modules for species relative abundance data</a></li>
-  <li><a href="#performing-the-msea-analysis-with-pathway-relative-abundance-data" id="toc-performing-the-msea-analysis-with-pathway-relative-abundance-data" class="nav-link" data-scroll-target="#performing-the-msea-analysis-with-pathway-relative-abundance-data"><span class="header-section-number">4.4</span> Performing the MSEA analysis with pathway relative abundance data</a></li>
-  <li><a href="#print-the-most-significant-modules-for-pathway-abundance-data" id="toc-print-the-most-significant-modules-for-pathway-abundance-data" class="nav-link" data-scroll-target="#print-the-most-significant-modules-for-pathway-abundance-data"><span class="header-section-number">4.5</span> Print the most significant modules for pathway abundance data</a></li>
+<li><a href="#input-data-for-msea-using-species-relative-abundance-data" id="toc-input-data-for-msea-using-species-relative-abundance-data" class="nav-link active" data-scroll-target="#input-data-for-msea-using-species-relative-abundance-data"><span class="header-section-number">3.1</span> Input data for MSEA using species relative abundance data</a></li>
+  <li><a href="#performing-the-msea-analysis-with-species-relative-abundance-data" id="toc-performing-the-msea-analysis-with-species-relative-abundance-data" class="nav-link" data-scroll-target="#performing-the-msea-analysis-with-species-relative-abundance-data"><span class="header-section-number">3.2</span> Performing the MSEA analysis with species relative abundance data</a></li>
+  <li><a href="#print-the-most-significant-modules-for-species-relative-abundance-data" id="toc-print-the-most-significant-modules-for-species-relative-abundance-data" class="nav-link" data-scroll-target="#print-the-most-significant-modules-for-species-relative-abundance-data"><span class="header-section-number">3.3</span> Print the most significant modules for species relative abundance data</a></li>
+  <li><a href="#performing-the-msea-analysis-with-pathway-relative-abundance-data" id="toc-performing-the-msea-analysis-with-pathway-relative-abundance-data" class="nav-link" data-scroll-target="#performing-the-msea-analysis-with-pathway-relative-abundance-data"><span class="header-section-number">3.4</span> Performing the MSEA analysis with pathway relative abundance data</a></li>
+  <li><a href="#print-the-most-significant-modules-for-pathway-abundance-data" id="toc-print-the-most-significant-modules-for-pathway-abundance-data" class="nav-link" data-scroll-target="#print-the-most-significant-modules-for-pathway-abundance-data"><span class="header-section-number">3.5</span> Print the most significant modules for pathway abundance data</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-MSEA" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></h1>
+<h1 class="title"><span id="sec-MSEA" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Microbe Set Enrichment Analysis (MSEA)</span></span></h1>
 </div>
 
 
@@ -506,20 +529,20 @@ document.addEventListener("click", function (event) {
 </div>
 <p>Similar to gene set enrichment analyses for genes <span class="citation" data-cites="Subramanian2005">(<a href="#ref-Subramanian2005" role="doc-biblioref">Subramanian et al. 2005</a>)</span>, an obvious next step following differential abundance analysis in microbiome studies is to conduct enrichment analysis for microbe sets, known as microbe set enrichment analysis (MSEA) <span class="citation" data-cites="Kou2020">(<a href="#ref-Kou2020" role="doc-biblioref">Kou et al. 2020</a>)</span>. Similar to GSEA, the primary goal of MSEA is to detect the modest but coordinated changes in pre-specified sets of related microbial features. Such a set might include all the microbes in a specific pathway or microbial genes that have been shown to be co-regulated based on previously published studies. Like GSEA, MSEA aggregates the per-feature statistics across microbes within a microbe set. This corresponds to the hypothesis that many relevant phenotype differences are manifested by small but consistent changes in a set of features.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Subramanian2005" class="csl-entry" role="listitem">
-Subramanian, Aravind, Pablo Tamayo, Vamsi K Mootha, Sayan Mukherjee, Benjamin L Ebert, Michael A Gillette, Amanda Paulovich, et al. 2005. <span>“Gene Set Enrichment Analysis: A Knowledge-Based Approach for Interpreting Genome-Wide Expression Profiles.”</span> <em>Proceedings of the National Academy of Sciences</em> 102 (43): 15545–50. <a href="https://doi.org/10.1073/pnas.0506580102">https://doi.org/10.1073/pnas.0506580102</a>.
+Subramanian, Aravind, Pablo Tamayo, Vamsi K Mootha, et al. 2005. <span>“Gene Set Enrichment Analysis: A Knowledge-Based Approach for Interpreting Genome-Wide Expression Profiles.”</span> <em>Proceedings of the National Academy of Sciences</em> 102 (43): 15545–50. <a href="https://doi.org/10.1073/pnas.0506580102">https://doi.org/10.1073/pnas.0506580102</a>.
 </div><div id="ref-Kou2020" class="csl-entry" role="listitem">
 Kou, Yan, Xiaomin Xu, Zhengnong Zhu, Lei Dai, and Yan Tan. 2020. <span>“Microbe-Set Enrichment Analysis Facilitates Functional Interpretation of Microbiome Profiling Data.”</span> <em>Scientific Reports</em> 10 (1): 21466. <a href="https://doi.org/10.1038/s41598-020-78511-y">https://doi.org/10.1038/s41598-020-78511-y</a>.
 </div></div><p>The goal of the MSEA approach is to determine if the members of S (microbe set) are randomly distributed throughout the ranked list of features (L) or primarily found at the top or bottom. We will use the R package <em><a href="https://CRAN.R-project.org/package=gsEasy">gsEasy</a></em> to conduct the MSEA test described by <span class="citation" data-cites="Subramanian2005">Subramanian et al. (<a href="#ref-Subramanian2005" role="doc-biblioref">2005</a>)</span>.</p>
-<section id="input-data-for-msea-using-species-relative-abundance-data" class="level2 page-columns page-full" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="input-data-for-msea-using-species-relative-abundance-data">
-<span class="header-section-number">4.1</span> Input data for MSEA using species relative abundance data</h2>
-<p>In this chapter, we will use the publicly available Inflammatory Bowel Diseases (IBD) microbiome data from the integrative Human Microbiome Project (iHMP) available from the <em><a href="https://bioconductor.org/packages/3.23/curatedMetagenomicData">curatedMetagenomicData</a></em> package <span class="citation" data-cites="Lloyd-Price2019">(<a href="#ref-Lloyd-Price2019" role="doc-biblioref">Lloyd-Price et al. 2019</a>)</span>. We aim to conduct MSEA analysis based on both taxonomic profiles (species relative abundances) and functional profiles (pathway relative abundances).</p>
+<section id="input-data-for-msea-using-species-relative-abundance-data" class="level2 page-columns page-full" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="input-data-for-msea-using-species-relative-abundance-data">
+<span class="header-section-number">3.1</span> Input data for MSEA using species relative abundance data</h2>
+<p>In this chapter, we will use the publicly available Inflammatory Bowel Diseases (IBD) microbiome data from the integrative Human Microbiome Project (iHMP) available from the <em><a href="https://bioconductor.org/packages/3.24/curatedMetagenomicData">curatedMetagenomicData</a></em> package <span class="citation" data-cites="Lloyd-Price2019">(<a href="#ref-Lloyd-Price2019" role="doc-biblioref">Lloyd-Price et al. 2019</a>)</span>. We aim to conduct MSEA analysis based on both taxonomic profiles (species relative abundances) and functional profiles (pathway relative abundances).</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Lloyd-Price2019" class="csl-entry" role="listitem">
-Lloyd-Price, Jason, Cesar Arze, Ashwin N. Ananthakrishnan, Melanie Schirmer, Julian Avila-Pacheco, Tiffany W. Poon, Elizabeth Andrews, et al. 2019. <span>“Multi-Omics of the Gut Microbial Ecosystem in Inflammatory Bowel Diseases.”</span> <em>Nature</em> 569 (7758): 655–62. https://doi.org/<a href="https://doi.org/10.1038/s41586-019-1237-9">https://doi.org/10.1038/s41586-019-1237-9</a>.
-</div></div></section><section id="performing-the-msea-analysis-with-species-relative-abundance-data" class="level2 page-columns page-full" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="performing-the-msea-analysis-with-species-relative-abundance-data">
-<span class="header-section-number">4.2</span> Performing the MSEA analysis with species relative abundance data</h2>
-<p>We will first prepare the input feature table and sample metadata for differential abundance analysis using <em><a href="https://bioconductor.org/packages/3.23/Maaslin2">Maaslin2</a></em> <span class="citation" data-cites="Mallick2021">(<a href="#ref-Mallick2021" role="doc-biblioref">Mallick et al. 2021</a>)</span>. The ranked feature list from the differential abundance analysis serves as an input for the MSEA.</p>
+Lloyd-Price, Jason, Cesar Arze, Ashwin N. Ananthakrishnan, et al. 2019. <span>“Multi-Omics of the Gut Microbial Ecosystem in Inflammatory Bowel Diseases.”</span> <em>Nature</em> 569 (7758): 655–62. https://doi.org/<a href="https://doi.org/10.1038/s41586-019-1237-9">https://doi.org/10.1038/s41586-019-1237-9</a>.
+</div></div></section><section id="performing-the-msea-analysis-with-species-relative-abundance-data" class="level2 page-columns page-full" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="performing-the-msea-analysis-with-species-relative-abundance-data">
+<span class="header-section-number">3.2</span> Performing the MSEA analysis with species relative abundance data</h2>
+<p>We will first prepare the input feature table and sample metadata for differential abundance analysis using <em><a href="https://bioconductor.org/packages/3.24/Maaslin2">Maaslin2</a></em> <span class="citation" data-cites="Mallick2021">(<a href="#ref-Mallick2021" role="doc-biblioref">Mallick et al. 2021</a>)</span>. The ranked feature list from the differential abundance analysis serves as an input for the MSEA.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Mallick2021" class="csl-entry" role="listitem">
-Mallick, Himel, Ali Rahnavard, Lauren J. McIver, Siyuan Ma, Yancong Zhang, Long H. Nguyen, Timothy L. Tickle, et al. 2021. <span>“Multivariable Association Discovery in Population-Scale Meta-Omics Studies.”</span> <em>PLOS Computational Biology</em> 17 (11): e1009442. https://doi.org/<a href="https://doi.org/10.1371/journal.pcbi.1009442">https://doi.org/10.1371/journal.pcbi.1009442</a>.
+Mallick, Himel, Ali Rahnavard, Lauren J. McIver, et al. 2021. <span>“Multivariable Association Discovery in Population-Scale Meta-Omics Studies.”</span> <em>PLOS Computational Biology</em> 17 (11): e1009442. https://doi.org/<a href="https://doi.org/10.1371/journal.pcbi.1009442">https://doi.org/10.1371/journal.pcbi.1009442</a>.
 </div></div><div class="cell" data-layout-align="center" data-lable="load_pkg_data">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##################</span></span>
 <span><span class="co"># Load iHMP data #</span></span>
@@ -566,14 +589,14 @@ Mallick, Himel, Ali Rahnavard, Lauren J. McIver, Siyuan Ma, Yancong Zhang, Long 
 <span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">feature_species_t</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">se_relative</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In the next step, we will use <em><a href="https://bioconductor.org/packages/3.23/Maaslin2">Maaslin2</a></em> to fit a multivariable regression model for testing the association between microbial species abundance versus IBD diagnosis. The analysis method we use here is “LM”, which is the default setting. We also adjust for age and antibiotic usage, following the original study.</p>
+<p>In the next step, we will use <em><a href="https://bioconductor.org/packages/3.24/Maaslin2">Maaslin2</a></em> to fit a multivariable regression model for testing the association between microbial species abundance versus IBD diagnosis. The analysis method we use here is “LM”, which is the default setting. We also adjust for age and antibiotic usage, following the original study.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>eval <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Maaslin2</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://huttenhower.sph.harvard.edu/maaslin2">Maaslin2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fit_data</span> <span class="op">&lt;-</span> <span class="fu">Maaslin2</span><span class="op">(</span></span>
+<span><span class="va">fit_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Maaslin2/man/Maaslin2.html">Maaslin2</a></span><span class="op">(</span></span>
 <span>    input_data <span class="op">=</span> <span class="va">feature_species</span>,</span>
 <span>    input_metadata <span class="op">=</span> <span class="va">sample_metadata</span>,</span>
 <span>    normalization <span class="op">=</span> <span class="st">"NONE"</span>,</span>
@@ -585,7 +608,7 @@ Mallick, Himel, Ali Rahnavard, Lauren J. McIver, Siyuan Ma, Yancong Zhang, Long 
 <div class="no-row-height column-margin column-container"><div id="ref-Langfelder2008" class="csl-entry" role="listitem">
 Langfelder, Peter, and Steve Horvath. 2008. <span>“<span>WGCNA</span>: An r Package for Weighted Correlation Network Analysis.”</span> <em>BMC Bioinformatics</em> 9: 559. https://doi.org/<a href="https://doi.org/10.1186/1471-2105-9-559">https://doi.org/10.1186/1471-2105-9-559</a>.
 </div><div id="ref-Geistlinger2023" class="csl-entry" role="listitem">
-Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, Rimsha Azhar, Shaimaa Elsafoury, Clare Grieve, Jennifer Wokaty, et al. 2023. <span>“<span>BugSigDB</span> Captures Patterns of Differential Abundance Across a Broad Range of Host-Associated Microbial Signatures.”</span> <em>Nature Biotechnology</em> 42 (5): 790–802. https://doi.org/<a href="https://doi.org/10.1038/s41587-023-01872-y">https://doi.org/10.1038/s41587-023-01872-y</a>.
+Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, et al. 2023. <span>“<span>BugSigDB</span> Captures Patterns of Differential Abundance Across a Broad Range of Host-Associated Microbial Signatures.”</span> <em>Nature Biotechnology</em> 42 (5): 790–802. https://doi.org/<a href="https://doi.org/10.1038/s41587-023-01872-y">https://doi.org/10.1038/s41587-023-01872-y</a>.
 </div></div><div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">WGCNA</span><span class="op">)</span></span>
 <span></span>
@@ -724,7 +747,7 @@ Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, Rimsha Azhar, Shaimaa Elsafour
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">enrichment</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Before running the MSEA, we also need to rank the differential analysis results from <em><a href="https://bioconductor.org/packages/3.23/Maaslin2">Maaslin2</a></em>. We use the <em><a href="https://bioconductor.org/packages/3.23/topGO">topGO</a></em> package to create a list of microbe sets from the mapping file created above.</p>
+<p>Before running the MSEA, we also need to rank the differential analysis results from <em><a href="https://bioconductor.org/packages/3.24/Maaslin2">Maaslin2</a></em>. We use the <em><a href="https://bioconductor.org/packages/3.24/topGO">topGO</a></em> package to create a list of microbe sets from the mapping file created above.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">###################</span></span>
 <span><span class="co"># Rank DA results #</span></span>
@@ -769,14 +792,14 @@ Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, Rimsha Azhar, Shaimaa Elsafour
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Based on the MSEA results, we obtain 13 enriched modules of microbial species. We can also examine the members of the top enriched modules.</p>
-</section><section id="print-the-most-significant-modules-for-species-relative-abundance-data" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="print-the-most-significant-modules-for-species-relative-abundance-data">
-<span class="header-section-number">4.3</span> Print the most significant modules for species relative abundance data</h2>
+</section><section id="print-the-most-significant-modules-for-species-relative-abundance-data" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="print-the-most-significant-modules-for-species-relative-abundance-data">
+<span class="header-section-number">3.3</span> Print the most significant modules for species relative abundance data</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">microbeSet</span><span class="op">[[</span><span class="st">"MEpurple"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">microbeSet</span><span class="op">[[</span><span class="st">"MEbrown"</span><span class="op">]</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="performing-the-msea-analysis-with-pathway-relative-abundance-data" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="performing-the-msea-analysis-with-pathway-relative-abundance-data">
-<span class="header-section-number">4.4</span> Performing the MSEA analysis with pathway relative abundance data</h2>
+</section><section id="performing-the-msea-analysis-with-pathway-relative-abundance-data" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="performing-the-msea-analysis-with-pathway-relative-abundance-data">
+<span class="header-section-number">3.4</span> Performing the MSEA analysis with pathway relative abundance data</h2>
 <p>Next, we repeat the MSEA with the pathway relative abundance data from the iHMP project and follow the same steps as before.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##########################</span></span>
@@ -822,9 +845,9 @@ Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, Rimsha Azhar, Shaimaa Elsafour
 <span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">feature_pwys_t</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">se_pathway</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>As before, we first run a <em><a href="https://bioconductor.org/packages/3.23/Maaslin2">Maaslin2</a></em> analysis using default settings and construct the modules using residuals from the <em><a href="https://bioconductor.org/packages/3.23/Maaslin2">Maaslin2</a></em> models.</p>
+<p>As before, we first run a <em><a href="https://bioconductor.org/packages/3.24/Maaslin2">Maaslin2</a></em> analysis using default settings and construct the modules using residuals from the <em><a href="https://bioconductor.org/packages/3.24/Maaslin2">Maaslin2</a></em> models.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_data</span> <span class="op">&lt;-</span> <span class="fu">Maaslin2</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Maaslin2/man/Maaslin2.html">Maaslin2</a></span><span class="op">(</span></span>
 <span>    input_data <span class="op">=</span> <span class="va">feature_pwys</span>,</span>
 <span>    input_metadata <span class="op">=</span> <span class="va">sample_metadata</span>,</span>
 <span>    normalization <span class="op">=</span> <span class="st">"NONE"</span>,</span>
@@ -977,8 +1000,8 @@ Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, Rimsha Azhar, Shaimaa Elsafour
 <span><span class="va">p</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Based on the MSEA results, we obtain 4 enriched modules of microbial pathways. We can similarly examine the members of the top enriched modules.</p>
-</section><section id="print-the-most-significant-modules-for-pathway-abundance-data" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="print-the-most-significant-modules-for-pathway-abundance-data">
-<span class="header-section-number">4.5</span> Print the most significant modules for pathway abundance data</h2>
+</section><section id="print-the-most-significant-modules-for-pathway-abundance-data" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="print-the-most-significant-modules-for-pathway-abundance-data">
+<span class="header-section-number">3.5</span> Print the most significant modules for pathway abundance data</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Print the most significant modules</span></span>
 <span><span class="va">microbeSet</span><span class="op">[[</span><span class="st">"MEpurple"</span><span class="op">]</span><span class="op">]</span></span>
@@ -1400,13 +1423,13 @@ Geistlinger, Ludwig, Chloe Mirzayi, Fatima Zohra, Rimsha Azhar, Shaimaa Elsafour
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../pages/integrated_learner.html" class="pagination-link" aria-label="Multi-omics prediction and classification">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-omics prediction and classification</span></span>
+      <a href="../pages/network_comparison.html" class="pagination-link" aria-label="Network comparison">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Network comparison</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../pages/mmuphin_meta_analysis.html" class="pagination-link" aria-label="Meta-analyses">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Meta-analyses</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
