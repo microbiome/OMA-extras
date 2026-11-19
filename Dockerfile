@@ -5,6 +5,12 @@ COPY . /opt/pkg
 # Install installer helpers (no longer bundled in the Bioconductor image)
 RUN Rscript -e 'install.packages(c("remotes", "sessioninfo"), repos = BiocManager::repositories())'
 
+# Temporary: ggtree (Bioconductor devel) needs the CRAN packages treelayout
+# and tidytree (>= 0.4.9), which are newer than the CRAN snapshot used in the
+# Bioconductor devel container. Install them from CRAN first. Remove once the
+# snapshot includes them. Same fix as in .github/workflows/rworkflows.yml.
+RUN Rscript -e 'install.packages(c("treelayout", "tidytree"), repos = "https://cloud.r-project.org")'
+
 # Install book package
 RUN Rscript -e 'repos <- BiocManager::repositories() ; remotes::install_local(path = "/opt/pkg/", repos=repos, dependencies=TRUE, build_vignettes=FALSE, upgrade=TRUE) ; sessioninfo::session_info(installed.packages()[,"Package"], include_base = TRUE)'
 
