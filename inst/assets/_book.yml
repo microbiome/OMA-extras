@@ -28,6 +28,10 @@ book:
     - pages/mmuphin_meta_analysis.qmd
     - pages/extra_daa.qmd
     - pages/time_series.qmd
+    - part: "Machine learning"
+      chapters:
+        - pages/machine_learning_intro.qmd
+        - pages/machine_learning.qmd
   appendices:
     - pages/session_info.qmd
   favicon: assets/favicon.png

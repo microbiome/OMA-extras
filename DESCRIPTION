@@ -1,6 +1,6 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.65
+Version: 0.98.66
 Date: 2026-03-25
 Authors@R:
     c(
@@ -50,9 +50,11 @@ Suggests:
     miaTime,
     miaViz,
     microbiomeDataSets,
+    mikropml,
     MMUPHin,
     NetCoMi,
     patchwork,
+    pROC,
     purrr,
     RColorBrewer,
     rebook,
@@ -65,7 +67,8 @@ Suggests:
     SuperLearner,
     tidyverse,
     vegan,
-    WGCNA
+    WGCNA,
+    xgboost
 Remotes:
     github::duncantl/CodeDepends,
     github::himelmallick/IntegratedLearner,
