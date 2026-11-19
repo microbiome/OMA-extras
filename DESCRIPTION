@@ -1,7 +1,7 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.66
-Date: 2026-03-25
+Version: 0.98.67
+Date: 2026-11-19
 Authors@R:
     c(
   person(given = "Tuomas", family = "Borman", role = c("aut", "cre"), email = "tuomas.v.borman@utu.fi", comment = c(ORCID = "0000-0002-8563-8884")),
