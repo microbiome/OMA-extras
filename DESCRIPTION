@@ -1,6 +1,6 @@
 Package: OMAextras
 Title: Orchestrating Microbiome Analysis with Bioconductor — extras
-Version: 0.98.67
+Version: 0.98.68
 Date: 2026-11-19
 Authors@R:
     c(
@@ -39,7 +39,6 @@ Suggests:
     glue,
     gsEasy,
     igraph,
-    IntegratedLearner,
     knitr,
     limma,
     LimROTS,
@@ -64,14 +63,12 @@ Suggests:
     sessioninfo,
     SpiecEasi,
     SPRING,
-    SuperLearner,
     tidyverse,
     vegan,
     WGCNA,
     xgboost
 Remotes:
     github::duncantl/CodeDepends,
-    github::himelmallick/IntegratedLearner,
     github::stefpeschel/NetCoMi,
     github::zdk123/pulsar,
     github::zdk123/SpiecEasi,

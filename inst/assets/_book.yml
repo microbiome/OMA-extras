@@ -23,7 +23,6 @@ book:
     - index.qmd
     - pages/network_learning.qmd
     - pages/network_comparison.qmd
-    - pages/integrated_learner.qmd
     - pages/msea.qmd
     - pages/mmuphin_meta_analysis.qmd
     - pages/extra_daa.qmd
